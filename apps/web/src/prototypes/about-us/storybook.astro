@@ -80,6 +80,15 @@ const getInitials = (name: string): string =>
 			<h2 id="values-title">The values behind our work</h2>
 
 			<div class="about-page__values-panel">
+				<Image
+					alt=""
+					class="about-page__values-image"
+					format="webp"
+					loading="lazy"
+					sizes="(min-width: 78rem) 33rem, (min-width: 48rem) 42vw, 100vw"
+					src={books}
+					widths={[320, 480, 640, 960, 1280]}
+				/>
 				<ul class="about-page__values-list">
 					{values.map(({ title, description }) => (
 						<li class="about-page__value">
@@ -313,8 +322,10 @@ const getInitials = (name: string): string =>
 	}
 
 	.about-page__values-panel {
-		padding: clamp(1.5rem, 4vw, 3.5rem);
+		display: grid;
+		grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
 		margin-block-start: clamp(2rem, 4vw, 3.5rem);
+		overflow: hidden;
 		color: var(--color-on-image);
 		text-align: start;
 		background: var(--color-brand-primary-dark);
@@ -322,20 +333,26 @@ const getInitials = (name: string): string =>
 		box-shadow: 0 28px 60px -45px rgb(6 27 48 / 65%);
 	}
 
+	.about-page__values-image {
+		display: block;
+		inline-size: 100%;
+		block-size: 100%;
+		object-fit: cover;
+		object-position: center 48%;
+	}
+
 	.about-page__values-list {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
-		padding: 0;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: clamp(1.5rem, 3vw, 2.5rem) clamp(1.25rem, 2.5vw, 2rem);
+		align-content: center;
+		padding: clamp(2rem, 4vw, 3.25rem);
 		margin: 0;
 		list-style: none;
 	}
 
 	.about-page__value {
-		padding: 0.5rem clamp(0.75rem, 2vw, 1.5rem);
-	}
-
-	.about-page__value + .about-page__value {
-		border-inline-start: 1px solid color-mix(in srgb, var(--color-on-image) 24%, transparent);
+		min-inline-size: 0;
 	}
 
 	.about-page__value h3,
@@ -465,14 +482,6 @@ const getInitials = (name: string): string =>
 			gap: 2.5rem;
 		}
 
-		.about-page__values-list {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-			gap: 2rem 0;
-		}
-
-		.about-page__value:nth-child(odd) {
-			border-inline-start: 0;
-		}
 	}
 
 	@media (max-width: 48rem) {
@@ -506,6 +515,21 @@ const getInitials = (name: string): string =>
 		.about-page__story-crop--middle {
 			border-radius: 1.5rem 1.5rem 0.5rem 0.5rem;
 		}
+
+		.about-page__values-panel {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		.about-page__values-image {
+			block-size: auto;
+			aspect-ratio: 1.7;
+		}
+
+		.about-page__values-list {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+			padding: clamp(1.5rem, 6vw, 2.25rem);
+		}
 	}
 
 	@media (max-width: 36rem) {
@@ -519,26 +543,6 @@ const getInitials = (name: string): string =>
 
 		.about-page__identity {
 			padding-inline: 1rem;
-		}
-
-		.about-page__values-panel {
-			padding: 1.25rem;
-			border-radius: 1.5rem;
-		}
-
-		.about-page__values-list {
-			grid-template-columns: 1fr;
-			gap: 0;
-		}
-
-		.about-page__value,
-		.about-page__value + .about-page__value {
-			padding: 1.25rem 0.25rem;
-			border-inline-start: 0;
-		}
-
-		.about-page__value + .about-page__value {
-			border-block-start: 1px solid color-mix(in srgb, var(--color-on-image) 24%, transparent);
 		}
 
 		.about-page__team-list {
