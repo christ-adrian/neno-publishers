@@ -5,7 +5,10 @@ import Bookplate from "../../prototypes/header-hero/bookplate.astro";
 import Centered from "../../prototypes/header-hero/centered.astro";
 import Editorial from "../../prototypes/header-hero/editorial.astro";
 import Header from "../../prototypes/header-hero/header.astro";
-import { sections } from "../../prototypes/header-hero/navigation";
+import {
+	publishSection,
+	sections,
+} from "../../prototypes/header-hero/navigation";
 import "../../prototypes/header-hero/picker.css";
 import "../../prototypes/header-hero/theme.css";
 
@@ -36,7 +39,7 @@ const ActiveHero = variants[activeIndex]?.Component ?? Centered;
 		<main>
 			<div id="stage"><ActiveHero /></div>
 			<div class="preview-sections">
-				{sections.map(({ id, label, description }) => (
+				{[...sections, publishSection].map(({ id, label, description }) => (
 					<section aria-labelledby={`${id}-heading`} id={id} tabindex="-1">
 						<h2 id={`${id}-heading`}>{label}</h2>
 						<p>{description}</p>

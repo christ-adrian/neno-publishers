@@ -5,10 +5,7 @@ import { sections } from "./navigation";
 <ul class="nav-links">
 	{sections.map(({ id, label }) => (
 		<li>
-			<a
-				class:list={["nav-link", { "nav-link--contact": id === "contact" }]}
-				href={`#${id}`}
-			>
+			<a class="nav-link" href={`#${id}`}>
 				{label}
 			</a>
 		</li>

@@ -28,3 +28,10 @@ export const sections = [
 		label: "Contact Us",
 	},
 ] as const;
+
+export const publishSection = {
+	description:
+		"Explore the publishing, printing, and advisory support available for your manuscript.",
+	id: "publish",
+	label: "Publish With Us",
+} as const;

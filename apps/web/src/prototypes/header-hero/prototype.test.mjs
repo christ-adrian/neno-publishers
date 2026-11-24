@@ -79,6 +79,7 @@ test("the picker supports click, number keys, arrows, and reload", async () => {
 
 test("the shared header floats on scroll and returns to the top state", async () => {
 	const page = await browser.newPage({
+		reducedMotion: "reduce",
 		viewport: { height: 873, width: 1306 },
 	});
 	try {
@@ -88,14 +89,51 @@ test("the shared header floats on scroll and returns to the top state", async ()
 
 		const targets = await nav
 			.getByRole("link")
-			.evaluateAll((links) =>
-				links.map((link) => document.getElementById(link.hash.slice(1))?.id)
+			.evaluateAll((anchors) =>
+				anchors.map((link) => document.getElementById(link.hash.slice(1))?.id)
 			);
 		expect(targets).toEqual(destinations);
 
+		const links = nav.getByRole("link");
+		expect(await links.last().innerText()).toBe("Contact Us");
+		const logo = page.getByRole("link", { name: "Neno Publishers home" });
+		const publish = page.getByRole("link", { name: "Publish With Us" });
+		const logoBox = await logo.boundingBox();
+		const firstLink = await links.first().boundingBox();
+		const lastLink = await links.last().boundingBox();
+		const publishBox = await publish.boundingBox();
+		expect(firstLink.x - logoBox.x - logoBox.width).toBeLessThan(24);
+		expect(publishBox.x - lastLink.x - lastLink.width).toBeGreaterThan(24);
+
+		const header = page.locator("[data-site-header]");
+		const panel = header.locator(".header-frame");
+		expect(
+			await header.evaluate(
+				(element) => getComputedStyle(element).backgroundColor
+			)
+		).toBe("rgba(0, 0, 0, 0)");
+		expect(
+			await header.evaluate(
+				(element) => getComputedStyle(element, "::before").content
+			)
+		).toBe("none");
+		expect(
+			await panel.evaluate(
+				(element) => getComputedStyle(element, "::before").opacity
+			)
+		).toBe("0");
+
 		await page.evaluate(() => window.scrollTo(0, 200));
 		await page.waitForSelector("[data-site-header][data-floating]");
-		await page.getByRole("link", { name: "Neno Publishers home" }).click();
+		expect(
+			await panel.evaluate(
+				(element) => getComputedStyle(element, "::before").opacity
+			)
+		).toBe("1");
+		await publish.click();
+		expect(new URL(page.url()).hash).toBe("#publish");
+		expect(await page.locator("#publish").count()).toBe(1);
+		await logo.click();
 		await page.waitForSelector("[data-site-header]:not([data-floating])");
 	} finally {
 		await page.close();
@@ -108,6 +146,9 @@ test("mobile navigation supports keyboard opening, dismissal, and navigation", a
 		await page.goto(`${baseURL}${prototypePath}`);
 		const menu = page.locator("[data-mobile-menu]");
 		const trigger = menu.locator("summary");
+		const publish = page.getByRole("link", { name: "Publish With Us" });
+		const publishBox = await publish.boundingBox();
+		expect(publishBox.x + publishBox.width).toBeLessThanOrEqual(320);
 		await trigger.focus();
 		await page.keyboard.press("Enter");
 		await menu.getByRole("link", { name: "Our Authors" }).waitFor();
@@ -131,9 +172,10 @@ test("mobile navigation supports keyboard opening, dismissal, and navigation", a
 const viewports = [
 	{ gutter: 16, padding: "16px", width: 320 },
 	{ gutter: 16, padding: "40px", width: 768 },
+	{ gutter: 17.92, padding: "40px", width: 896 },
 	{ gutter: 26.12, padding: "40px", width: 1306 },
-	{ gutter: 80, padding: "40px", width: 1440 },
-	{ gutter: 160, padding: "40px", width: 1600 },
+	{ gutter: 28.8, padding: "40px", width: 1440 },
+	{ gutter: 32, padding: "40px", width: 1920 },
 ];
 const layoutCases = viewports.flatMap((viewport) =>
 	[1, 2, 3].map((variant) => ({ ...viewport, variant }))

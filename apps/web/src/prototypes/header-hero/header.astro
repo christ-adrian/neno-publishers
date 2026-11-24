@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import logo from "./images/neno-logo.jpeg";
+import { publishSection } from "./navigation";
 import Navigation from "./navigation.astro";
 ---
 
@@ -26,6 +27,10 @@ import Navigation from "./navigation.astro";
 				<Navigation />
 			</nav>
 		</details>
+
+		<a class="nav-link nav-link--publish" href={`#${publishSection.id}`}>
+			{publishSection.label}
+		</a>
 	</div>
 </header>
 
@@ -64,7 +69,7 @@ import Navigation from "./navigation.astro";
 			}
 		});
 
-		const desktop = window.matchMedia("(min-width: 48rem)");
+		const desktop = window.matchMedia("(min-width: 56rem)");
 		desktop.addEventListener("change", () => {
 			if (desktop.matches) {
 				menu.open = false;
