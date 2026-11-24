@@ -80,20 +80,24 @@ const getInitials = (name: string): string =>
 			<h2 id="values-title">The values behind our work</h2>
 
 			<div class="about-page__values-panel">
-				<Image
-					alt=""
-					class="about-page__values-image"
-					format="webp"
-					loading="lazy"
-					sizes="(min-width: 78rem) 33rem, (min-width: 48rem) 42vw, 100vw"
-					src={books}
-					widths={[320, 480, 640, 960, 1280]}
-				/>
 				<ul class="about-page__values-list">
 					{values.map(({ title, description }) => (
 						<li class="about-page__value">
-							<h3>{title}</h3>
-							<p>{description}</p>
+							<about-value-media class="about-page__value-media">
+								<Image
+									alt=""
+									class="about-page__value-image"
+									format="webp"
+									loading="lazy"
+									sizes="(min-width: 78rem) 39rem, (min-width: 48rem) 50vw, 100vw"
+									src={books}
+									widths={[320, 480, 640, 960, 1280]}
+								/>
+							</about-value-media>
+							<div class="about-page__value-copy">
+								<h3>{title}</h3>
+								<p>{description}</p>
+							</div>
 						</li>
 					))}
 				</ul>
@@ -322,37 +326,99 @@ const getInitials = (name: string): string =>
 	}
 
 	.about-page__values-panel {
-		display: grid;
-		grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
 		margin-block-start: clamp(2rem, 4vw, 3.5rem);
 		overflow: hidden;
-		color: var(--color-on-image);
-		text-align: start;
-		background: var(--color-brand-primary-dark);
 		border-radius: clamp(1.5rem, 3vw, 2.5rem);
 		box-shadow: 0 28px 60px -45px rgb(6 27 48 / 65%);
 	}
 
-	.about-page__values-image {
-		display: block;
-		inline-size: 100%;
-		block-size: 100%;
-		object-fit: cover;
-		object-position: center 48%;
-	}
-
 	.about-page__values-list {
 		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: clamp(1.5rem, 3vw, 2.5rem) clamp(1.25rem, 2.5vw, 2rem);
-		align-content: center;
-		padding: clamp(2rem, 4vw, 3.25rem);
+		padding: 0;
 		margin: 0;
 		list-style: none;
 	}
 
 	.about-page__value {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		min-block-size: 18rem;
 		min-inline-size: 0;
+	}
+
+	.about-page__value:nth-child(odd) {
+		grid-template-areas: "image copy";
+		color: var(--color-on-image);
+		background: var(--color-brand-primary-dark);
+	}
+
+	.about-page__value:nth-child(even) {
+		grid-template-areas: "copy image";
+		color: var(--color-ink);
+		background: var(--color-surface);
+	}
+
+	.about-page__value-media {
+		display: block;
+		grid-area: image;
+		min-block-size: clamp(17rem, 27vw, 23rem);
+		overflow: hidden;
+	}
+
+	.about-page__value-image {
+		display: block;
+		inline-size: 100%;
+		block-size: 100%;
+		object-fit: cover;
+	}
+
+	.about-page__value:nth-child(1) .about-page__value-image {
+		object-position: center 8%;
+	}
+
+	.about-page__value:nth-child(2) .about-page__value-image {
+		object-position: center 25%;
+	}
+
+	.about-page__value:nth-child(3) .about-page__value-image {
+		object-position: center 41%;
+	}
+
+	.about-page__value:nth-child(4) .about-page__value-image {
+		object-position: center 58%;
+	}
+
+	.about-page__value:nth-child(5) .about-page__value-image {
+		object-position: center 75%;
+	}
+
+	.about-page__value:nth-child(6) .about-page__value-image {
+		object-position: center 92%;
+	}
+
+	.about-page__value-image--revealed {
+		animation: about-value-image-reveal 250ms ease-out both;
+	}
+
+	@keyframes about-value-image-reveal {
+		from {
+			opacity: 0;
+			transform: scale(0.97);
+		}
+
+		to {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+
+	.about-page__value-copy {
+		display: flex;
+		grid-area: copy;
+		flex-direction: column;
+		justify-content: center;
+		padding: clamp(1.5rem, 4vw, 3.5rem);
+		text-align: start;
 	}
 
 	.about-page__value h3,
@@ -366,8 +432,15 @@ const getInitials = (name: string): string =>
 		margin-block-start: 0.65rem;
 		font-size: 0.95rem;
 		line-height: 1.65;
-		color: color-mix(in srgb, var(--color-on-image) 82%, transparent);
 		text-wrap: pretty;
+	}
+
+	.about-page__value:nth-child(odd) p {
+		color: color-mix(in srgb, var(--color-on-image) 82%, transparent);
+	}
+
+	.about-page__value:nth-child(even) p {
+		color: var(--color-ink-muted);
 	}
 
 	.about-page__section-heading {
@@ -516,18 +589,28 @@ const getInitials = (name: string): string =>
 			border-radius: 1.5rem 1.5rem 0.5rem 0.5rem;
 		}
 
-		.about-page__values-panel {
+		.about-page__values-list .about-page__value {
 			grid-template-columns: minmax(0, 1fr);
+			grid-template-areas:
+				"image"
+				"copy";
 		}
 
-		.about-page__values-image {
+		.about-page__value {
+			min-block-size: 0;
+		}
+
+		.about-page__value-media {
 			block-size: auto;
+			min-block-size: 0;
 			aspect-ratio: 1.7;
 		}
 
-		.about-page__values-list {
-			grid-template-columns: 1fr;
-			gap: 1.5rem;
+		.about-page__value-image {
+			block-size: 100%;
+		}
+
+		.about-page__value-copy {
 			padding: clamp(1.5rem, 6vw, 2.25rem);
 		}
 	}
@@ -573,6 +656,10 @@ const getInitials = (name: string): string =>
 	}
 
 	@media (prefers-reduced-motion: reduce) {
+		.about-page__value-image--revealed {
+			animation: none;
+		}
+
 		.about-page__reason {
 			transition: none;
 		}
@@ -582,3 +669,46 @@ const getInitials = (name: string): string =>
 		}
 	}
 </style>
+
+<script>
+	class AboutValueMedia extends HTMLElement {
+		observer: IntersectionObserver | null = null;
+
+		connectedCallback() {
+			const image = this.querySelector("img");
+
+			if (
+				!image ||
+				image.classList.contains("about-page__value-image--revealed") ||
+				typeof IntersectionObserver === "undefined"
+			) {
+				return;
+			}
+
+			this.observer = new IntersectionObserver(
+				(entries) => {
+					if (!entries.some((entry) => entry.isIntersecting)) {
+						return;
+					}
+
+					image.classList.add("about-page__value-image--revealed");
+					this.observer?.unobserve(image);
+					this.observer?.disconnect();
+					this.observer = null;
+				},
+				{ threshold: 0.2 },
+			);
+
+			this.observer.observe(image);
+		}
+
+		disconnectedCallback() {
+			this.observer?.disconnect();
+			this.observer = null;
+		}
+	}
+
+	if (!customElements.get("about-value-media")) {
+		customElements.define("about-value-media", AboutValueMedia);
+	}
+</script>
