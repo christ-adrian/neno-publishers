@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "skills": {
+    "turborepo": {
+      "source": "vercel/turborepo",
+      "commit": "51d6ddfcbb35d7cc264ee9b6e0ef8f4f82fc23d1",
+      "sourceType": "github",
+      "skillPath": "skills/turborepo/SKILL.md",
+      "computedHash": "49bb6427015253ce5d93f15dfa6c9ade3f8528f0fbe54769b6da1e1458f058d4"
+    },
+    "ultracite": {
+      "source": "haydenbleasel/ultracite",
+      "commit": "f5c8af0411ddb96114780f5f768d2abd6bd22f7e",
+      "sourceType": "github",
+      "skillPath": "skills/ultracite/SKILL.md",
+      "computedHash": "52eac7a3ac5f3117d8d70f1058eed56403e9755fc93e0ba944c4c501fa560ba6"
+    }
+  }
+}

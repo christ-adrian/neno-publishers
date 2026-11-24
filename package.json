@@ -1,0 +1,40 @@
+{
+  "name": "neno-publishers",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "packages/*"
+    ],
+    "catalog": {
+      "zod": "^4.6.7",
+      "typescript": "^6.0.3",
+      "varlock": "1.25.0"
+    }
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "check-types": "turbo run check-types",
+    "dev:web": "turbo run dev -F web --",
+    "env:generate": "varlock codegen --path ./apps/web/",
+    "postinstall": "varlock codegen --path ./apps/web/",
+    "check": "ultracite check",
+    "fix": "ultracite fix"
+  },
+  "dependencies": {
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15",
+    "@neno-publishers/config": "workspace:*",
+    "@types/node": "^26.6.6",
+    "lefthook": "latest",
+    "turbo": "^2.11.11",
+    "typescript": "catalog:",
+    "ultracite": "8.0.0",
+    "varlock": "catalog:"
+  },
+  "packageManager": "bun@1.4.2"
+}

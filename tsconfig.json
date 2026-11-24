@@ -1,0 +1,3 @@
+{
+  "extends": "@neno-publishers/config/tsconfig.base.json"
+}
