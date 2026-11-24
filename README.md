@@ -2,7 +2,7 @@
 
 This repository hosts the redesign of the Neno Publishers Ltd website (`nenopublishers.co.ke`). The redesign replaces the legacy WordPress site with a static-first Astro frontend and uses Sanity CMS for editorial content.
 
-The Astro homepage uses the Bookplate hero and shared site header. The app runs in server mode with Astro’s standalone Node adapter. The linked destination pages show their titles in the shared site shell. Page content, Sanity integration, and WordPress redirects are planned.
+The Astro homepage uses the Bookplate hero and shared site header. The app runs in server mode with Astro’s standalone Node adapter. The About Us and Our Services pages use the shared site shell. Sanity integration and WordPress redirects are planned.
 
 The project was scaffolded with [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack) as a Turborepo monorepo managed with Bun.
 
@@ -24,7 +24,8 @@ The project was scaffolded with [Better-T-Stack](https://github.com/AmanVarshney
 | --- | --- | --- |
 | `/` | Homepage with a hero, core services, featured books, and testimonials | `/` (same path) |
 | `/about-us` | Who We Are, Core Values, Why Choose Us, and Leadership | `/who-we-are-2/`, `/core-values/`, `/why-choose-us/` |
-| `/our-services` | Publishing, Advisory, and Printing services | `/services-3/` |
+| `/our-services` | Services hub with Printing, Advisory, and Publishing | `/services-3/` |
+| `/our-services/printing`, `/our-services/advisory`, `/our-services/publishing` | Category service lists with shared navigation | |
 | `/our-books` | Filterable catalog with individual book pages | `/our-book/` |
 | `/our-authors` | Author directory linked to published titles | `/our-authors/` |
 | `/contact-us` | Service-aware inquiry form and Nairobi office contact details | `/contact-us/` |

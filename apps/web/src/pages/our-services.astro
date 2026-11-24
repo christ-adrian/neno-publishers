@@ -1,9 +1,15 @@
 ---
+import ServicesPage from "../components/our-services/services-page.astro";
+import { services } from "../components/our-services/content";
 import Layout from "../layouts/Layout.astro";
+
+const service = services.find(({ slug }) => slug === "printing");
+
+if (!service) {
+	throw new Error('The "printing" service is required for the services landing page.');
+}
 ---
 
 <Layout title="Our Services | Neno Publishers">
-	<main>
-		<h1>Our Services</h1>
-	</main>
+	<ServicesPage service={service} />
 </Layout>
