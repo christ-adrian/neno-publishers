@@ -384,21 +384,11 @@
 	}
 
 	html:active-view-transition-type(circular-wipe)::view-transition-old(root) {
-		animation: circle-wipe-out 1.4s ease forwards;
+		animation: none;
 	}
 
 	html:active-view-transition-type(circular-wipe)::view-transition-new(root) {
-		animation: circle-wipe-in 1.4s ease forwards;
-	}
-}
-
-@keyframes circle-wipe-out {
-	from {
-		clip-path: circle(150% at 50% 50%);
-	}
-
-	to {
-		clip-path: circle(0% at 50% 50%);
+		animation: circle-wipe-in 2s ease-in-out both;
 	}
 }
 
@@ -408,6 +398,7 @@
 	}
 
 	to {
-		clip-path: circle(150% at 50% 50%);
+		/* A centered circle reaches the viewport corners at about 71%. */
+		clip-path: circle(71% at 50% 50%);
 	}
 }
