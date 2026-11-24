@@ -3,7 +3,10 @@ import { Image } from "astro:assets";
 import shelves from "../assets/hero-background.jpg";
 ---
 
-<section aria-labelledby="hero-heading" class="hero">
+<section
+	aria-labelledby="hero-heading"
+	class="hero before:pointer-events-none before:absolute before:inset-0 before:-z-1 before:bg-slate-900/15"
+>
 	<Image
 		alt=""
 		class="hero-image"
@@ -13,10 +16,10 @@ import shelves from "../assets/hero-background.jpg";
 		src={shelves}
 		widths={[480, 768, 1280, 1920]}
 	/>
-	<div class="hero-copy">
+	<div class="hero-copy shadow-2xl shadow-slate-900/25">
 		<h1 class="hero-heading" id="hero-heading">
-			<span>Your work</span>
-			<span>Our priority</span>
+			<span>Your Work,</span>
+			<span>Our Priority</span>
 		</h1>
 		<p class="hero-description">
 			Transforming your manuscript into a masterpiece with Kenya’s premier

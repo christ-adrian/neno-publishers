@@ -265,7 +265,7 @@
 .hero-image {
 	position: absolute;
 	inset: 0;
-	z-index: -1;
+	z-index: -2;
 	inline-size: 100%;
 	block-size: 100%;
 	object-fit: cover;
@@ -275,9 +275,7 @@
 	inline-size: min(100%, 33rem);
 	padding: clamp(1.25rem, 3vw, 2.75rem);
 	background: var(--color-brand-primary-dark);
-	border-block-start: 3px solid var(--color-brand-primary-soft);
 	border-radius: var(--radius-floating-nav);
-	box-shadow: var(--shadow-floating-nav);
 }
 
 .hero-heading {
@@ -285,7 +283,6 @@
 	font-weight: 600;
 	font-optical-sizing: auto;
 	line-height: 0.98;
-	text-transform: uppercase;
 	letter-spacing: -0.045em;
 	overflow-wrap: anywhere;
 }
