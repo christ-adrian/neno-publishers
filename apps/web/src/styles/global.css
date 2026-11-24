@@ -371,34 +371,37 @@
 @media (prefers-reduced-motion: no-preference) {
 	@view-transition {
 		navigation: auto;
-		types: circular-wipe;
+		types: diagonal-push;
 	}
 
-	html:active-view-transition-type(circular-wipe)::view-transition {
+	html:active-view-transition-type(diagonal-push)::view-transition {
 		pointer-events: none;
 	}
 
-	html:active-view-transition-type(circular-wipe)::view-transition-old(root),
-	html:active-view-transition-type(circular-wipe)::view-transition-new(root) {
+	html:active-view-transition-type(diagonal-push)::view-transition-old(root),
+	html:active-view-transition-type(diagonal-push)::view-transition-new(root) {
 		mix-blend-mode: normal;
 	}
 
-	html:active-view-transition-type(circular-wipe)::view-transition-old(root) {
-		animation: none;
+	html:active-view-transition-type(diagonal-push)::view-transition-old(root) {
+		animation: diagonal-out 1.4s ease forwards;
 	}
 
-	html:active-view-transition-type(circular-wipe)::view-transition-new(root) {
-		animation: circle-wipe-in 2s ease-in-out both;
+	html:active-view-transition-type(diagonal-push)::view-transition-new(root) {
+		animation: diagonal-in 1.4s ease forwards;
 	}
 }
 
-@keyframes circle-wipe-in {
-	from {
-		clip-path: circle(0% at 50% 50%);
-	}
-
+@keyframes diagonal-out {
 	to {
-		/* A centered circle reaches the viewport corners at about 71%. */
-		clip-path: circle(71% at 50% 50%);
+		transform: translate(-100%, -100%);
+		opacity: 0;
+	}
+}
+
+@keyframes diagonal-in {
+	from {
+		transform: translate(100%, 100%);
+		opacity: 0;
 	}
 }
