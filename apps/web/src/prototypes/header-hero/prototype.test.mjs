@@ -239,3 +239,25 @@ test.each(layoutCases)(
 	},
 	10_000
 );
+
+test("the hero shows both future page links below the copy", async () => {
+	const page = await browser.newPage({ viewport: { height: 700, width: 320 } });
+	try {
+		await page.goto(`${baseURL}${prototypePath}`);
+		const actions = page.locator("#stage .hero-description + .hero-actions");
+		const submit = actions.getByRole("link", {
+			exact: true,
+			name: "Submit Your Manuscript",
+		});
+		const contact = actions.getByRole("link", {
+			exact: true,
+			name: "Need help? Talk to us",
+		});
+		expect(await submit.getAttribute("href")).toBe("/publish-with-us");
+		expect(await contact.getAttribute("href")).toBe("/contact");
+		expect(await submit.isVisible()).toBe(true);
+		expect(await contact.isVisible()).toBe(true);
+	} finally {
+		await page.close();
+	}
+});
