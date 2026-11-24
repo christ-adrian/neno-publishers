@@ -73,8 +73,6 @@
 
 .logo-link img {
 	inline-size: 100%;
-	mix-blend-mode: multiply;
-	clip-path: inset(2% 1%);
 }
 
 .desktop-nav {
