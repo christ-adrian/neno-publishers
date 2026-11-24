@@ -1,0 +1,67 @@
+---
+import { Image } from "astro:assets";
+import shelves from "../../assets/hero-background.jpg";
+import { type Service, services } from "./content";
+import ServiceDetails from "./service-details.astro";
+import ServiceTransitions from "./service-transitions.astro";
+import "./services-hero.css";
+
+interface Props {
+	service: Service;
+}
+
+const { service } = Astro.props;
+const isHub = Astro.url.pathname.replace(/\/$/, "") === "/our-services";
+---
+
+<ServiceTransitions />
+<main class="services-page">
+	<div class="service-frame" data-service={service.slug}>
+		<nav aria-label="Breadcrumb" class="service-breadcrumb">
+			<a href="/">Home</a>
+			<span aria-hidden="true">/</span>
+			<a aria-current={isHub ? "page" : undefined} href="/our-services">Our Services</a>
+		</nav>
+		<section aria-labelledby="service-title" class="service-hero">
+			<div class="service-copy">
+				<h1 id="service-title">{service.title}</h1>
+				<p class="service-headline">{service.headline}</p>
+				<p class="service-lead">{service.description}</p>
+				<a class="service-more" href="#service-details">
+					See services <span aria-hidden="true">↓</span>
+				</a>
+			</div>
+			<figure aria-hidden="true" class="service-art">
+				{service.slug === "advisory" ? (
+					<div class="service-notebook">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+				) : (
+					<Image
+						alt=""
+						class="service-art-image"
+						format="webp"
+						loading="eager"
+						sizes="(min-width: 64rem) 24rem, (min-width: 48rem) 35vw, 78vw"
+						src={shelves}
+						widths={[320, 480, 640, 768]}
+					/>
+				)}
+			</figure>
+		</section>
+		<nav aria-label="Service categories" class="service-nav">
+			{services.map(({ slug, title }) => (
+				<a
+					aria-current={slug === service.slug ? "page" : undefined}
+					href={`/our-services/${slug}`}
+				>
+					<span>{title}</span>
+				</a>
+			))}
+		</nav>
+	</div>
+	<ServiceDetails service={service} />
+</main>

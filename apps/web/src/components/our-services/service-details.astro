@@ -1,0 +1,88 @@
+---
+import type { Service } from "./content";
+
+interface Props {
+	service: Service;
+}
+
+const { service } = Astro.props;
+---
+
+<section
+	aria-labelledby="service-details"
+	class="service-details"
+	data-service={service.slug}
+>
+	<div class="service-details__inner">
+		<h2 id="service-details">Services offered</h2>
+		<ul class="service-details__list" role="list">
+			{service.offerings.map((offering) => <li>{offering}</li>)}
+		</ul>
+	</div>
+</section>
+
+<style>
+	.service-details {
+		--details-accent: var(--color-brand-primary-dark);
+		padding: clamp(1.5rem, 5vw, 4rem);
+		margin-block-start: clamp(1.25rem, 3vw, 2.5rem);
+		color: var(--color-ink);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: clamp(1.5rem, 3.25vw, 2.5rem);
+		box-shadow: 0 2rem 5rem -3.5rem rgb(15 23 42 / 18%);
+	}
+
+	.service-details[data-service="advisory"] {
+		--details-accent: #8d352b;
+	}
+
+	.service-details[data-service="publishing"] {
+		--details-accent: #124b3e;
+	}
+
+	.service-details__inner {
+		inline-size: min(100%, 68rem);
+		margin-inline: auto;
+	}
+
+	.service-details h2 {
+		scroll-margin-block-start: 6rem;
+		color: var(--details-accent);
+		font-size: clamp(2rem, 4.2vw, 3.25rem);
+		font-weight: 600;
+		letter-spacing: -0.04em;
+		line-height: 1.05;
+		text-wrap: balance;
+	}
+
+	.service-details__list {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+		column-gap: clamp(1rem, 3vw, 2rem);
+		padding: 0;
+		margin-block-start: clamp(1rem, 2.5vw, 1.75rem);
+		list-style: none;
+	}
+
+	.service-details__list li {
+		display: flex;
+		gap: 0.75rem;
+		align-items: flex-start;
+		min-inline-size: 0;
+		padding-block: 0.9rem;
+		color: var(--color-ink-muted);
+		line-height: 1.5;
+		border-block-end: 1px solid var(--color-border);
+	}
+
+	.service-details__list li::before {
+		flex: none;
+		inline-size: 0.55rem;
+		block-size: 0.55rem;
+		margin-block-start: 0.45rem;
+		content: "";
+		background: var(--details-accent);
+		border-radius: 50%;
+	}
+</style>
