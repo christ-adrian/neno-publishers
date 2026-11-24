@@ -1,8 +1,29 @@
 @import "tailwindcss";
 
-/* Add your theme customizations here. */
-/* See the TailwindCSS v4 docs for more info: https://tailwindcss.com/docs/v4-beta */
-
 @theme {
-  --font-sans: "Inter", sans-serif;
+  --color-brand-primary: #159ad6;
+  /* Use deep cerulean for links and buttons with white labels. */
+  --color-brand-primary-dark: #0e74a6;
+  --color-brand-primary-soft: #eef8fd;
+  --color-brand-secondary: #e55551;
+
+  --color-surface: #ffffff;
+  --color-surface-alt: #f8f9fa;
+  --color-ink: #0f172a;
+  --color-ink-muted: #475569;
+  --color-border: #e2e8f0;
+
+  --font-sans: "Plus Jakarta Sans Variable", system-ui, sans-serif;
+  --font-serif: "Newsreader Variable", Georgia, serif;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-serif);
+  }
 }

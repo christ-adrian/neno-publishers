@@ -8,7 +8,7 @@ const links = [
   <div class="flex flex-row items-center justify-between px-4 py-2 md:px-6">
     <nav class="flex gap-4 text-lg">
       {links.map((link) => (
-        <a href={link.to} class="text-white hover:text-neutral-400 transition-colors">
+        <a href={link.to} class="text-brand-primary-dark hover:underline">
           {link.label}
         </a>
       ))}
@@ -16,6 +16,6 @@ const links = [
     <div class="flex items-center gap-2" id="user-menu-container">
     </div>
   </div>
-  <hr class="border-neutral-800" />
+  <hr class="border-border" />
 </div>
 
