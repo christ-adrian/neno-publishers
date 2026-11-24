@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import books from "../../assets/hero-background.jpg";
-import { intro, mission, reasons, story, team, values, vision } from "./content";
+import { intro, reasons, story, team, values } from "./content";
 
 const getInitials = (name: string): string =>
   name
@@ -88,19 +88,6 @@ const getInitials = (name: string): string =>
 						</li>
 					))}
 				</ul>
-			</div>
-
-			<div class="about-page__purpose-card">
-				<article class="about-page__purpose">
-					<p class="about-page__eyebrow">Looking ahead</p>
-					<h3>What we aim for</h3>
-					<p>{vision}</p>
-				</article>
-				<article class="about-page__purpose">
-					<p class="about-page__eyebrow">Our mission</p>
-					<h3>Mission</h3>
-					<p>{mission}</p>
-				</article>
 			</div>
 		</div>
 	</section>
@@ -248,16 +235,6 @@ const getInitials = (name: string): string =>
 		box-shadow: 0 24px 72px -56px rgb(15 23 42 / 35%);
 	}
 
-	.about-page__eyebrow {
-		margin-block-end: 0.85rem !important;
-		font-size: 0.75rem;
-		font-weight: 750;
-		letter-spacing: 0.13em;
-		line-height: 1.4;
-		text-transform: uppercase;
-		color: var(--color-brand-primary-dark);
-	}
-
 	.about-page__story h2,
 	.about-page__identity h2,
 	.about-page__section-heading h2 {
@@ -361,9 +338,7 @@ const getInitials = (name: string): string =>
 		border-inline-start: 1px solid color-mix(in srgb, var(--color-on-image) 24%, transparent);
 	}
 
-
 	.about-page__value h3,
-	.about-page__purpose h3,
 	.about-page__reason h3,
 	.about-page__team-card h3 {
 		font-size: clamp(1.35rem, 2vw, 1.75rem);
@@ -375,33 +350,6 @@ const getInitials = (name: string): string =>
 		font-size: 0.95rem;
 		line-height: 1.65;
 		color: color-mix(in srgb, var(--color-on-image) 82%, transparent);
-		text-wrap: pretty;
-	}
-
-	.about-page__purpose-card {
-		position: relative;
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: clamp(1.5rem, 4vw, 3.5rem);
-		padding: clamp(1.5rem, 4vw, 3.5rem);
-		margin: -1.75rem clamp(0rem, 3vw, 2.5rem) 0;
-		text-align: start;
-		background: var(--color-surface);
-		border: 1px solid var(--color-border);
-		border-radius: clamp(1.25rem, 2.5vw, 2rem);
-		box-shadow: 0 26px 68px -50px rgb(15 23 42 / 35%);
-	}
-
-	.about-page__purpose + .about-page__purpose {
-		padding-inline-start: clamp(1.5rem, 4vw, 3.5rem);
-		border-inline-start: 1px solid var(--color-border);
-	}
-
-	.about-page__purpose p:last-child {
-		max-inline-size: 54ch;
-		margin-block-start: 1rem;
-		line-height: 1.75;
-		color: var(--color-ink-muted);
 		text-wrap: pretty;
 	}
 
@@ -557,19 +505,6 @@ const getInitials = (name: string): string =>
 
 		.about-page__story-crop--middle {
 			border-radius: 1.5rem 1.5rem 0.5rem 0.5rem;
-		}
-
-		.about-page__purpose-card {
-			grid-template-columns: 1fr;
-			gap: 1.5rem;
-			margin-inline: 0;
-		}
-
-		.about-page__purpose + .about-page__purpose {
-			padding-block-start: 1.5rem;
-			padding-inline-start: 0;
-			border-block-start: 1px solid var(--color-border);
-			border-inline-start: 0;
 		}
 	}
 
