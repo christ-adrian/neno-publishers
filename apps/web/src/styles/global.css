@@ -367,3 +367,47 @@
 		transform: none;
 	}
 }
+
+@media (prefers-reduced-motion: no-preference) {
+	@view-transition {
+		navigation: auto;
+		types: circular-wipe;
+	}
+
+	html:active-view-transition-type(circular-wipe)::view-transition {
+		pointer-events: none;
+	}
+
+	html:active-view-transition-type(circular-wipe)::view-transition-old(root),
+	html:active-view-transition-type(circular-wipe)::view-transition-new(root) {
+		mix-blend-mode: normal;
+	}
+
+	html:active-view-transition-type(circular-wipe)::view-transition-old(root) {
+		animation: circle-wipe-out 1.4s ease forwards;
+	}
+
+	html:active-view-transition-type(circular-wipe)::view-transition-new(root) {
+		animation: circle-wipe-in 1.4s ease forwards;
+	}
+}
+
+@keyframes circle-wipe-out {
+	from {
+		clip-path: circle(150% at 50% 50%);
+	}
+
+	to {
+		clip-path: circle(0% at 50% 50%);
+	}
+}
+
+@keyframes circle-wipe-in {
+	from {
+		clip-path: circle(0% at 50% 50%);
+	}
+
+	to {
+		clip-path: circle(150% at 50% 50%);
+	}
+}
