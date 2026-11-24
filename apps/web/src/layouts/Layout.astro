@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import "@fontsource-variable/newsreader";
 import "@fontsource-variable/plus-jakarta-sans";
 import "../styles/global.css";
@@ -9,16 +10,26 @@ interface Props {
 }
 
 const { title = "neno-publishers" } = Astro.props;
+
+const diagonal = {
+	old: { name: "diagonal-out", duration: "1.4s", easing: "ease", fillMode: "forwards" },
+	new: { name: "diagonal-in", duration: "1.4s", easing: "ease", fillMode: "forwards" },
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html
+  lang="en"
+  transition:name="root"
+  transition:animate={{ forwards: diagonal, backwards: diagonal }}
+>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <ClientRouter fallback="animate" />
   </head>
   <body class="min-h-screen font-sans text-ink">
     <Header />

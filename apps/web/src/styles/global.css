@@ -369,39 +369,31 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-	@view-transition {
-		navigation: auto;
-		types: diagonal-push;
-	}
-
-	html:active-view-transition-type(diagonal-push)::view-transition {
+	::view-transition {
 		pointer-events: none;
 	}
 
-	html:active-view-transition-type(diagonal-push)::view-transition-old(root),
-	html:active-view-transition-type(diagonal-push)::view-transition-new(root) {
+	::view-transition-old(root),
+	::view-transition-new(root) {
 		mix-blend-mode: normal;
 	}
 
-	html:active-view-transition-type(diagonal-push)::view-transition-old(root) {
-		animation: diagonal-out 1.4s ease forwards;
-	}
-
-	html:active-view-transition-type(diagonal-push)::view-transition-new(root) {
-		animation: diagonal-in 1.4s ease forwards;
+	/* Astro runs the fallback exit and entrance one after the other. */
+	:root[data-astro-transition-fallback] {
+		animation-duration: 700ms !important;
 	}
 }
 
 @keyframes diagonal-out {
 	to {
-		transform: translate(-100%, -100%);
+		transform: translate(-100vw, -100vh);
 		opacity: 0;
 	}
 }
 
 @keyframes diagonal-in {
 	from {
-		transform: translate(100%, 100%);
+		transform: translate(100vw, 100vh);
 		opacity: 0;
 	}
 }

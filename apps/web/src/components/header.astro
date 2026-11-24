@@ -34,45 +34,53 @@ import Navigation from "./navigation.astro";
 </header>
 
 <script>
-	const header = document.querySelector("[data-site-header]");
-	const menu = document.querySelector<HTMLDetailsElement>("[data-mobile-menu]");
-	const trigger = menu?.querySelector("summary");
+	let headerListeners: AbortController | undefined;
 
-	if (header && menu && trigger) {
-		const scrollThreshold = header.clientHeight;
-		const updateHeader = () => {
-			header.toggleAttribute(
-				"data-floating",
-				window.scrollY >= scrollThreshold
-			);
-		};
+	document.addEventListener("astro:page-load", () => {
+		headerListeners?.abort();
+		const header = document.querySelector("[data-site-header]");
+		const menu = document.querySelector<HTMLDetailsElement>("[data-mobile-menu]");
+		const trigger = menu?.querySelector("summary");
 
-		updateHeader();
-		window.addEventListener("scroll", updateHeader, { passive: true });
-		window.addEventListener("pageshow", updateHeader);
+		if (header && menu && trigger) {
+			const controller = new AbortController();
+			headerListeners = controller;
+			const { signal } = controller;
+			const scrollThreshold = header.clientHeight;
+			const updateHeader = () => {
+				header.toggleAttribute(
+					"data-floating",
+					window.scrollY >= scrollThreshold
+				);
+			};
 
-		document.addEventListener("click", (event) => {
-			if (!(menu.open && event.target instanceof Element)) {
-				return;
-			}
+			updateHeader();
+			window.addEventListener("scroll", updateHeader, { passive: true, signal });
+			window.addEventListener("pageshow", updateHeader, { signal });
 
-			if (event.target.closest("a") || !menu.contains(event.target)) {
-				menu.open = false;
-			}
-		});
+			document.addEventListener("click", (event) => {
+				if (!(menu.open && event.target instanceof Element)) {
+					return;
+				}
 
-		document.addEventListener("keydown", (event) => {
-			if (event.key === "Escape" && menu.open) {
-				menu.open = false;
-				trigger.focus();
-			}
-		});
+				if (event.target.closest("a") || !menu.contains(event.target)) {
+					menu.open = false;
+				}
+			}, { signal });
 
-		const desktop = window.matchMedia("(min-width: 56rem)");
-		desktop.addEventListener("change", () => {
-			if (desktop.matches) {
-				menu.open = false;
-			}
-		});
-	}
+			document.addEventListener("keydown", (event) => {
+				if (event.key === "Escape" && menu.open) {
+					menu.open = false;
+					trigger.focus();
+				}
+			}, { signal });
+
+			const desktop = window.matchMedia("(min-width: 56rem)");
+			desktop.addEventListener("change", () => {
+				if (desktop.matches) {
+					menu.open = false;
+				}
+			}, { signal });
+		}
+	});
 </script>
