@@ -43,33 +43,45 @@ const getInitials = (name: string): string =>
 				<Image
 					alt=""
 					class="about-page__story-image"
+					fetchpriority="low"
+					fit="cover"
 					format="webp"
-					loading="lazy"
-					sizes="(min-width: 64rem) 15rem, 30vw"
+					height={900}
+					loading="eager"
+					sizes="(min-width: 82rem) 8.75rem, (min-width: 48.0625rem) 11vw, 27vw"
 					src={books}
-					widths={[240, 480, 720]}
+					width={360}
+					widths={[120, 160, 192, 240, 320, 384, 480]}
 				/>
 			</figure>
 			<figure class="about-page__story-crop about-page__story-crop--middle">
 				<Image
 					alt=""
 					class="about-page__story-image"
+					fetchpriority="low"
+					fit="cover"
 					format="webp"
-					loading="lazy"
-					sizes="(min-width: 64rem) 15rem, 30vw"
+					height={900}
+					loading="eager"
+					sizes="(min-width: 82rem) 8.75rem, (min-width: 48.0625rem) 11vw, 27vw"
 					src={books}
-					widths={[240, 480, 720]}
+					width={360}
+					widths={[120, 160, 192, 240, 320, 384, 480]}
 				/>
 			</figure>
 			<figure class="about-page__story-crop about-page__story-crop--last">
 				<Image
 					alt=""
 					class="about-page__story-image"
+					fetchpriority="low"
+					fit="cover"
 					format="webp"
-					loading="lazy"
-					sizes="(min-width: 64rem) 15rem, 30vw"
+					height={900}
+					loading="eager"
+					sizes="(min-width: 82rem) 8.75rem, (min-width: 48.0625rem) 11vw, 27vw"
 					src={books}
-					widths={[240, 480, 720]}
+					width={360}
+					widths={[120, 160, 192, 240, 320, 384, 480]}
 				/>
 			</figure>
 		</div>
@@ -128,12 +140,18 @@ const getInitials = (name: string): string =>
 				<li class="about-page__team-card">
 					<div class="about-page__team-portrait">
 						{person.image ? (
-							<img
+							<Image
 								alt={`Portrait of ${person.name}`}
 								class="about-page__team-image"
 								decoding="async"
+								fit="cover"
+								format="webp"
+								height={360}
 								loading="lazy"
+								sizes="(min-width: 82rem) 23.25rem, (min-width: 46rem) calc(32vw - 2.75rem), (width > 36rem) calc(48vw - 2.625rem), calc(50vw - 2.8rem)"
 								src={person.image}
+								width={360}
+								widths={[128, 160, 192, 256, 320, 384, 500]}
 							/>
 						) : (
 							<span aria-hidden="true" class="about-page__team-initials">
@@ -465,6 +483,7 @@ const getInitials = (name: string): string =>
 	.about-page__reason {
 		min-block-size: 15rem;
 		padding: clamp(1.5rem, 3vw, 2.25rem);
+		cursor: pointer;
 		background: var(--color-surface);
 		border: 1px solid var(--color-border);
 		border-radius: 1.5rem;
