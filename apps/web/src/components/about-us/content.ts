@@ -1,11 +1,9 @@
 export const intro: {
 	title: string;
 	lead: string;
-	location: string;
 } = {
 	title: "About Neno Publishers",
 	lead: "Get publishing support across print and online formats, from printing and marketing to book-pricing advice.",
-	location: "Blessed House, Suite 5, opposite Garden City on Thika Road, next to Astrol Petrol Station",
 };
 
 export const story: readonly string[] = [
@@ -13,13 +11,6 @@ export const story: readonly string[] = [
 	"Build on your strengths with guidance on writing, publishing, and marketing, as we work toward timely solutions.",
 	"We work alongside you throughout publishing, adopt new technologies, and protect authors’ intellectual property while supporting freedom of expression.",
 ];
-
-export const mission: string =
-	"We strive to deliver excellent publishing and printing services.";
-
-// Editorial framing of the company's stated aim; the site does not publish a separate vision statement.
-export const vision: string =
-	"Help authors reach their potential and enjoy a fulfilling publishing experience.";
 
 export const values: readonly { title: string; description: string }[] = [
 	{
