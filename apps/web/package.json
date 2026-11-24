@@ -17,6 +17,7 @@
     "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
     "@varlock/astro-integration": "1.4.6",
     "astro": "^7.4.11",
+    "sharp": "^0.35.5",
     "varlock": "catalog:",
     "zod": "catalog:"
   },
@@ -24,6 +25,7 @@
     "@astrojs/check": "^0.9.12",
     "@neno-publishers/config": "workspace:*",
     "@tailwindcss/vite": "^4.3.5",
+    "playwright": "^1.65.1",
     "tailwindcss": "^4.3.5",
     "typescript": "catalog:"
   }

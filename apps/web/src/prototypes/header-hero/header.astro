@@ -1,0 +1,74 @@
+---
+import { Image } from "astro:assets";
+import logo from "./images/neno-logo.jpeg";
+import Navigation from "./navigation.astro";
+---
+
+<header class="site-header" data-site-header>
+	<div class="header-frame">
+		<a class="logo-link" href="#top">
+			<Image
+				alt="Neno Publishers home"
+				format="webp"
+				loading="eager"
+				src={logo}
+				width={256}
+			/>
+		</a>
+
+		<nav aria-label="Main navigation" class="desktop-nav">
+			<Navigation />
+		</nav>
+
+		<details class="mobile-nav" data-mobile-menu>
+			<summary>Menu</summary>
+			<nav aria-label="Main navigation" class="mobile-panel">
+				<Navigation />
+			</nav>
+		</details>
+	</div>
+</header>
+
+<script>
+	const header = document.querySelector("[data-site-header]");
+	const menu = document.querySelector<HTMLDetailsElement>("[data-mobile-menu]");
+	const trigger = menu?.querySelector("summary");
+
+	if (header && menu && trigger) {
+		const scrollThreshold = header.clientHeight;
+		const updateHeader = () => {
+			header.toggleAttribute(
+				"data-floating",
+				window.scrollY >= scrollThreshold
+			);
+		};
+
+		updateHeader();
+		window.addEventListener("scroll", updateHeader, { passive: true });
+		window.addEventListener("pageshow", updateHeader);
+
+		document.addEventListener("click", (event) => {
+			if (!(menu.open && event.target instanceof Element)) {
+				return;
+			}
+
+			if (event.target.closest("a") || !menu.contains(event.target)) {
+				menu.open = false;
+			}
+		});
+
+		document.addEventListener("keydown", (event) => {
+			if (event.key === "Escape" && menu.open) {
+				menu.open = false;
+				trigger.focus();
+			}
+		});
+
+		const desktop = window.matchMedia("(min-width: 48rem)");
+		desktop.addEventListener("change", () => {
+			if (desktop.matches) {
+				menu.open = false;
+			}
+		});
+	}
+</script>

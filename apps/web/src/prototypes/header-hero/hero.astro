@@ -1,0 +1,35 @@
+---
+import { Image } from "astro:assets";
+import shelves from "./images/hero-background.jpg";
+
+interface Props {
+	variant: "centered" | "editorial" | "bookplate";
+}
+
+const { variant } = Astro.props;
+---
+
+<section
+	aria-labelledby="hero-heading"
+	class:list={["hero", `hero--${variant}`]}
+>
+	<Image
+		alt=""
+		class="hero-image"
+		format="webp"
+		priority
+		sizes="(min-width: 1334px) 1280px, 96vw"
+		src={shelves}
+		widths={[480, 768, 1280, 1920]}
+	/>
+	<div class="hero-copy">
+		<h1 class="hero-heading" id="hero-heading">
+			<span>Your work</span>
+			<span>Our priority</span>
+		</h1>
+		<p class="hero-description">
+			Transforming your manuscript into a masterpiece with Kenya’s premier
+			publishing, printing, and advisory team.
+		</p>
+	</div>
+</section>

@@ -1,0 +1,151 @@
+---
+import "@fontsource-variable/newsreader";
+import "@fontsource-variable/plus-jakarta-sans";
+import Bookplate from "../../prototypes/header-hero/bookplate.astro";
+import Centered from "../../prototypes/header-hero/centered.astro";
+import Editorial from "../../prototypes/header-hero/editorial.astro";
+import Header from "../../prototypes/header-hero/header.astro";
+import { sections } from "../../prototypes/header-hero/navigation";
+import "../../prototypes/header-hero/picker.css";
+import "../../prototypes/header-hero/theme.css";
+
+const variants = [
+	{ Component: Centered, name: "Centered" },
+	{ Component: Editorial, name: "Editorial" },
+	{ Component: Bookplate, name: "Bookplate" },
+] as const;
+
+const requested = Astro.url.searchParams.get("v");
+const initial = variants.findIndex(
+	(_, index) => String(index + 1) === requested
+);
+const activeIndex = Math.max(0, initial);
+const ActiveHero = variants[activeIndex]?.Component ?? Centered;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+		<meta content="noindex" name="robots">
+		<title>Neno Publishers | Header and hero prototypes</title>
+	</head>
+	<body class="min-h-screen font-sans text-ink" id="top">
+		<Header />
+		<main>
+			<div id="stage"><ActiveHero /></div>
+			<div class="preview-sections">
+				{sections.map(({ id, label, description }) => (
+					<section aria-labelledby={`${id}-heading`} id={id} tabindex="-1">
+						<h2 id={`${id}-heading`}>{label}</h2>
+						<p>{description}</p>
+					</section>
+				))}
+			</div>
+		</main>
+
+		{variants.map(({ Component }) => (
+			<template data-hero-variant>
+				<Component />
+			</template>
+		))}
+
+		<nav aria-label="Prototype variants" class="proto-picker">
+			<span aria-hidden="true" class="proto-picker-highlight"></span>
+			{variants.map(({ name }, index) => (
+				<button
+					aria-current={index === activeIndex ? "true" : undefined}
+					class="proto-picker-item"
+					data-active={index === activeIndex ? "" : undefined}
+					type="button"
+				>
+					{name}
+				</button>
+			))}
+		</nav>
+	</body>
+</html>
+
+<script>
+	const stage = document.querySelector("#stage");
+	const picker = document.querySelector<HTMLElement>(".proto-picker");
+	const highlight = picker?.querySelector<HTMLElement>(
+		".proto-picker-highlight"
+	);
+	const items = Array.from(
+		picker?.querySelectorAll<HTMLButtonElement>(".proto-picker-item") ?? []
+	);
+	const templates = Array.from(
+		document.querySelectorAll<HTMLTemplateElement>("[data-hero-variant]")
+	);
+
+	if (stage && picker && highlight && items.length > 0) {
+		let current = Math.max(
+			0,
+			items.findIndex((item) => item.hasAttribute("data-active"))
+		);
+
+		const moveHighlight = () => {
+			const item = items[current];
+			if (item) {
+				highlight.style.width = `${item.offsetWidth}px`;
+				highlight.style.transform = `translateX(${item.offsetLeft}px)`;
+			}
+		};
+
+		const setActive = (index: number) => {
+			const template = templates[index];
+			if (!template || index === current) {
+				return;
+			}
+
+			current = index;
+			for (const [position, item] of items.entries()) {
+				item.toggleAttribute("data-active", position === index);
+				if (position === index) {
+					item.setAttribute("aria-current", "true");
+				} else {
+					item.removeAttribute("aria-current");
+				}
+			}
+
+			moveHighlight();
+			const url = new URL(location.href);
+			url.searchParams.set("v", String(index + 1));
+			history.replaceState(null, "", url);
+			stage.replaceChildren(template.content.cloneNode(true));
+		};
+
+		for (const [index, item] of items.entries()) {
+			item.addEventListener("click", () => setActive(index));
+		}
+
+		picker.addEventListener("keydown", (event) => {
+			if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) {
+				return;
+			}
+
+			const numberedIndex = Number(event.key) - 1;
+			let index = numberedIndex;
+			if (event.key === "ArrowRight") {
+				index = (current + 1) % items.length;
+			} else if (event.key === "ArrowLeft") {
+				index = (current - 1 + items.length) % items.length;
+			}
+
+			const item = items[index];
+			if (item) {
+				event.preventDefault();
+				setActive(index);
+				item.focus({ preventScroll: true });
+			}
+		});
+
+		window.addEventListener("resize", moveHighlight);
+		moveHighlight();
+		requestAnimationFrame(() =>
+			requestAnimationFrame(() => picker.setAttribute("data-ready", ""))
+		);
+	}
+</script>

@@ -1,0 +1,16 @@
+---
+import { sections } from "./navigation";
+---
+
+<ul class="nav-links">
+	{sections.map(({ id, label }) => (
+		<li>
+			<a
+				class:list={["nav-link", { "nav-link--contact": id === "contact" }]}
+				href={`#${id}`}
+			>
+				{label}
+			</a>
+		</li>
+	))}
+</ul>
