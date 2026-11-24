@@ -1,13 +1,12 @@
 ---
 import { Image } from "astro:assets";
-import logo from "./images/neno-logo.png";
-import { publishSection } from "./navigation";
+import logo from "../assets/neno-logo.png";
 import Navigation from "./navigation.astro";
 ---
 
 <header class="site-header" data-site-header>
 	<div class="header-frame">
-		<a class="logo-link" href="#top">
+		<a class="logo-link" href="/">
 			<Image
 				alt="Neno Publishers home"
 				format="webp"
@@ -28,8 +27,8 @@ import Navigation from "./navigation.astro";
 			</nav>
 		</details>
 
-		<a class="nav-link nav-link--publish" href={`#${publishSection.id}`}>
-			{publishSection.label}
+		<a class="nav-link nav-link--publish" href="/publish-with-us">
+			Publish With Us
 		</a>
 	</div>
 </header>

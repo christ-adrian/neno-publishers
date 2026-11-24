@@ -3,10 +3,9 @@ import { fileURLToPath } from "node:url";
 import { spawn } from "bun";
 import { chromium } from "playwright";
 
-const appDirectory = fileURLToPath(new URL("../../../", import.meta.url));
-const prototypePath = "/prototypes/header-hero";
+const appDirectory = fileURLToPath(new URL("../", import.meta.url));
 const serverAddress = /Server listening on (http:\/\/127\.0\.0\.1:\d+)/;
-const destinations = ["about", "services", "books", "authors", "contact"];
+const destinations = ["/about", "/services", "/books", "/authors", "/contact"];
 
 let server;
 let browser;
@@ -45,33 +44,15 @@ afterAll(async () => {
 	await server?.exited;
 });
 
-test("the picker supports click, number keys, arrows, and reload", async () => {
+test("the homepage serves Bookplate and retires the prototype route", async () => {
 	const page = await browser.newPage();
 	try {
-		const errors = [];
-		page.on("pageerror", (error) => errors.push(error.message));
-		await page.goto(`${baseURL}${prototypePath}?v=invalid`);
-		await page.waitForSelector("#stage .hero--centered");
-
-		await page.getByRole("button", { name: "Editorial" }).click();
-		await page.waitForSelector("#stage .hero--editorial");
-		expect(new URL(page.url()).searchParams.get("v")).toBe("2");
-
-		await page.keyboard.press("ArrowRight");
-		await page.waitForSelector("#stage .hero--bookplate");
-		await page.reload();
-		await page.waitForSelector("#stage .hero--bookplate");
-		expect(
-			await page.locator(".proto-picker [aria-current=true]").innerText()
-		).toBe("Bookplate");
-
-		await page.getByRole("button", { name: "Bookplate" }).focus();
-		await page.keyboard.press("1");
-		await page.waitForSelector("#stage .hero--centered");
-		await page.keyboard.press("ArrowLeft");
-		await page.waitForSelector("#stage .hero--bookplate");
-		expect(await page.locator("#stage h1").count()).toBe(1);
-		expect(errors).toEqual([]);
+		await page.goto(`${baseURL}/`);
+		expect(await page.title()).toBe("Neno Publishers");
+		expect(await page.locator("main > .hero").count()).toBe(1);
+		expect(await page.locator(".proto-picker").count()).toBe(0);
+		const retired = await page.request.get(`${baseURL}/prototypes/header-hero`);
+		expect(retired.status()).toBe(404);
 	} finally {
 		await page.close();
 	}
@@ -80,18 +61,16 @@ test("the picker supports click, number keys, arrows, and reload", async () => {
 test("the shared header floats on scroll and returns to the top state", async () => {
 	const page = await browser.newPage({
 		reducedMotion: "reduce",
-		viewport: { height: 873, width: 1306 },
+		viewport: { height: 400, width: 1306 },
 	});
 	try {
-		await page.goto(`${baseURL}${prototypePath}`);
+		await page.goto(`${baseURL}/`);
 		const nav = page.getByRole("navigation", { name: "Main navigation" });
 		expect(await nav.getByRole("link").count()).toBe(destinations.length);
 
 		const targets = await nav
 			.getByRole("link")
-			.evaluateAll((anchors) =>
-				anchors.map((link) => document.getElementById(link.hash.slice(1))?.id)
-			);
+			.evaluateAll((anchors) => anchors.map((link) => link.pathname));
 		expect(targets).toEqual(destinations);
 
 		const links = nav.getByRole("link");
@@ -130,9 +109,7 @@ test("the shared header floats on scroll and returns to the top state", async ()
 				(element) => getComputedStyle(element, "::before").opacity
 			)
 		).toBe("1");
-		await publish.click();
-		expect(new URL(page.url()).hash).toBe("#publish");
-		expect(await page.locator("#publish").count()).toBe(1);
+		expect(await publish.getAttribute("href")).toBe("/publish-with-us");
 		await logo.click();
 		await page.waitForSelector("[data-site-header]:not([data-floating])");
 	} finally {
@@ -140,10 +117,10 @@ test("the shared header floats on scroll and returns to the top state", async ()
 	}
 });
 
-test("mobile navigation supports keyboard opening, dismissal, and navigation", async () => {
+test("mobile navigation supports keyboard opening, dismissal, and route links", async () => {
 	const page = await browser.newPage({ viewport: { height: 700, width: 320 } });
 	try {
-		await page.goto(`${baseURL}${prototypePath}`);
+		await page.goto(`${baseURL}/`);
 		const menu = page.locator("[data-mobile-menu]");
 		const trigger = menu.locator("summary");
 		const publish = page.getByRole("link", { name: "Publish With Us" });
@@ -152,7 +129,6 @@ test("mobile navigation supports keyboard opening, dismissal, and navigation", a
 		await trigger.focus();
 		await page.keyboard.press("Enter");
 		await menu.getByRole("link", { name: "Our Authors" }).waitFor();
-		expect(await page.locator(".proto-picker").isVisible()).toBe(false);
 		await page.keyboard.press("Escape");
 		expect(await menu.getAttribute("open")).toBeNull();
 		expect(
@@ -160,10 +136,11 @@ test("mobile navigation supports keyboard opening, dismissal, and navigation", a
 		).toBe(true);
 
 		await page.keyboard.press("Enter");
-		await menu.getByRole("link", { name: "Our Authors" }).click();
-		expect(new URL(page.url()).hash).toBe("#authors");
+		expect(
+			await menu.getByRole("link", { name: "Our Authors" }).getAttribute("href")
+		).toBe("/authors");
+		await page.getByRole("main").click({ position: { x: 8, y: 200 } });
 		expect(await menu.getAttribute("open")).toBeNull();
-		expect(await page.locator(".proto-picker").isVisible()).toBe(true);
 	} finally {
 		await page.close();
 	}
@@ -177,22 +154,18 @@ const viewports = [
 	{ gutter: 28.8, padding: "40px", width: 1440 },
 	{ gutter: 32, padding: "40px", width: 1920 },
 ];
-const layoutCases = viewports.flatMap((viewport) =>
-	[1, 2, 3].map((variant) => ({ ...viewport, variant }))
-);
-
-test.each(layoutCases)(
+test.each(viewports)(
 	"layout eval preserves gutters and copy at %p",
-	async ({ gutter, padding, variant, width }) => {
+	async ({ gutter, padding, width }) => {
 		const page = await browser.newPage({
 			reducedMotion: "reduce",
 			viewport: { height: 873, width },
 		});
 		try {
-			await page.goto(`${baseURL}${prototypePath}?v=${variant}`);
+			await page.goto(`${baseURL}/`);
 			await page.waitForFunction(
 				() => {
-					const heroImage = document.querySelector("#stage img");
+					const heroImage = document.querySelector(".hero-image");
 					const logo = document.querySelector(".logo-link img");
 					return heroImage?.naturalWidth > 0 && logo?.naturalWidth > 0;
 				},
@@ -201,7 +174,7 @@ test.each(layoutCases)(
 			);
 			await page.evaluate(() => document.fonts.ready);
 
-			const hero = page.locator("#stage section");
+			const hero = page.locator("main > .hero");
 			const frame = await hero.boundingBox();
 			expect(frame.x).toBeCloseTo(gutter, 0);
 			expect(width - frame.width - frame.x).toBeCloseTo(gutter, 0);
@@ -212,6 +185,16 @@ test.each(layoutCases)(
 					return [paddingBlockStart, paddingInlineStart];
 				})
 			).toEqual(["48px", padding]);
+			const panel = hero.locator(".hero-copy");
+			expect(
+				await panel.evaluate(
+					(element) => getComputedStyle(element).backgroundColor
+				)
+			).toBe("rgb(14, 116, 166)");
+			const panelFrame = await panel.boundingBox();
+			expect(
+				frame.x + frame.width - (panelFrame.x + panelFrame.width)
+			).toBeCloseTo(Number.parseInt(padding, 10), 0);
 			const heading = hero.locator("h1");
 			expect(await heading.innerText()).toBe("YOUR WORK\nOUR PRIORITY");
 			const headlineLines = await heading.locator("span").evaluateAll((lines) =>
@@ -243,8 +226,8 @@ test.each(layoutCases)(
 test("the hero shows both future page links below the copy", async () => {
 	const page = await browser.newPage({ viewport: { height: 700, width: 320 } });
 	try {
-		await page.goto(`${baseURL}${prototypePath}`);
-		const actions = page.locator("#stage .hero-description + .hero-actions");
+		await page.goto(`${baseURL}/`);
+		const actions = page.locator("main .hero-description + .hero-actions");
 		const submit = actions.getByRole("link", {
 			exact: true,
 			name: "Submit Your Manuscript",

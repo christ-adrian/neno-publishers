@@ -1,0 +1,19 @@
+---
+const links = [
+	{ href: "/about", label: "About Us" },
+	{ href: "/services", label: "Our Services" },
+	{ href: "/books", label: "Our Books" },
+	{ href: "/authors", label: "Our Authors" },
+	{ href: "/contact", label: "Contact Us" },
+] as const;
+---
+
+<ul class="nav-links">
+	{links.map(({ href, label }) => (
+		<li>
+			<a class="nav-link" href={href}>
+				{label}
+			</a>
+		</li>
+	))}
+</ul>

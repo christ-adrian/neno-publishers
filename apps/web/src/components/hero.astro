@@ -1,18 +1,9 @@
 ---
 import { Image } from "astro:assets";
-import shelves from "./images/hero-background.jpg";
-
-interface Props {
-	variant: "centered" | "editorial" | "bookplate";
-}
-
-const { variant } = Astro.props;
+import shelves from "../assets/hero-background.jpg";
 ---
 
-<section
-	aria-labelledby="hero-heading"
-	class:list={["hero", `hero--${variant}`]}
->
+<section aria-labelledby="hero-heading" class="hero">
 	<Image
 		alt=""
 		class="hero-image"

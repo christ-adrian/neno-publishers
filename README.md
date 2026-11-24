@@ -2,7 +2,7 @@
 
 This repository hosts the redesign of the Neno Publishers Ltd website (`nenopublishers.co.ke`). The redesign replaces the legacy WordPress site with a static-first Astro frontend and uses Sanity CMS for editorial content.
 
-The current scaffold contains the Astro homepage and uses Astro's standalone Node adapter in server mode. The Sanity integration, additional pages, and WordPress redirects below are planned.
+The Astro homepage uses the Bookplate hero and shared site header. The app runs in server mode with Astro’s standalone Node adapter. The linked destination pages, Sanity integration, and WordPress redirects are planned.
 
 The project was scaffolded with [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack) as a Turborepo monorepo managed with Bun.
 
@@ -28,6 +28,7 @@ The project was scaffolded with [Better-T-Stack](https://github.com/AmanVarshney
 | `/books` | Filterable catalog with individual book pages | `/our-book/` |
 | `/authors` | Author directory linked to published titles | `/our-authors/` |
 | `/contact` | Service-aware inquiry form and Nairobi office contact details | `/contact-us/` |
+| `/publish-with-us` | Manuscript submission information | |
 
 ## Project Structure
 
@@ -91,3 +92,15 @@ Bun's automatic environment loading is disabled in `bunfig.toml`. The Astro inte
 | `bun run check-types` | Run type checks across apps |
 | `bun run check` | Check formatting and lint rules |
 | `bun run env:generate` | Regenerate the typed environment accessor |
+
+## Homepage checks
+
+From the repository root:
+
+```sh
+(cd apps/web && PLAYWRIGHT_SKIP_BROWSER_GC=1 bunx playwright install chromium --only-shell)
+bun run build
+bun test apps/web/tests/homepage.test.mjs
+```
+
+The tests start the built app on a local ephemeral port and check the shared header, Bookplate layout, and link destinations.
