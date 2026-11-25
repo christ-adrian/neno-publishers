@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import logo from "../assets/neno-logo.png";
 import Navigation from "./navigation.astro";
+import { publishLink } from "./site-navigation";
 ---
 
 <header class="site-header" data-site-header>
@@ -27,8 +28,8 @@ import Navigation from "./navigation.astro";
 			</nav>
 		</details>
 
-		<a class="nav-link nav-link--publish" href="/publish-with-us">
-			Publish With Us
+		<a class="nav-link nav-link--publish" href={publishLink.href}>
+			{publishLink.label}
 		</a>
 	</div>
 </header>

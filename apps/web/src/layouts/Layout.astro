@@ -3,6 +3,7 @@ import { ClientRouter } from "astro:transitions";
 import "@fontsource-variable/newsreader";
 import "@fontsource-variable/plus-jakarta-sans";
 import "../styles/global.css";
+import Footer from "../components/footer.astro";
 import Header from "../components/header.astro";
 
 interface Props {
@@ -31,8 +32,9 @@ const diagonal = {
     <title>{title}</title>
     <ClientRouter fallback="animate" />
   </head>
-  <body class="min-h-screen font-sans text-ink">
+  <body class="flex min-h-screen flex-col font-sans text-ink [&>main]:grow">
     <Header />
     <slot />
+    <Footer />
   </body>
 </html>
