@@ -1,0 +1,313 @@
+[
+  {
+    "_id": "service-manuscript-review-evaluation",
+    "_type": "service",
+    "title": "Manuscript Review & Evaluation",
+    "slug": {
+      "_type": "slug",
+      "current": "manuscript-review-evaluation"
+    },
+    "category": "publishing",
+    "shortDescription": "Review of a submitted manuscript for publication suitability, with guidance on areas that could be improved.",
+    "displayOrder": 10,
+    "featured": true
+  },
+  {
+    "_id": "service-manuscript-translation-development",
+    "_type": "service",
+    "title": "Manuscript Translation & Development",
+    "slug": {
+      "_type": "slug",
+      "current": "manuscript-translation-development"
+    },
+    "category": "publishing",
+    "shortDescription": "Translation and development support for manuscripts.",
+    "displayOrder": 20,
+    "featured": false
+  },
+  {
+    "_id": "service-cover-graphic-designs",
+    "_type": "service",
+    "title": "Cover & Graphic Design",
+    "slug": {
+      "_type": "slug",
+      "current": "cover-graphic-designs"
+    },
+    "category": "publishing",
+    "shortDescription": "Cover and graphic design developed with the author's ideas and publishing needs in mind.",
+    "displayOrder": 30,
+    "featured": true
+  },
+  {
+    "_id": "service-proofreading",
+    "_type": "service",
+    "title": "Proofreading",
+    "slug": {
+      "_type": "slug",
+      "current": "proofreading"
+    },
+    "category": "publishing",
+    "shortDescription": "A final pass to catch spelling, punctuation, and typographical errors.",
+    "displayOrder": 40,
+    "featured": false
+  },
+  {
+    "_id": "service-typesetting",
+    "_type": "service",
+    "title": "Typesetting",
+    "slug": {
+      "_type": "slug",
+      "current": "typesetting"
+    },
+    "category": "publishing",
+    "shortDescription": "Preparation of the manuscript's text and page layout for publication.",
+    "displayOrder": 50,
+    "featured": false
+  },
+  {
+    "_id": "service-editing",
+    "_type": "service",
+    "title": "Editing",
+    "slug": {
+      "_type": "slug",
+      "current": "editing"
+    },
+    "category": "publishing",
+    "shortDescription": "Editorial work to improve a manuscript's clarity and consistency.",
+    "displayOrder": 60,
+    "featured": false
+  },
+  {
+    "_id": "service-book-pricing",
+    "_type": "service",
+    "title": "Book Pricing",
+    "slug": {
+      "_type": "slug",
+      "current": "book-pricing"
+    },
+    "category": "advisory",
+    "shortDescription": "Advisory support for setting the price of a book.",
+    "displayOrder": 10,
+    "featured": false
+  },
+  {
+    "_id": "service-book-marketing",
+    "_type": "service",
+    "title": "Book Marketing",
+    "slug": {
+      "_type": "slug",
+      "current": "book-marketing"
+    },
+    "category": "advisory",
+    "shortDescription": "Advice on bringing a book to market and reaching readers.",
+    "displayOrder": 20,
+    "featured": true
+  },
+  {
+    "_id": "service-book-title-selection",
+    "_type": "service",
+    "title": "Book Title Selection",
+    "slug": {
+      "_type": "slug",
+      "current": "book-title-selection"
+    },
+    "category": "advisory",
+    "shortDescription": "Guidance on selecting a title for a manuscript.",
+    "displayOrder": 30,
+    "featured": false
+  },
+  {
+    "_id": "service-manuscript-development",
+    "_type": "service",
+    "title": "Manuscript Development",
+    "slug": {
+      "_type": "slug",
+      "current": "manuscript-development"
+    },
+    "category": "advisory",
+    "shortDescription": "Advice on developing a manuscript and identifying areas to improve before publication.",
+    "displayOrder": 40,
+    "featured": false
+  },
+  {
+    "_id": "service-quality-printing",
+    "_type": "service",
+    "title": "Digital Printing",
+    "slug": {
+      "_type": "slug",
+      "current": "quality-printing"
+    },
+    "category": "printing",
+    "shortDescription": "Digital printing with attention to accurate reproduction and the quality of the finished copies.",
+    "displayOrder": 10,
+    "featured": true
+  },
+  {
+    "_id": "service-magazines",
+    "_type": "service",
+    "title": "Magazine Printing",
+    "slug": {
+      "_type": "slug",
+      "current": "magazines"
+    },
+    "category": "printing",
+    "shortDescription": "Printing for magazines.",
+    "displayOrder": 20,
+    "featured": false,
+    "printingType": "corporate-print"
+  },
+  {
+    "_id": "service-calendars",
+    "_type": "service",
+    "title": "Calendar Printing",
+    "slug": {
+      "_type": "slug",
+      "current": "calendars"
+    },
+    "category": "printing",
+    "shortDescription": "Printing for calendars.",
+    "displayOrder": 30,
+    "featured": false,
+    "printingType": "corporate-print"
+  },
+  {
+    "_id": "service-letterheads",
+    "_type": "service",
+    "title": "Letterhead Printing",
+    "slug": {
+      "_type": "slug",
+      "current": "letterheads"
+    },
+    "category": "printing",
+    "shortDescription": "Printing for letterheads.",
+    "displayOrder": 40,
+    "featured": false,
+    "printingType": "corporate-print"
+  },
+  {
+    "_id": "service-bookmarks",
+    "_type": "service",
+    "title": "Bookmark Printing",
+    "slug": {
+      "_type": "slug",
+      "current": "bookmarks"
+    },
+    "category": "printing",
+    "shortDescription": "Printing for bookmarks.",
+    "displayOrder": 50,
+    "featured": false,
+    "printingType": "corporate-print"
+  },
+  {
+    "_id": "service-flyers",
+    "_type": "service",
+    "title": "Flyer Printing",
+    "slug": {
+      "_type": "slug",
+      "current": "flyers"
+    },
+    "category": "printing",
+    "shortDescription": "Printing for flyers.",
+    "displayOrder": 60,
+    "featured": false,
+    "printingType": "corporate-print"
+  },
+  {
+    "_id": "service-diaries",
+    "_type": "service",
+    "title": "Diary Printing",
+    "slug": {
+      "_type": "slug",
+      "current": "diaries"
+    },
+    "category": "printing",
+    "shortDescription": "Printing for diaries.",
+    "displayOrder": 70,
+    "featured": false,
+    "printingType": "corporate-print"
+  },
+  {
+    "_id": "service-motivational-books",
+    "_type": "service",
+    "title": "Motivational Book Printing",
+    "slug": {
+      "_type": "slug",
+      "current": "motivational-books"
+    },
+    "category": "printing",
+    "shortDescription": "Printing for motivational titles.",
+    "displayOrder": 80,
+    "featured": false,
+    "printingType": "book-printing"
+  },
+  {
+    "_id": "service-text-books",
+    "_type": "service",
+    "title": "Textbook Printing",
+    "slug": {
+      "_type": "slug",
+      "current": "text-books"
+    },
+    "category": "printing",
+    "shortDescription": "Printing for textbooks and educational titles.",
+    "displayOrder": 90,
+    "featured": false,
+    "printingType": "book-printing"
+  },
+  {
+    "_id": "service-self-help-books",
+    "_type": "service",
+    "title": "Self-Help Book Printing",
+    "slug": {
+      "_type": "slug",
+      "current": "self-help-books"
+    },
+    "category": "printing",
+    "shortDescription": "Printing for self-help titles.",
+    "displayOrder": 100,
+    "featured": false,
+    "printingType": "book-printing"
+  },
+  {
+    "_id": "service-autobiographies",
+    "_type": "service",
+    "title": "Autobiography Printing",
+    "slug": {
+      "_type": "slug",
+      "current": "autobiographies"
+    },
+    "category": "printing",
+    "shortDescription": "Printing for autobiographies.",
+    "displayOrder": 110,
+    "featured": false,
+    "printingType": "book-printing"
+  },
+  {
+    "_id": "service-poetry-novels",
+    "_type": "service",
+    "title": "Poetry & Novel Printing",
+    "slug": {
+      "_type": "slug",
+      "current": "poetry-novels"
+    },
+    "category": "printing",
+    "shortDescription": "Printing for poetry collections and novels.",
+    "displayOrder": 120,
+    "featured": false,
+    "printingType": "book-printing"
+  },
+  {
+    "_id": "service-christian-literature",
+    "_type": "service",
+    "title": "Christian Literature Printing",
+    "slug": {
+      "_type": "slug",
+      "current": "christian-literature"
+    },
+    "category": "printing",
+    "shortDescription": "Printing for Christian literature.",
+    "displayOrder": 130,
+    "featured": false,
+    "printingType": "book-printing"
+  }
+]

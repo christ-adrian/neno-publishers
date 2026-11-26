@@ -1,0 +1,977 @@
+[
+  {
+    "_id": "book-how-jesus-restored-my-worth",
+    "_type": "book",
+    "title": "How Jesus Restored My Worth",
+    "slug": {
+      "_type": "slug",
+      "current": "how-jesus-restored-my-worth"
+    },
+    "authors": [
+      {
+        "_key": "jemima-diana-njenga",
+        "_type": "reference",
+        "_ref": "author-jemima-diana-njenga"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of How Jesus Restored My Worth",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-ffee1af390468cc921ab1d6421111c3f82519a48-673x864-jpg"
+      }
+    },
+    "category": "christian-literature",
+    "summary": "Jemima Diana Njenga shares a personal account of finding healing and renewed self-worth through Christian faith.",
+    "featured": false,
+    "description": [
+      {
+        "_type": "block",
+        "_key": "p1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "The book draws on Njenga's life to consider how women and girls can recover hope and agency when difficult experiences have narrowed their choices.",
+            "marks": []
+          }
+        ]
+      }
+    ],
+    "publishedYear": 2019,
+    "pages": 110
+  },
+  {
+    "_id": "book-fashioned-for-life",
+    "_type": "book",
+    "title": "Fashioned for Life",
+    "slug": {
+      "_type": "slug",
+      "current": "fashioned-for-life"
+    },
+    "authors": [
+      {
+        "_key": "samuel-n-kanja",
+        "_type": "reference",
+        "_ref": "author-samuel-n-kanja"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of Fashioned for Life",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-4be3df55e3fe40885cbe1c45d59310edf01e469d-672x896-jpg"
+      }
+    },
+    "category": "christian-literature",
+    "summary": "Christian reflections on purpose, gratitude, and the virtues that help people live responsibly and persevere.",
+    "featured": false,
+    "description": [
+      {
+        "_type": "block",
+        "_key": "p1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "Kanja draws on scripture to invite readers to reflect on God's love and grace. He considers how to respond to setbacks and find contentment in daily life.",
+            "marks": []
+          }
+        ]
+      }
+    ],
+    "publishedYear": 2012,
+    "pages": 228
+  },
+  {
+    "_id": "book-my-values-my-identity",
+    "_type": "book",
+    "title": "My Values; My Identity",
+    "slug": {
+      "_type": "slug",
+      "current": "my-values-my-identity"
+    },
+    "authors": [
+      {
+        "_key": "samuel-n-kanja",
+        "_type": "reference",
+        "_ref": "author-samuel-n-kanja"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of My Values; My Identity",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-47171cf05fcb54c91fadcf5929f960cd18759aee-631x895-jpg"
+      }
+    },
+    "category": "self-help-parenting",
+    "summary": "A short guide to identifying core values and applying them to everyday choices.",
+    "featured": false,
+    "description": [
+      {
+        "_type": "block",
+        "_key": "p1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "Kanja explores how values shape decisions and relationships at home, in institutions, and in society. He invites readers to name the principles that guide them and put those principles into practice.",
+            "marks": []
+          }
+        ]
+      }
+    ],
+    "publishedYear": 2017,
+    "pages": 24
+  },
+  {
+    "_id": "book-dare-to-stand-alone",
+    "_type": "book",
+    "title": "Dare to Stand Alone",
+    "slug": {
+      "_type": "slug",
+      "current": "dare-to-stand-alone"
+    },
+    "authors": [
+      {
+        "_key": "duncan-mindo",
+        "_type": "reference",
+        "_ref": "author-duncan-mindo"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of Dare to Stand Alone",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-94959fc4078eccd5e667606d290b1c685d57f88a-1943x2545-jpg"
+      }
+    },
+    "category": "christian-literature",
+    "summary": "Duncan Mindo encourages readers to follow their convictions and resist the pressure to conform.",
+    "featured": false,
+    "description": [
+      {
+        "_type": "block",
+        "_key": "p1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "Mindo uses personal experiences and Christian reflection to explore what it takes to act on conviction, even when others expect a different choice.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "book-what-matters-most-in-south-sudan",
+    "_type": "book",
+    "title": "What Matters Most in South Sudan",
+    "slug": {
+      "_type": "slug",
+      "current": "what-matters-most-in-south-sudan"
+    },
+    "authors": [
+      {
+        "_key": "dr-stephen-mathiang",
+        "_type": "reference",
+        "_ref": "author-dr-stephen-mathiang"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of What Matters Most in South Sudan",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-5efc0f1199785726a4275b328a52a25bba38cc5c-1443x2208-jpg"
+      }
+    },
+    "category": "academic-textbooks",
+    "summary": "Stephen Mathiang argues that reconciliation between the Dinka and Nuer communities is essential to South Sudan's development.",
+    "featured": true,
+    "description": [
+      {
+        "_type": "block",
+        "_key": "p1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "Mathiang examines how conflict limits shared opportunity and sets out potential economic, political, and social gains from reconciliation.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "book-effective-parenting",
+    "_type": "book",
+    "title": "Effective Parenting",
+    "slug": {
+      "_type": "slug",
+      "current": "effective-parenting"
+    },
+    "authors": [
+      {
+        "_key": "catherine-gachutha",
+        "_type": "reference",
+        "_ref": "author-catherine-gachutha"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of Effective Parenting",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-4425efee81b34cb558afba467015833560304616-2639x1851-jpg"
+      }
+    },
+    "category": "self-help-parenting",
+    "summary": "Catherine Gachutha offers guidance for parents and caregivers raising children in the 21st century.",
+    "featured": true,
+    "description": [
+      {
+        "_type": "block",
+        "_key": "p1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "Drawing on her work as a therapist, Gachutha considers how parents can give children attention and support alongside the material resources they provide.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "book-hillrose-poetry-collection",
+    "_type": "book",
+    "title": "HillRose Poetry Collection",
+    "slug": {
+      "_type": "slug",
+      "current": "hillrose-poetry-collection"
+    },
+    "authors": [
+      {
+        "_key": "hillary-robert-ochieng",
+        "_type": "reference",
+        "_ref": "author-hillary-robert-ochieng"
+      },
+      {
+        "_key": "rose-wangu",
+        "_type": "reference",
+        "_ref": "author-rose-wangu"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of HillRose Poetry Collection",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-795233456b766e4079bd9c125b6b11c3c0ec012d-2170x1587-jpg"
+      }
+    },
+    "category": "poetry-kids",
+    "summary": "Poems on friendship, love, and Christian faith by Hillary Robert Ochieng and Rose Wangu.",
+    "featured": true,
+    "description": [
+      {
+        "_type": "block",
+        "_key": "p1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "The collection explores what it takes to sustain friendship and love through difficulties, and how faith informs the poets' view of both.",
+            "marks": []
+          }
+        ]
+      }
+    ],
+    "isbn": "978-9966-8233-6-6"
+  },
+  {
+    "_id": "book-poems-for-kids",
+    "_type": "book",
+    "title": "Poems for Kids",
+    "slug": {
+      "_type": "slug",
+      "current": "poems-for-kids"
+    },
+    "authors": [
+      {
+        "_key": "prince-henry",
+        "_type": "reference",
+        "_ref": "author-prince-henry"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of Poems for Kids",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-4b46ef1fe2de520fe22095e3aaf647608cb347e5-2994x2156-jpg"
+      }
+    },
+    "category": "poetry-kids",
+    "summary": "Illustrated poems and painting activities for children, combining reading, rhyme, and creative play.",
+    "featured": true,
+    "description": [
+      {
+        "_type": "block",
+        "_key": "p1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "Short poems and illustrations invite children to read aloud, talk about the subjects, and take part through painting.",
+            "marks": []
+          }
+        ]
+      }
+    ],
+    "isbn": "978-9914-9945-4-4"
+  },
+  {
+    "_id": "book-ole-sankale",
+    "_type": "book",
+    "title": "Ole Sankale",
+    "slug": {
+      "_type": "slug",
+      "current": "ole-sankale"
+    },
+    "authors": [
+      {
+        "_key": "prince-henry",
+        "_type": "reference",
+        "_ref": "author-prince-henry"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of Ole Sankale",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-e2ff6bf8236bca12adab98544571c272c3e76648-2570x1851-jpg"
+      }
+    },
+    "category": "fiction-heritage",
+    "summary": "An African tale for junior secondary readers about a young man caught between two rival communities.",
+    "featured": true,
+    "description": [
+      {
+        "_type": "block",
+        "_key": "p1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "Taken from his family as a child and raised by a rival chief, Sankale must decide what justice means when he learns the truth about his past.",
+            "marks": []
+          }
+        ]
+      }
+    ],
+    "isbn": "978-9914-9945-5-1"
+  },
+  {
+    "_id": "book-the-mugikuyu-woman",
+    "_type": "book",
+    "title": "The Mũgĩkũyũ Woman",
+    "slug": {
+      "_type": "slug",
+      "current": "the-mugikuyu-woman"
+    },
+    "authors": [
+      {
+        "_key": "dr-wachuka-gathigia-njoroge",
+        "_type": "reference",
+        "_ref": "author-dr-wachuka-gathigia-njoroge"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of The Mũgĩkũyũ Woman",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-bf3ca1926e992bd71da9a0881776c1ab8c366cf2-654x768-jpg"
+      }
+    },
+    "category": "fiction-heritage",
+    "summary": "An account of daily life for traditional Gikuyu women, informed by stories the author heard from her mother.",
+    "featured": false
+  },
+  {
+    "_id": "book-drippings-of-the-pen",
+    "_type": "book",
+    "title": "Drippings of the Pen",
+    "slug": {
+      "_type": "slug",
+      "current": "drippings-of-the-pen"
+    },
+    "authors": [
+      {
+        "_key": "gathoni-wa-mwonde",
+        "_type": "reference",
+        "_ref": "author-gathoni-wa-mwonde"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of Drippings of the Pen",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-e86b34f9753781601987063559302c14934bc7ae-1040x734-jpg"
+      }
+    },
+    "category": "poetry-kids",
+    "summary": "A poetry collection by Gathoni Wa Mwonde listed in the Neno Publishers catalog.",
+    "featured": false
+  },
+  {
+    "_id": "book-the-little-petals-of-life",
+    "_type": "book",
+    "title": "The Little Petals of Life",
+    "slug": {
+      "_type": "slug",
+      "current": "the-little-petals-of-life"
+    },
+    "authors": [
+      {
+        "_key": "sammy-milimo",
+        "_type": "reference",
+        "_ref": "author-sammy-milimo"
+      },
+      {
+        "_key": "gakenia-kagocha",
+        "_type": "reference",
+        "_ref": "author-gakenia-kagocha"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of The Little Petals of Life",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-ee797ed8334cba11a9962416adb400dbfa4ad1b0-573x758-jpg"
+      }
+    },
+    "category": "poetry-kids",
+    "summary": "A collection of poems grounded in the authors' encounters with life's challenges.",
+    "featured": false,
+    "description": [
+      {
+        "_type": "block",
+        "_key": "p1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "Milimo and Kagocha use different characters and situations to explore the difficulties people encounter in everyday life.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "book-secrets-of-thriving-in-hard-times",
+    "_type": "book",
+    "title": "Secrets of Thriving in Hard Times",
+    "slug": {
+      "_type": "slug",
+      "current": "secrets-of-thriving-in-hard-times"
+    },
+    "authors": [
+      {
+        "_key": "paul-mwaniki",
+        "_type": "reference",
+        "_ref": "author-paul-mwaniki"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of Secrets of Thriving in Hard Times",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-f4e62fecde37e6d3525247aee3f389da41ef6995-1732x2479-jpg"
+      }
+    },
+    "category": "christian-literature",
+    "summary": "Paul Mwaniki considers how Christians can respond to adversity and serve others through difficult times.",
+    "featured": false
+  },
+  {
+    "_id": "book-visionary-leadership",
+    "_type": "book",
+    "title": "Visionary Leadership for Strategic Institutions",
+    "slug": {
+      "_type": "slug",
+      "current": "visionary-leadership"
+    },
+    "authors": [
+      {
+        "_key": "dr-jacob-mwangi",
+        "_type": "reference",
+        "_ref": "author-dr-jacob-mwangi"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of Visionary Leadership for Strategic Institutions",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-7863ae022e95557313d15125f0404c8916af297a-1808x2311-jpg"
+      }
+    },
+    "category": "leadership",
+    "summary": "Jacob Mwangi shares leadership principles drawn from his experience in education, business, churches, and NGOs.",
+    "featured": false,
+    "description": [
+      {
+        "_type": "block",
+        "_key": "p1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "Mwangi reflects on lessons from study and professional practice, with examples relevant to leaders working in different kinds of institutions.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "book-the-fat-church-leader",
+    "_type": "book",
+    "title": "The F.A.T Church Leader",
+    "slug": {
+      "_type": "slug",
+      "current": "the-fat-church-leader"
+    },
+    "authors": [
+      {
+        "_key": "ken-peter-munyua",
+        "_type": "reference",
+        "_ref": "author-ken-peter-munyua"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of The F.A.T Church Leader",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-1b5b6bc6c86dbefacd5d9c47c53c62a16feb2600-1673x1330-jpg"
+      }
+    },
+    "category": "christian-literature",
+    "summary": "Guidance for church leaders facing the demands of service and the difficulties of leading a congregation.",
+    "featured": true,
+    "description": [
+      {
+        "_type": "block",
+        "_key": "p1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "Drawing on his experience in church and professional leadership, Munyua examines how leaders can work with the people around them and persevere when the role becomes discouraging.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "book-sex-and-teenagers",
+    "_type": "book",
+    "title": "Sex & Teenagers",
+    "slug": {
+      "_type": "slug",
+      "current": "sex-and-teenagers"
+    },
+    "authors": [
+      {
+        "_key": "paul-wangari",
+        "_type": "reference",
+        "_ref": "author-paul-wangari"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of Sex & Teenagers",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-a779a1b335e44fa1faa2f0d5d8a14f81158ffa63-1313x913-jpg"
+      }
+    },
+    "category": "self-help-parenting",
+    "summary": "Paul Wangari discusses sexual education for teenagers, the consequences of early sexual activity, and how young people can make informed choices.",
+    "featured": true
+  },
+  {
+    "_id": "book-as-life-unfolds",
+    "_type": "book",
+    "title": "As Life Unfolds",
+    "slug": {
+      "_type": "slug",
+      "current": "as-life-unfolds"
+    },
+    "authors": [
+      {
+        "_key": "peter-murage-mbui",
+        "_type": "reference",
+        "_ref": "author-peter-murage-mbui"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of As Life Unfolds",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-971a6e4fb9279d58a8ebe7d0e17d93e109619249-1206x1535-jpg"
+      }
+    },
+    "category": "biography-memoir",
+    "summary": "Peter Murage Mbui recounts his path from growing up in a farming household to civil engineering and entrepreneurship.",
+    "featured": true,
+    "description": [
+      {
+        "_type": "block",
+        "_key": "p1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "The book follows Mbui from Alliance High School and the University of Nairobi into government work and then into business with his brother.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "book-time-management",
+    "_type": "book",
+    "title": "Time Management",
+    "slug": {
+      "_type": "slug",
+      "current": "time-management"
+    },
+    "authors": [
+      {
+        "_key": "paul-wangari",
+        "_type": "reference",
+        "_ref": "author-paul-wangari"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of Time Management",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-351b71db83b94c3f0509511db417b74f10e1d653-1750x1217-jpg"
+      }
+    },
+    "category": "self-help-parenting",
+    "summary": "A guide for students on using time deliberately, setting priorities, and taking responsibility for study habits.",
+    "featured": true
+  },
+  {
+    "_id": "book-woman-a-vessel-of-honour",
+    "_type": "book",
+    "title": "Woman: A Vessel of Honour",
+    "slug": {
+      "_type": "slug",
+      "current": "woman-a-vessel-of-honour"
+    },
+    "authors": [
+      {
+        "_key": "peninah-mumbi",
+        "_type": "reference",
+        "_ref": "author-peninah-mumbi"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of Woman: A Vessel of Honour",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-b907990727bd5d068fe94666b526bd8ebd720c02-2442x1853-jpg"
+      }
+    },
+    "category": "biography-memoir",
+    "summary": "Peninah Mumbi reflects on grief, mental health, and rebuilding her life through Christian faith after losing her husband.",
+    "featured": true,
+    "isbn": "978-9914-9677-4-6"
+  },
+  {
+    "_id": "book-the-african-roots-on-trial",
+    "_type": "book",
+    "title": "The African Roots on Trial",
+    "slug": {
+      "_type": "slug",
+      "current": "the-african-roots-on-trial"
+    },
+    "authors": [
+      {
+        "_key": "simeon-uwuoga-adol",
+        "_type": "reference",
+        "_ref": "author-simeon-uwuoga-adol"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of The African Roots on Trial",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-5dbbc99d0c147e998c176bf88514f9b1acb2a9e1-1207x1671-jpg"
+      }
+    },
+    "category": "fiction-heritage",
+    "summary": "Simeon Uwuoga Adol's book on African heritage appears in the Neno Publishers portfolio.",
+    "featured": true
+  },
+  {
+    "_id": "book-telling-god-in-tears",
+    "_type": "book",
+    "title": "Telling God in Tears",
+    "slug": {
+      "_type": "slug",
+      "current": "telling-god-in-tears"
+    },
+    "authors": [
+      {
+        "_key": "pastor-oyaro-geofrey",
+        "_type": "reference",
+        "_ref": "author-pastor-oyaro-geofrey"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of Telling God in Tears",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-c51e919b4bc347fdf92e42f711a0b1a1b9617797-1240x1702-jpg"
+      }
+    },
+    "category": "christian-literature",
+    "summary": "Pastor Oyaro Geofrey writes about tears in prayer in a book subtitled The Language That Touches God.",
+    "featured": true
+  },
+  {
+    "_id": "book-the-student-propeller",
+    "_type": "book",
+    "title": "The Student Propeller",
+    "slug": {
+      "_type": "slug",
+      "current": "the-student-propeller"
+    },
+    "authors": [
+      {
+        "_key": "josphat-mwangi-kamau",
+        "_type": "reference",
+        "_ref": "author-josphat-mwangi-kamau"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of The Student Propeller",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-69fb91a36192f2cf0d44d91e1a3ddd4329a957c7-1182x1686-jpg"
+      }
+    },
+    "category": "self-help-parenting",
+    "summary": "Josphat Mwangi Kamau addresses student achievement in a book subtitled Making It Regardless.",
+    "featured": true
+  },
+  {
+    "_id": "book-serving-god-with-joy",
+    "_type": "book",
+    "title": "Serving God with Joy",
+    "slug": {
+      "_type": "slug",
+      "current": "serving-god-with-joy"
+    },
+    "authors": [
+      {
+        "_key": "mary-maganga",
+        "_type": "reference",
+        "_ref": "author-mary-maganga"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of Serving God with Joy",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-9d5f721c9e7333c7ef9d467eddce6646dfec4330-1187x1699-jpg"
+      }
+    },
+    "category": "christian-literature",
+    "summary": "Mary Maganga's book on joyful Christian service appears in the Neno Publishers portfolio.",
+    "featured": true
+  },
+  {
+    "_id": "book-authentic-leadership",
+    "_type": "book",
+    "title": "Authentic Leadership Philosophy",
+    "slug": {
+      "_type": "slug",
+      "current": "authentic-leadership"
+    },
+    "authors": [
+      {
+        "_key": "dr-munene-mutune",
+        "_type": "reference",
+        "_ref": "author-dr-munene-mutune"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of Authentic Leadership Philosophy",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-d67bcbffb751c85aa9d508ffd459cd2832b70f80-1356x1700-jpg"
+      }
+    },
+    "category": "leadership",
+    "summary": "Dr. Munene Mutune writes about authentic leadership in this title from the Neno Publishers portfolio.",
+    "featured": true
+  },
+  {
+    "_id": "book-adaptive-leadership",
+    "_type": "book",
+    "title": "Adaptive Leadership",
+    "slug": {
+      "_type": "slug",
+      "current": "adaptive-leadership"
+    },
+    "authors": [
+      {
+        "_key": "john-wanguba",
+        "_type": "reference",
+        "_ref": "author-john-wanguba"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of Adaptive Leadership",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-063f356eb4a70331b1dbca6e25df6d374f925430-1261x1695-jpg"
+      }
+    },
+    "category": "leadership",
+    "summary": "John Wanguba examines leadership and transformation during periods of uncertainty.",
+    "featured": true
+  },
+  {
+    "_id": "book-ngerekano-cia-muturire",
+    "_type": "book",
+    "title": "Ngerekano Cia Muturire",
+    "slug": {
+      "_type": "slug",
+      "current": "ngerekano-cia-muturire"
+    },
+    "authors": [
+      {
+        "_key": "wangari-wa-migwi",
+        "_type": "reference",
+        "_ref": "author-wangari-wa-migwi"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of Ngerekano Cia Muturire",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-dcf7929359ef1b2db8c022010d33c5035359ff88-1666x2364-jpg"
+      }
+    },
+    "category": "fiction-heritage",
+    "summary": "Wangari Wa Migwi gathers true-life stories from a programme she hosted on Kameme TV.",
+    "featured": false
+  },
+  {
+    "_id": "book-ultimate-recipe-for-a-wholesome-student",
+    "_type": "book",
+    "title": "Ultimate Recipe for a Wholesome Student",
+    "slug": {
+      "_type": "slug",
+      "current": "ultimate-recipe-for-a-wholesome-student"
+    },
+    "authors": [
+      {
+        "_key": "samuel-n-kanja",
+        "_type": "reference",
+        "_ref": "author-samuel-n-kanja"
+      }
+    ],
+    "coverImage": {
+      "_type": "image",
+      "alt": "Cover of Ultimate Recipe for a Wholesome Student",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-70021a8b8d7f53a9697796cafe077ef1709a415a-417x545-jpg"
+      }
+    },
+    "category": "self-help-parenting",
+    "summary": "Samuel N. Kanja offers students practical advice on learning, personal responsibility, and connecting education with life.",
+    "featured": false,
+    "description": [
+      {
+        "_type": "block",
+        "_key": "p1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "Kanja addresses questions students commonly face and shares ways to build habits and act with purpose. Christian faith is central to his approach.",
+            "marks": []
+          }
+        ]
+      }
+    ],
+    "publishedYear": 2015,
+    "pages": 142
+  }
+]

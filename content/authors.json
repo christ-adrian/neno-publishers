@@ -1,0 +1,579 @@
+[
+  {
+    "_id": "author-dr-salome-gitoho",
+    "_type": "author",
+    "name": "Dr. Salome Gitoho",
+    "slug": {
+      "_type": "slug",
+      "current": "dr-salome-gitoho"
+    },
+    "featured": false,
+    "photo": {
+      "_type": "image",
+      "alt": "Dr. Salome Gitoho",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-f6df5329bc2f1bb9b074ed25db52488d2e05492c-617x726-jpg"
+      }
+    }
+  },
+  {
+    "_id": "author-samuel-n-kanja",
+    "_type": "author",
+    "name": "Samuel N. Kanja",
+    "slug": {
+      "_type": "slug",
+      "current": "samuel-n-kanja"
+    },
+    "featured": false,
+    "photo": {
+      "_type": "image",
+      "alt": "Samuel N. Kanja",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-e914d8f4574fc2f6577df027590dfda1ede6309b-161x160-jpg"
+      }
+    },
+    "credentials": "Trainer, life coach, and mentor",
+    "shortBio": "Samuel N. Kanja is a trainer, life coach, and mentor to students and young people. He is also a Certified Public Accountant.",
+    "bio": [
+      {
+        "_type": "block",
+        "_key": "p1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "Samuel N. Kanja is a trainer, life coach, and mentor to students and young people. He is also a Certified Public Accountant.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "author-jemima-diana-njenga",
+    "_type": "author",
+    "name": "Jemima Diana Njenga",
+    "slug": {
+      "_type": "slug",
+      "current": "jemima-diana-njenga"
+    },
+    "featured": false
+  },
+  {
+    "_id": "author-dr-jacob-mwangi",
+    "_type": "author",
+    "name": "Dr. Jacob Mwangi",
+    "slug": {
+      "_type": "slug",
+      "current": "dr-jacob-mwangi"
+    },
+    "featured": false
+  },
+  {
+    "_id": "author-duncan-mindo",
+    "_type": "author",
+    "name": "Duncan Mindo",
+    "slug": {
+      "_type": "slug",
+      "current": "duncan-mindo"
+    },
+    "featured": false,
+    "photo": {
+      "_type": "image",
+      "alt": "Duncan Mindo",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-f268f39bfe428fba24d4791ceeac38740b1e15aa-802x914-jpg"
+      }
+    }
+  },
+  {
+    "_id": "author-wangari-wa-migwi",
+    "_type": "author",
+    "name": "Wangari Wa Migwi",
+    "slug": {
+      "_type": "slug",
+      "current": "wangari-wa-migwi"
+    },
+    "featured": false,
+    "photo": {
+      "_type": "image",
+      "alt": "Wangari Wa Migwi",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-2b2a6c1d58834544def879a78d2fa219d58be52d-280x321-jpg"
+      }
+    }
+  },
+  {
+    "_id": "author-dr-wachuka-gathigia-njoroge",
+    "_type": "author",
+    "name": "Dr. Wachuka Gathigia Njoroge",
+    "slug": {
+      "_type": "slug",
+      "current": "dr-wachuka-gathigia-njoroge"
+    },
+    "featured": false,
+    "photo": {
+      "_type": "image",
+      "alt": "Dr. Wachuka Gathigia Njoroge",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-745dd610095ec0d69445955e74d757657c2fbbfb-218x277-jpg"
+      }
+    }
+  },
+  {
+    "_id": "author-paul-mwaniki",
+    "_type": "author",
+    "name": "Paul Mwaniki",
+    "slug": {
+      "_type": "slug",
+      "current": "paul-mwaniki"
+    },
+    "featured": false,
+    "photo": {
+      "_type": "image",
+      "alt": "Paul Mwaniki",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-103852f6bc1aa13725f9cac67f1230f8b39d7ee7-314x452-jpg"
+      }
+    }
+  },
+  {
+    "_id": "author-gathoni-wa-mwonde",
+    "_type": "author",
+    "name": "Gathoni Wa Mwonde",
+    "slug": {
+      "_type": "slug",
+      "current": "gathoni-wa-mwonde"
+    },
+    "featured": false,
+    "photo": {
+      "_type": "image",
+      "alt": "Gathoni Wa Mwonde",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-1e3357ee43376be6e75d5bab0e8448f390c5b884-617x726-jpg"
+      }
+    }
+  },
+  {
+    "_id": "author-mary-makau",
+    "_type": "author",
+    "name": "Mary Makau",
+    "slug": {
+      "_type": "slug",
+      "current": "mary-makau"
+    },
+    "featured": false,
+    "photo": {
+      "_type": "image",
+      "alt": "Mary Makau",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-4fec9a0c19d7afbc2a509a5bf7aa2f7a2f3d8775-617x726-jpg"
+      }
+    }
+  },
+  {
+    "_id": "author-dan-otieno",
+    "_type": "author",
+    "name": "Dan Otieno",
+    "slug": {
+      "_type": "slug",
+      "current": "dan-otieno"
+    },
+    "featured": false,
+    "photo": {
+      "_type": "image",
+      "alt": "Dan Otieno",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-0afb2814735bd4c5f4f13681f01dc338ab31db1d-617x726-jpg"
+      }
+    }
+  },
+  {
+    "_id": "author-simon-mwaura",
+    "_type": "author",
+    "name": "Simon Mwaura",
+    "slug": {
+      "_type": "slug",
+      "current": "simon-mwaura"
+    },
+    "featured": false,
+    "photo": {
+      "_type": "image",
+      "alt": "Simon Mwaura",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-da20e89faf9bab08089e43cc7626039c1e998093-617x726-jpg"
+      }
+    }
+  },
+  {
+    "_id": "author-catherine-gachutha",
+    "_type": "author",
+    "name": "Catherine Gachutha",
+    "slug": {
+      "_type": "slug",
+      "current": "catherine-gachutha"
+    },
+    "featured": false,
+    "photo": {
+      "_type": "image",
+      "alt": "Catherine Gachutha",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-0f0f7719cbbb04ed15b146070f056a4404f30f4a-285x280-jpg"
+      }
+    },
+    "credentials": "PhD",
+    "shortBio": "Catherine Gachutha is a therapist and speaker who writes about parenting and family life.",
+    "bio": [
+      {
+        "_type": "block",
+        "_key": "p1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "Catherine Gachutha is a therapist and speaker who writes about parenting and family life.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "author-hillary-robert-ochieng",
+    "_type": "author",
+    "name": "Hillary Robert Ochieng",
+    "slug": {
+      "_type": "slug",
+      "current": "hillary-robert-ochieng"
+    },
+    "featured": false,
+    "photo": {
+      "_type": "image",
+      "alt": "Hillary Robert Ochieng and Rose Wangu",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-9b5cd9ce3c8a436ac34f998cc502476af2c7a259-249x226-jpg"
+      }
+    },
+    "credentials": "Author, producer, and songwriter",
+    "shortBio": "Hillary Robert Ochieng writes poetry and works in music as a producer, singer, and songwriter.",
+    "bio": [
+      {
+        "_type": "block",
+        "_key": "p1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "Hillary Robert Ochieng writes poetry and works in music as a producer, singer, and songwriter.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "author-rose-wangu",
+    "_type": "author",
+    "name": "Rose Wangu",
+    "slug": {
+      "_type": "slug",
+      "current": "rose-wangu"
+    },
+    "featured": false,
+    "photo": {
+      "_type": "image",
+      "alt": "Hillary Robert Ochieng and Rose Wangu",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-9b5cd9ce3c8a436ac34f998cc502476af2c7a259-249x226-jpg"
+      }
+    },
+    "shortBio": "Rose Wangu writes poetry and co-authored HillRose Poetry Collection with Hillary Robert Ochieng.",
+    "bio": [
+      {
+        "_type": "block",
+        "_key": "p1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "Rose Wangu writes poetry and co-authored HillRose Poetry Collection with Hillary Robert Ochieng.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "author-prince-henry",
+    "_type": "author",
+    "name": "Prince Henry",
+    "slug": {
+      "_type": "slug",
+      "current": "prince-henry"
+    },
+    "featured": false
+  },
+  {
+    "_id": "author-david-kinuthia",
+    "_type": "author",
+    "name": "David Kinuthia",
+    "slug": {
+      "_type": "slug",
+      "current": "david-kinuthia"
+    },
+    "featured": false,
+    "photo": {
+      "_type": "image",
+      "alt": "David Kinuthia",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-d7a33059e33872ad3d856c774088b5ec4abc58f2-126x157-jpg"
+      }
+    }
+  },
+  {
+    "_id": "author-john-wanguba",
+    "_type": "author",
+    "name": "John Wanguba",
+    "slug": {
+      "_type": "slug",
+      "current": "john-wanguba"
+    },
+    "featured": false,
+    "photo": {
+      "_type": "image",
+      "alt": "John Wanguba",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-cda21d2659a981166d67037b8acbaad4cdbe512f-205x231-jpg"
+      }
+    }
+  },
+  {
+    "_id": "author-dr-munene-mutune",
+    "_type": "author",
+    "name": "Dr. Munene Mutune",
+    "slug": {
+      "_type": "slug",
+      "current": "dr-munene-mutune"
+    },
+    "featured": false,
+    "photo": {
+      "_type": "image",
+      "alt": "Dr. Munene Mutune",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-f38ff69031edaa840ef9baedfbac0722144bd508-335x351-jpg"
+      }
+    }
+  },
+  {
+    "_id": "author-josphat-mwangi-kamau",
+    "_type": "author",
+    "name": "Josphat Mwangi Kamau",
+    "slug": {
+      "_type": "slug",
+      "current": "josphat-mwangi-kamau"
+    },
+    "featured": false,
+    "photo": {
+      "_type": "image",
+      "alt": "Josphat Mwangi Kamau",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-ab8f93623780c06a39cd068ec07711ffb0d8a038-468x564-jpg"
+      }
+    }
+  },
+  {
+    "_id": "author-simeon-uwuoga-adol",
+    "_type": "author",
+    "name": "Simeon Uwuoga Adol",
+    "slug": {
+      "_type": "slug",
+      "current": "simeon-uwuoga-adol"
+    },
+    "featured": false,
+    "photo": {
+      "_type": "image",
+      "alt": "Simeon Uwuoga Adol",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-4c881f410992a42fa059dd6b2850b5901b537d54-246x289-jpg"
+      }
+    }
+  },
+  {
+    "_id": "author-dr-stephen-mathiang",
+    "_type": "author",
+    "name": "Dr. Stephen Mathiang",
+    "slug": {
+      "_type": "slug",
+      "current": "dr-stephen-mathiang"
+    },
+    "featured": false
+  },
+  {
+    "_id": "author-sammy-milimo",
+    "_type": "author",
+    "name": "Sammy Milimo",
+    "slug": {
+      "_type": "slug",
+      "current": "sammy-milimo"
+    },
+    "featured": false
+  },
+  {
+    "_id": "author-gakenia-kagocha",
+    "_type": "author",
+    "name": "Gakenia Kagocha",
+    "slug": {
+      "_type": "slug",
+      "current": "gakenia-kagocha"
+    },
+    "featured": false
+  },
+  {
+    "_id": "author-ken-peter-munyua",
+    "_type": "author",
+    "name": "Ken Peter Munyua",
+    "slug": {
+      "_type": "slug",
+      "current": "ken-peter-munyua"
+    },
+    "featured": false,
+    "credentials": "Psychologist and human resource practitioner",
+    "shortBio": "Ken Peter Munyua is a psychologist, human resource practitioner, trainer, and life coach with experience in church leadership.",
+    "bio": [
+      {
+        "_type": "block",
+        "_key": "p1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "Ken Peter Munyua is a psychologist, human resource practitioner, trainer, and life coach with experience in church leadership.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "author-paul-wangari",
+    "_type": "author",
+    "name": "Paul Wangari",
+    "slug": {
+      "_type": "slug",
+      "current": "paul-wangari"
+    },
+    "featured": false,
+    "credentials": "Counselling psychologist",
+    "shortBio": "Paul Wangari is a counselling psychologist, speaker, and mentor who works with young people and students.",
+    "bio": [
+      {
+        "_type": "block",
+        "_key": "p1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "Paul Wangari is a counselling psychologist, speaker, and mentor who works with young people and students.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "author-peter-murage-mbui",
+    "_type": "author",
+    "name": "Peter Murage Mbui",
+    "slug": {
+      "_type": "slug",
+      "current": "peter-murage-mbui"
+    },
+    "featured": false
+  },
+  {
+    "_id": "author-peninah-mumbi",
+    "_type": "author",
+    "name": "Peninah Mumbi",
+    "slug": {
+      "_type": "slug",
+      "current": "peninah-mumbi"
+    },
+    "featured": false,
+    "credentials": "Mental health advocate",
+    "shortBio": "Peninah Mumbi speaks about mental health and encourages young people, women, and widows through her own experiences and Christian faith.",
+    "bio": [
+      {
+        "_type": "block",
+        "_key": "p1",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_type": "span",
+            "_key": "s1",
+            "text": "Peninah Mumbi speaks about mental health and encourages young people, women, and widows through her own experiences and Christian faith.",
+            "marks": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "author-pastor-oyaro-geofrey",
+    "_type": "author",
+    "name": "Pastor Oyaro Geofrey",
+    "slug": {
+      "_type": "slug",
+      "current": "pastor-oyaro-geofrey"
+    },
+    "featured": false
+  },
+  {
+    "_id": "author-mary-maganga",
+    "_type": "author",
+    "name": "Mary Maganga",
+    "slug": {
+      "_type": "slug",
+      "current": "mary-maganga"
+    },
+    "featured": false,
+    "photo": {
+      "_type": "image",
+      "alt": "Mary Maganga",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-d22b7c3135e9cb1e6a347096e37ba9483c272bd2-500x700-jpg"
+      }
+    }
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "_id": "team-member-mary-maganga",
+    "_type": "teamMember",
+    "name": "Mary Maganga",
+    "role": "Operations Manager",
+    "photo": {
+      "_type": "image",
+      "alt": "Mary Maganga",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-d22b7c3135e9cb1e6a347096e37ba9483c272bd2-500x700-jpg"
+      }
+    },
+    "displayOrder": 1,
+    "active": true
+  },
+  {
+    "_id": "team-member-samuel-n-kanja",
+    "_type": "teamMember",
+    "name": "Samuel N. Kanja",
+    "role": "Accounts and Relationship Manager",
+    "photo": {
+      "_type": "image",
+      "alt": "Samuel N. Kanja",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-804e6365f5996f36c21b3a0e431455bcefc26246-500x700-jpg"
+      }
+    },
+    "displayOrder": 2,
+    "active": true
+  },
+  {
+    "_id": "team-member-wilson-macharia",
+    "_type": "teamMember",
+    "name": "Wilson Macharia",
+    "role": "Editorial Manager",
+    "photo": {
+      "_type": "image",
+      "alt": "Wilson Macharia",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-545be4a8416415d79a30603cdd3c63c6dd861f5f-640x609-jpg"
+      }
+    },
+    "displayOrder": 3,
+    "active": true
+  }
+]

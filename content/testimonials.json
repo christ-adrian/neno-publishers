@@ -1,0 +1,19 @@
+[
+  {
+    "_id": "testimonial-samuel-n-kanja",
+    "_type": "testimonial",
+    "clientName": "Samuel N. Kanja",
+    "clientRole": "Author",
+    "quote": "Neno Publishers will take you as an author to another level. The company has greater experience in manuscript evaluation and development that makes the work of any author unique and make it stand out.",
+    "avatar": {
+      "_type": "image",
+      "alt": "Samuel N. Kanja",
+      "asset": {
+        "_type": "reference",
+        "_ref": "image-e914d8f4574fc2f6577df027590dfda1ede6309b-161x160-jpg"
+      }
+    },
+    "featured": true,
+    "displayOrder": 1
+  }
+]
