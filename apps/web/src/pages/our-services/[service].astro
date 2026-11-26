@@ -1,24 +1,45 @@
 ---
-import ServicesPage from "../../components/our-services/services-page.astro";
 import { services } from "../../components/our-services/content";
 import Layout from "../../layouts/Layout.astro";
 
 const service = services.find(({ slug }) => slug === Astro.params.service);
-const title = service ? `${service.title} | Neno Publishers` : "Service not found | Neno Publishers";
-
-if (!service) {
-	Astro.response.status = 404;
+if (service) {
+	return Astro.redirect(`/our-services#${service.slug}`, 301);
 }
+
+Astro.response.status = 404;
 ---
 
-<Layout title={title}>
-	{service ? (
-		<ServicesPage service={service} />
-	) : (
-		<main class="service-not-found">
-			<h1>Service not found</h1>
-			<p>The service you requested does not exist.</p>
-			<a href="/our-services">Browse our services</a>
-		</main>
-	)}
+<Layout skipTo="main-content" title="Service not found | Neno Publishers">
+	<main class="service-not-found" id="main-content">
+		<h1>Service not found</h1>
+		<a href="/our-services">Browse our services</a>
+	</main>
 </Layout>
+
+<style>
+	.service-not-found {
+		width: min(100% - 2 * var(--spacing-site-gutter), 78rem);
+		padding-block: clamp(3rem, 8vw, 7rem);
+		margin-inline: auto;
+	}
+
+	.service-not-found h1 {
+		font-size: clamp(2.7rem, 7vw, 5.5rem);
+		line-height: 1;
+	}
+
+	.service-not-found a {
+		display: inline-flex;
+		align-items: center;
+		min-block-size: 2.75rem;
+		color: var(--color-brand-primary-dark);
+		text-decoration: underline;
+		text-underline-offset: 0.22em;
+	}
+
+	.service-not-found a:focus-visible {
+		outline: 2px solid currentColor;
+		outline-offset: 4px;
+	}
+</style>

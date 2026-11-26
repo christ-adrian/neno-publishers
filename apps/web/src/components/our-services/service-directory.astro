@@ -1,0 +1,179 @@
+---
+import { Image } from "astro:assets";
+import lifeCover from "../../../../../content/assets/books/as-life-unfolds.jpg";
+import womanCover from "../../../../../content/assets/books/the-mugikuyu-woman.jpg";
+import serviceRecords from "../../../../../content/services.json";
+import { services } from "./content";
+
+const labels = {
+	advisory: "Advisory",
+	printing: "Printing",
+	publishing: "Publishing",
+} as const;
+
+const categories = services.map(({ slug }) => ({
+	offerings: serviceRecords
+		.filter(({ category }) => category === slug)
+		.sort((left, right) => left.displayOrder - right.displayOrder),
+	slug,
+	title: labels[slug],
+}));
+---
+
+<main class="service-directory" id="main-content">
+	<header class="directory-header" data-enter>
+		<h1>Our services</h1>
+		<div aria-hidden="true" class="directory-art">
+			<Image
+				alt=""
+				format="webp"
+				sizes="96px"
+				src={womanCover}
+				widths={[96, 192]}
+			/>
+			<Image
+				alt=""
+				format="webp"
+				sizes="108px"
+				src={lifeCover}
+				widths={[108, 216]}
+			/>
+		</div>
+	</header>
+
+	<div class="directory-groups">
+		{categories.map(({ slug, title, offerings }) => (
+			<section
+				aria-labelledby={`${slug}-title`}
+				class="directory-group"
+				id={slug}
+			>
+				<h2 id={`${slug}-title`}>{title}</h2>
+				<ul>
+					{offerings.map(({ title: offeringTitle }) => (
+						<li>{offeringTitle}</li>
+					))}
+				</ul>
+			</section>
+		))}
+	</div>
+</main>
+
+<style>
+	.service-directory {
+		width: min(100% - 2 * var(--spacing-site-gutter), 78rem);
+		padding-block: clamp(3rem, 6vw, 5.5rem) clamp(4rem, 8vw, 7rem);
+		margin-inline: auto;
+	}
+
+	.directory-header {
+		display: flex;
+		gap: 1.5rem;
+		align-items: center;
+		justify-content: space-between;
+		padding-block-end: clamp(1.25rem, 3vw, 2.25rem);
+		margin-block-end: clamp(1.35rem, 3vw, 2.5rem);
+		border-block-end: 1px solid var(--color-border);
+	}
+
+	.directory-header h1 {
+		margin: 0;
+		font-size: clamp(3.2rem, 7.2vw, 6.75rem);
+		font-weight: 480;
+		line-height: 0.93;
+		color: var(--color-ink);
+		letter-spacing: -0.055em;
+		text-wrap: balance;
+	}
+
+	.directory-art {
+		display: none;
+	}
+
+	.directory-groups {
+		display: grid;
+		gap: clamp(1rem, 2vw, 1.65rem);
+	}
+
+	.directory-group {
+		min-width: 0;
+		padding: clamp(1.25rem, 3vw, 2rem);
+		scroll-margin-block-start: 1rem;
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+	}
+
+	.directory-group:target {
+		border-color: var(--color-brand-primary-dark);
+	}
+
+	.directory-group h2 {
+		margin: 0 0 1.15rem;
+		font-size: clamp(2.05rem, 3.35vw, 3rem);
+		font-weight: 530;
+		line-height: 1;
+		color: var(--color-ink);
+		letter-spacing: -0.035em;
+	}
+
+	.directory-group ul {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	.directory-group li {
+		padding-block: 0.72rem;
+		line-height: 1.5;
+		color: var(--color-ink-muted);
+		overflow-wrap: break-word;
+		border-block-start: 1px solid var(--color-border);
+	}
+
+	.directory-group li:last-child {
+		padding-block-end: 0;
+	}
+
+	@media (min-width: 44rem) {
+		.directory-art {
+			display: flex;
+			flex: none;
+			gap: 0.8rem;
+			align-items: center;
+			padding: 0.8rem 1rem;
+			background: var(--color-brand-primary-soft);
+			border: 1px solid var(--color-border);
+		}
+
+		.directory-art img {
+			display: block;
+			width: 5.25rem;
+			height: auto;
+			box-shadow: 0 0.4rem 0.85rem -0.4rem rgb(15 23 42 / 24%);
+		}
+
+		.directory-art img:last-child {
+			width: 6rem;
+		}
+	}
+
+	@media (min-width: 52rem) {
+		.directory-groups {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			align-items: start;
+		}
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.directory-header {
+			animation: directory-enter 260ms var(--ease-nav-settle) both;
+		}
+
+		@keyframes directory-enter {
+			from {
+				opacity: 0;
+				transform: translateY(0.35rem);
+			}
+		}
+	}
+</style>
