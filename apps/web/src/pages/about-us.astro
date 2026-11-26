@@ -1,8 +1,13 @@
 ---
+import AboutPage from "../components/about-us/about-page.astro";
+import { intro } from "../components/about-us/content";
 import Layout from "../layouts/Layout.astro";
-import AboutUs from "../components/about-us/storybook.astro";
 ---
 
-<Layout title="About Us | Neno Publishers">
-	<AboutUs />
+<Layout
+	description={intro.lead}
+	skipTo="main-content"
+	title="About Us | Neno Publishers"
+>
+	<AboutPage />
 </Layout>

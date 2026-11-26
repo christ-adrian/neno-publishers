@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import leadershipCover from "../../../../../content/assets/books/adaptive-leadership.jpg";
 import lifeCover from "../../../../../content/assets/books/as-life-unfolds.jpg";
 import womanCover from "../../../../../content/assets/books/the-mugikuyu-woman.jpg";
 import serviceRecords from "../../../../../content/services.json";
@@ -21,27 +22,58 @@ const categories = services.map(({ slug }) => ({
 ---
 
 <main class="service-directory" id="main-content">
-	<header class="directory-header" data-enter>
-		<h1>Our services</h1>
-		<div aria-hidden="true" class="directory-art">
-			<Image
-				alt=""
-				format="webp"
-				sizes="96px"
-				src={womanCover}
-				widths={[96, 192]}
-			/>
-			<Image
-				alt=""
-				format="webp"
-				sizes="108px"
-				src={lifeCover}
-				widths={[108, 216]}
-			/>
-		</div>
-	</header>
+	<section aria-labelledby="service-directory-title" class="directory-hero">
+		<header class="directory-header" data-enter>
+			<h1 id="service-directory-title">Our services</h1>
+			<div class="directory-intro">
+				<p>
+					Publishing, printing and book advice for authors and organisations in
+					Kenya.
+				</p>
+				<a href="#service-offerings"
+					>Browse services <span aria-hidden="true">↓</span></a
+				>
+			</div>
+		</header>
 
-	<div class="directory-groups">
+		<div class="directory-art">
+			<div class="directory-art__pair">
+				<Image
+					alt="Book cover of The Mũgĩkũyũ Woman"
+					format="webp"
+					loading="eager"
+					sizes="(min-width: 70rem) 260px, (min-width: 48rem) 23vw, 37vw"
+					src={womanCover}
+					widths={[240, 360, 540]}
+				/>
+				<Image
+					alt="Book cover of As Life Unfolds by Peter Mbui"
+					fetchpriority="high"
+					format="webp"
+					loading="eager"
+					sizes="(min-width: 70rem) 275px, (min-width: 48rem) 24vw, 37vw"
+					src={lifeCover}
+					widths={[240, 360, 560]}
+				/>
+			</div>
+			<div class="directory-art__single">
+				<Image
+					alt="Book cover of Adaptive Leadership"
+					format="webp"
+					loading="eager"
+					sizes="(min-width: 70rem) 210px, (min-width: 48rem) 18vw, 46vw"
+					src={leadershipCover}
+					widths={[200, 320, 480]}
+				/>
+			</div>
+		</div>
+	</section>
+
+	<section
+		aria-label="Service offerings"
+		class="directory-groups"
+		id="service-offerings"
+	>
 		{categories.map(({ slug, title, offerings }) => (
 			<section
 				aria-labelledby={`${slug}-title`}
@@ -56,111 +88,199 @@ const categories = services.map(({ slug }) => ({
 				</ul>
 			</section>
 		))}
-	</div>
+	</section>
 </main>
 
 <style>
 	.service-directory {
 		width: min(100% - 2 * var(--spacing-site-gutter), 78rem);
-		padding-block: clamp(3rem, 6vw, 5.5rem) clamp(4rem, 8vw, 7rem);
+		padding-block: clamp(3rem, 6vw, 6rem) clamp(3.5rem, 7vw, 6rem);
 		margin-inline: auto;
 	}
 
 	.directory-header {
-		display: flex;
-		gap: 1.5rem;
-		align-items: center;
-		justify-content: space-between;
-		padding-block-end: clamp(1.25rem, 3vw, 2.25rem);
-		margin-block-end: clamp(1.35rem, 3vw, 2.5rem);
-		border-block-end: 1px solid var(--color-border);
+		display: grid;
+		gap: 1.25rem 2rem;
+		align-items: end;
+		margin-block-end: clamp(1.7rem, 3vw, 2.75rem);
 	}
 
 	.directory-header h1 {
 		margin: 0;
-		font-size: clamp(3.2rem, 7.2vw, 6.75rem);
-		font-weight: 480;
+		font-family: var(--font-sans);
+		font-size: clamp(3.15rem, 7.8vw, 7.25rem);
+		font-weight: 760;
 		line-height: 0.93;
 		color: var(--color-ink);
-		letter-spacing: -0.055em;
+		word-spacing: 0.035em;
+		letter-spacing: -0.068em;
 		text-wrap: balance;
 	}
 
+	.directory-intro {
+		line-height: 1.65;
+		color: var(--color-ink-muted);
+	}
+
+	.directory-intro p {
+		max-width: 30ch;
+		margin: 0;
+		text-wrap: pretty;
+	}
+
+	.directory-intro a {
+		display: inline-flex;
+		gap: 0.65rem;
+		align-items: center;
+		min-block-size: 2.75rem;
+		margin-block-start: 0.3rem;
+		font-size: 0.9rem;
+		font-weight: 700;
+		color: var(--color-brand-primary-dark);
+		text-decoration: underline;
+		text-decoration-color: transparent;
+		text-underline-offset: 0.22em;
+		transition: text-decoration-color 150ms ease;
+	}
+
+	.directory-intro a:focus-visible {
+		outline: 2px solid currentColor;
+		outline-offset: 4px;
+	}
+
 	.directory-art {
-		display: none;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 0.54fr);
+		gap: clamp(0.5rem, 1.3vw, 1rem);
+	}
+
+	.directory-art__pair,
+	.directory-art__single {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 0;
+		min-block-size: clamp(9rem, 32vw, 29rem);
+		padding: clamp(0.7rem, 4vw, 3.5rem);
+		overflow: hidden;
+		border-radius: clamp(0.65rem, 1vw, 0.9rem);
+	}
+
+	.directory-art__pair {
+		gap: clamp(0.45rem, 2vw, 1.7rem);
+		background: #dbe9f0;
+	}
+
+	.directory-art__single {
+		background: #e9e3d5;
+	}
+
+	.directory-art img {
+		display: block;
+		min-width: 0;
+		height: auto;
+		box-shadow: 0 1.2rem 1.75rem -1rem rgb(15 23 42 / 32%);
+	}
+
+	.directory-art__pair img {
+		width: min(46%, 16.25rem);
+	}
+
+	.directory-art__pair img:last-child {
+		width: min(48%, 17.2rem);
+	}
+
+	.directory-art__single img {
+		width: min(100%, 13rem);
 	}
 
 	.directory-groups {
 		display: grid;
-		gap: clamp(1rem, 2vw, 1.65rem);
+		gap: clamp(0.85rem, 1.6vw, 1.3rem);
+		margin-block-start: clamp(2.7rem, 7vw, 6rem);
 	}
 
 	.directory-group {
 		min-width: 0;
-		padding: clamp(1.25rem, 3vw, 2rem);
+		padding: clamp(1.35rem, 3.3vw, 2.5rem);
 		scroll-margin-block-start: 1rem;
 		background: var(--color-surface);
 		border: 1px solid var(--color-border);
+		border-radius: 0.9rem;
+	}
+
+	.directory-group#publishing {
+		--directory-rule: rgb(255 255 255 / 19%);
+		--directory-text: #eef6fb;
+		color: var(--color-surface);
+		background: #164b68;
+		border-color: #164b68;
 	}
 
 	.directory-group:target {
-		border-color: var(--color-brand-primary-dark);
+		outline: 2px solid var(--color-brand-primary-dark);
+		outline-offset: 3px;
 	}
 
 	.directory-group h2 {
-		margin: 0 0 1.15rem;
-		font-size: clamp(2.05rem, 3.35vw, 3rem);
-		font-weight: 530;
-		line-height: 1;
-		color: var(--color-ink);
-		letter-spacing: -0.035em;
+		margin: 0 0 clamp(0.9rem, 2vw, 1.35rem);
+		font-family: var(--font-sans);
+		font-size: clamp(1.65rem, 3.4vw, 2.85rem);
+		font-weight: 750;
+		line-height: 1.05;
+		letter-spacing: -0.062em;
 	}
 
 	.directory-group ul {
 		padding: 0;
 		margin: 0;
-		list-style: none;
+		list-style: disc;
 	}
 
 	.directory-group li {
-		padding-block: 0.72rem;
+		padding-block: 0.73rem;
 		line-height: 1.5;
-		color: var(--color-ink-muted);
+		color: var(--directory-text, var(--color-ink-muted));
 		overflow-wrap: break-word;
-		border-block-start: 1px solid var(--color-border);
+		border-block-start: 1px solid var(--directory-rule, var(--color-border));
+	}
+
+	.directory-group li::marker {
+		content: "";
 	}
 
 	.directory-group li:last-child {
 		padding-block-end: 0;
 	}
 
-	@media (min-width: 44rem) {
-		.directory-art {
-			display: flex;
-			flex: none;
-			gap: 0.8rem;
-			align-items: center;
-			padding: 0.8rem 1rem;
-			background: var(--color-brand-primary-soft);
-			border: 1px solid var(--color-border);
+	@media (min-width: 48rem) {
+		.directory-header {
+			grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
 		}
 
-		.directory-art img {
-			display: block;
-			width: 5.25rem;
-			height: auto;
-			box-shadow: 0 0.4rem 0.85rem -0.4rem rgb(15 23 42 / 24%);
+		.directory-intro {
+			justify-self: end;
 		}
 
-		.directory-art img:last-child {
-			width: 6rem;
+		.directory-groups {
+			grid-template-areas: "printing advisory" "printing publishing";
+			grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+		}
+
+		.directory-group#printing {
+			grid-area: printing;
+		}
+		.directory-group#advisory {
+			grid-area: advisory;
+		}
+		.directory-group#publishing {
+			grid-area: publishing;
 		}
 	}
 
-	@media (min-width: 52rem) {
-		.directory-groups {
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-			align-items: start;
+	@media (hover: hover) and (pointer: fine) {
+		.directory-intro a:hover {
+			text-decoration-color: currentColor;
 		}
 	}
 
@@ -174,6 +294,12 @@ const categories = services.map(({ slug }) => ({
 				opacity: 0;
 				transform: translateY(0.35rem);
 			}
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.directory-intro a {
+			transition: none;
 		}
 	}
 </style>
