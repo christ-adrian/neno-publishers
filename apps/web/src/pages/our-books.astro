@@ -21,10 +21,7 @@ try {
 	title="Our Books | Neno Publishers"
 >
 	<main class="book-catalog" id="main-content">
-		<header class="book-catalog__header" data-enter>
-			<h1>Our books</h1>
-			{books.length > 0 && <p>{books.length} {books.length === 1 ? "title" : "titles"}</p>}
-		</header>
+		<h1 class="sr-only">Our books</h1>
 
 		{unavailable ? (
 			<p class="book-catalog__message">The catalog is temporarily unavailable. Please try again shortly.</p>
@@ -56,35 +53,7 @@ try {
 		--shelf-gap: clamp(0.9rem, 2vw, 1.65rem);
 		width: min(100% - 2 * var(--spacing-site-gutter), 78rem);
 		margin-inline: auto;
-		padding-block: clamp(3rem, 6vw, 5.5rem) clamp(4rem, 8vw, 7rem);
-	}
-
-	.book-catalog__header {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: baseline;
-		justify-content: space-between;
-		gap: 0.65rem 1.5rem;
-		padding-block-end: clamp(1rem, 2vw, 1.6rem);
-		margin-block-end: clamp(1.35rem, 3vw, 2.5rem);
-		border-block-end: 1px solid var(--color-border);
-	}
-
-	.book-catalog__header h1 {
-		margin: 0;
-		color: var(--color-ink);
-		font-size: clamp(3.3rem, 7.2vw, 6.75rem);
-		font-weight: 480;
-		font-optical-sizing: auto;
-		letter-spacing: -0.055em;
-		line-height: 0.88;
-	}
-
-	.book-catalog__header p {
-		margin: 0;
-		color: var(--color-ink-muted);
-		font-size: 0.925rem;
-		font-variant-numeric: tabular-nums;
+		padding-block: clamp(1.75rem, 4vw, 3.5rem) clamp(4rem, 8vw, 7rem);
 	}
 
 	.book-catalog__grid {
@@ -155,13 +124,6 @@ try {
 	}
 
 	.book-card:active { transform: scale(0.99); }
-
-	@media (prefers-reduced-motion: no-preference) {
-		.book-catalog__header { animation: catalog-enter 280ms var(--ease-nav-settle) both; }
-		@keyframes catalog-enter {
-			from { opacity: 0; transform: translateY(0.36rem); }
-		}
-	}
 
 	@media (prefers-reduced-motion: reduce) {
 		.book-card { transition: border-color 160ms ease; }

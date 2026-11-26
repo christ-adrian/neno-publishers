@@ -1,14 +1,18 @@
 ---
-import { bookCoverUrl, type BookCover as BookCoverImage } from "../../lib/books";
+import {
+	type BookCover as BookCoverImage,
+	bookCoverUrl,
+} from "../../lib/books";
 
 interface Props {
-	cover: BookCoverImage | null;
-	title: string;
 	altText?: string;
+	cover: BookCoverImage | null;
+	fetchPriority?: "high" | "low" | "auto";
+	initials?: string;
+	loading?: "eager" | "lazy";
 	presentation?: "catalog" | "detail";
 	sizes?: string;
-	loading?: "eager" | "lazy";
-	fetchPriority?: "high" | "low" | "auto";
+	title: string;
 }
 
 const {
@@ -19,6 +23,7 @@ const {
 	sizes = "(min-width: 88rem) 16vw, (min-width: 64rem) 22vw, (min-width: 42rem) 30vw, 45vw",
 	loading = "lazy",
 	fetchPriority,
+	initials,
 } = Astro.props;
 
 const widths = [320, 480, 640, 800, 960, 1200];
@@ -26,7 +31,7 @@ const sources = widths.flatMap((width) => {
 	const url = bookCoverUrl(cover, width);
 	return url ? [{ url, width }] : [];
 });
-const source = sources.find(({ width }) => width === 800) ?? sources[sources.length - 1];
+const source = sources.find(({ width }) => width === 800) ?? sources.at(-1);
 const srcSet = sources.map(({ url, width }) => `${url} ${width}w`).join(", ");
 ---
 
@@ -44,7 +49,12 @@ const srcSet = sources.map(({ url, width }) => `${url} ${width}w`).join(", ");
 			width="800"
 		/>
 	) : (
-		<span aria-label={`Cover unavailable for ${title}`} class="book-cover__paper" role="img"></span>
+		<span
+			class:list={["book-cover__paper", { "book-cover__initials": initials }]}
+		>
+			{initials && <span aria-hidden="true">{initials}</span>}
+			{!initials && <span class="sr-only">Cover unavailable for {title}</span>}
+		</span>
 	)}
 </figure>
 
@@ -80,6 +90,17 @@ const srcSet = sources.map(({ url, width }) => `${url} ${width}w`).join(", ");
 
 	.book-cover__paper {
 		background: var(--color-surface-alt);
+	}
+
+	.book-cover__initials {
+		display: grid;
+		place-items: center;
+		font-family: var(--font-serif);
+		font-size: clamp(2.1rem, 6vw, 4rem);
+		font-weight: 540;
+		line-height: 1;
+		color: var(--color-brand-primary-dark);
+		background: #dbe9f0;
 	}
 
 	@media (prefers-reduced-motion: reduce) {

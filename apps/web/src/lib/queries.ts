@@ -49,14 +49,14 @@ export const BOOK_BY_SLUG_QUERY =
 }`);
 
 export const AUTHORS_QUERY =
-	defineQuery(`*[_type == "author"] | order(name asc) {
+	defineQuery(`*[_type == "author" && defined(name) && name != ""] | order(name asc, _id asc) {
   _id,
   name,
   "slug": slug.current,
   credentials,
   photo,
   shortBio,
-  "books": *[_type == "book" && references(^._id)] | order(publishedYear desc) {
+  "books": *[_type == "book" && defined(title) && defined(slug.current) && ^._id in authors[]._ref] | order(publishedYear desc, title asc, _id asc) {
     _id,
     title,
     "slug": slug.current,

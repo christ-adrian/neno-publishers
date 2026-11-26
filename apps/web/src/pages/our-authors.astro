@@ -1,9 +1,248 @@
 ---
+import BookCover from "../components/our-books/book-cover.astro";
 import Layout from "../layouts/Layout.astro";
+import { AUTHORS_QUERY } from "../lib/queries";
+import { getSanityClient, type SanityImage } from "../lib/sanity";
+
+interface Author {
+	_id: string;
+	books: { _id: string; slug: string; title: string }[];
+	credentials: string | null;
+	name: string;
+	photo: SanityImage | null;
+}
+
+const wordSeparator = /\s+/u;
+
+let authors: Author[] = [];
+let unavailable = false;
+
+try {
+	authors = await getSanityClient().fetch<Author[]>(AUTHORS_QUERY);
+} catch {
+	unavailable = true;
+	Astro.response.status = 503;
+}
+
+const emptyMessage = unavailable
+	? "The author directory is temporarily unavailable. Please try again shortly."
+	: "There are no authors in the directory yet.";
 ---
 
-<Layout title="Our Authors | Neno Publishers">
-	<main>
-		<h1>Our Authors</h1>
+<Layout
+	description="Meet the authors published by Neno Publishers and explore their books."
+	skipTo="main-content"
+	title="Our Authors | Neno Publishers"
+>
+	<main class="author-directory" id="main-content">
+		<header class="author-directory__header" data-enter>
+			<h1>Our authors</h1>
+			<p>Meet the people behind the books we publish.</p>
+		</header>
+
+		{authors.length > 0 ? (
+			<ul aria-label="Author directory" class="author-directory__grid">
+				{authors.map(({ books, credentials, name, photo }, index) => {
+					const initials = name
+						.trim()
+						.split(wordSeparator)
+						.slice(0, 2)
+						.map((part) => Array.from(part)[0])
+						.join("");
+					return (
+						<li class="author-card">
+							<BookCover
+								cover={photo}
+								initials={initials}
+								loading={index < 4 ? "eager" : "lazy"}
+								sizes="(min-width: 84rem) 276px, (min-width: 65rem) 22vw, (min-width: 48rem) 29vw, (min-width: 24rem) 44vw, 87vw"
+								title={name}
+							/>
+							<div class="author-card__content">
+								<h2>{name}</h2>
+								{credentials && (
+									<p class="author-card__credentials">{credentials}</p>
+								)}
+								{books.length > 0 && (
+									<ul
+										aria-label={`Books by ${name}`}
+										class="author-card__books"
+									>
+										{books.map(({ slug, title }) => (
+											<li>
+												<a href={`/our-books/${encodeURIComponent(slug)}`}>
+													{title}
+												</a>
+											</li>
+										))}
+									</ul>
+								)}
+							</div>
+						</li>
+					);
+				})}
+			</ul>
+		) : (
+			<p class="author-directory__message">{emptyMessage}</p>
+		)}
 	</main>
 </Layout>
+
+<style>
+	.author-directory {
+		width: min(100% - 2 * var(--spacing-site-gutter), 78rem);
+		padding-block: clamp(3rem, 6vw, 5.5rem) clamp(4rem, 8vw, 7rem);
+		margin-inline: auto;
+	}
+
+	.author-directory__header {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.8rem 2rem;
+		align-items: end;
+		justify-content: space-between;
+		padding-block-end: clamp(1.4rem, 3vw, 2.4rem);
+		margin-block-end: clamp(1.65rem, 3.5vw, 3rem);
+		border-block-end: 1px solid var(--color-border);
+	}
+
+	.author-directory__header h1 {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: clamp(3rem, 7.4vw, 7.1rem);
+		font-weight: 760;
+		line-height: 0.95;
+		color: var(--color-ink);
+		word-spacing: 0.035em;
+		letter-spacing: -0.068em;
+		text-wrap: balance;
+	}
+
+	.author-directory__header p,
+	.author-directory__message {
+		max-width: 28ch;
+		margin: 0;
+		line-height: 1.65;
+		color: var(--color-ink-muted);
+	}
+
+	.author-directory__grid,
+	.author-card__books {
+		padding: 0;
+		margin: 0;
+		list-style: disc;
+	}
+
+	.author-directory__grid > li::marker,
+	.author-card__books > li::marker {
+		content: "";
+	}
+
+	.author-directory__grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: clamp(0.75rem, 2vw, 1.35rem);
+	}
+
+	.author-card {
+		display: flex;
+		flex-direction: column;
+		gap: 0.95rem;
+		min-width: 0;
+		height: 100%;
+		padding: clamp(0.55rem, 1vw, 0.9rem);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+	}
+
+	.author-card__content {
+		padding: 0 0.3rem 0.45rem;
+	}
+
+	.author-card__content h2 {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: clamp(1.1rem, 1.8vw, 1.42rem);
+		font-weight: 720;
+		line-height: 1.18;
+		color: var(--color-ink);
+		letter-spacing: -0.045em;
+		overflow-wrap: anywhere;
+	}
+
+	.author-card__credentials {
+		margin: 0.4rem 0 0;
+		font-size: 0.875rem;
+		line-height: 1.55;
+		color: var(--color-ink-muted);
+	}
+
+	.author-card__books {
+		margin-block-start: 0.65rem;
+	}
+
+	.author-card__books a {
+		display: flex;
+		align-items: center;
+		min-block-size: 2.75rem;
+		padding-block: 0.4rem;
+		font-size: 0.875rem;
+		font-weight: 640;
+		line-height: 1.35;
+		color: var(--color-brand-primary-dark);
+		overflow-wrap: anywhere;
+		text-decoration: underline;
+		text-decoration-color: transparent;
+		text-underline-offset: 0.2em;
+		border-block-start: 1px solid var(--color-border);
+		transition: text-decoration-color 160ms ease;
+	}
+
+	.author-card__books a:focus-visible {
+		outline: 2px solid currentColor;
+		outline-offset: 3px;
+	}
+
+	@media (min-width: 24rem) {
+		.author-directory__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 48rem) {
+		.author-directory__grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 65rem) {
+		.author-directory__grid {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.author-card__books a:hover {
+			text-decoration-color: currentColor;
+		}
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.author-directory__header {
+			animation: author-directory-enter 260ms var(--ease-nav-settle) both;
+		}
+
+		@keyframes author-directory-enter {
+			from {
+				opacity: 0;
+				transform: translateY(0.35rem);
+			}
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.author-card__books a {
+			transition: none;
+		}
+	}
+</style>
