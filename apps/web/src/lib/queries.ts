@@ -1,7 +1,7 @@
 import { defineQuery } from "groq";
 
 export const BOOKS_QUERY =
-	defineQuery(`*[_type == "book"] | order(featured desc, publishedYear desc) {
+	defineQuery(`*[_type == "book" && defined(slug.current) && defined(title)] | order(featured desc, publishedYear desc, title asc, _id asc) {
   _id,
   title,
   "slug": slug.current,
@@ -11,15 +11,15 @@ export const BOOKS_QUERY =
   priceKsh,
   featured,
   coverImage,
-  "authors": authors[]->{
+  "authors": coalesce((authors[]->)[defined(name)]{
     _id,
     name,
     "slug": slug.current
-  }
+  }, [])
 }`);
 
 export const BOOK_BY_SLUG_QUERY =
-	defineQuery(`*[_type == "book" && slug.current == $slug][0] {
+	defineQuery(`*[_type == "book" && slug.current == $slug && defined(title)] | order(_id asc)[0] {
   _id,
   title,
   "slug": slug.current,
@@ -31,14 +31,14 @@ export const BOOK_BY_SLUG_QUERY =
   pages,
   priceKsh,
   coverImage,
-  "authors": authors[]->{
+  "authors": coalesce((authors[]->)[defined(name)]{
     _id,
     name,
     "slug": slug.current,
     credentials,
     photo,
     shortBio
-  },
+  }, []),
   "testimonials": *[_type == "testimonial" && relatedBook._ref == ^._id] | order(displayOrder asc) {
     _id,
     quote,

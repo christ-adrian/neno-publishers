@@ -1,0 +1,199 @@
+---
+import { PortableText } from "@portabletext/astro";
+import BookCover from "../../components/our-books/book-cover.astro";
+import BookDescriptionHeading from "../../components/our-books/book-description-heading.astro";
+import BookOrderPanel from "../../components/our-books/book-order-panel.astro";
+import Layout from "../../layouts/Layout.astro";
+import { bookCoverUrl, getBook } from "../../lib/books";
+
+let book: Awaited<ReturnType<typeof getBook>> = null;
+let unavailable = false;
+
+const slug = Astro.params.slug;
+if (slug) {
+	try {
+		book = await getBook(slug);
+	} catch {
+		unavailable = true;
+	}
+}
+
+if (!book) {
+	Astro.response.status = unavailable ? 503 : 404;
+}
+
+const title = book?.title ?? (unavailable ? "Book temporarily unavailable" : "Book not found");
+const authors = book?.authors.map(({ name }) => name).join(", ");
+const facts = book
+	? [
+			{ label: "Published", value: book.publishedYear },
+			{ label: "Pages", value: book.pages },
+			{ label: "ISBN", value: book.isbn },
+		].filter(({ value }) => value !== null)
+	: [];
+const cover = book?.coverImage ?? null;
+const previewImage = bookCoverUrl(cover, 1200) ?? undefined;
+const headingComponents = {
+	block: {
+		h1: BookDescriptionHeading,
+		h2: BookDescriptionHeading,
+		h3: BookDescriptionHeading,
+		h4: BookDescriptionHeading,
+		h5: BookDescriptionHeading,
+		h6: BookDescriptionHeading,
+	},
+};
+---
+
+<Layout description={book?.summary ?? undefined} image={previewImage} skipTo="main-content" title={`${title} | Neno Publishers`}>
+	<main class="book-detail" id="main-content">
+		<a class="book-detail__back" href="/our-books"><span aria-hidden="true">←</span> All books</a>
+
+		<header class="book-detail__heading" data-enter>
+			<h1>{title}</h1>
+			{authors && <p>By {authors}</p>}
+		</header>
+
+		{book ? (
+			<div class="book-detail__grid">
+				<div class="book-detail__cover">
+					<BookCover
+						altText={cover?.alt || `Cover of ${book.title}`}
+						cover={cover}
+						fetchPriority="high"
+						loading="eager"
+						presentation="detail"
+						sizes="(min-width: 52rem) 430px, (min-width: 30rem) 400px, 88vw"
+						title={book.title}
+					/>
+				</div>
+
+				<div class="book-detail__order">
+					<BookOrderPanel priceKsh={book.priceKsh} title={book.title} />
+				</div>
+
+				{(book.description?.length || book.summary || facts.length > 0) && (
+					<section aria-labelledby="book-description" class="book-detail__description">
+						<h2 id="book-description">About the book</h2>
+						<div class="book-detail__prose">
+							{book.description?.length ? (
+								<PortableText components={headingComponents} value={book.description} />
+							) : book.summary ? <p>{book.summary}</p> : null}
+						</div>
+						{facts.length > 0 && (
+							<dl class="book-detail__facts">
+								{facts.map(({ label, value }) => (
+									<div><dt>{label}</dt><dd>{value}</dd></div>
+								))}
+							</dl>
+						)}
+					</section>
+				)}
+			</div>
+		) : (
+			<p class="book-detail__error">{unavailable ? "Please try again shortly." : "This title is no longer in the catalog."}</p>
+		)}
+	</main>
+</Layout>
+
+<style>
+	.book-detail {
+		width: min(100% - 2 * var(--spacing-site-gutter), 70rem);
+		margin-inline: auto;
+		padding-block: clamp(2rem, 5vw, 4rem) clamp(4rem, 8vw, 7rem);
+	}
+
+	.book-detail__back {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.55rem;
+		min-block-size: 2.75rem;
+		color: var(--color-brand-primary-dark);
+		font-size: 0.925rem;
+		font-weight: 650;
+		text-decoration: underline;
+		text-decoration-color: transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color 160ms ease;
+	}
+
+	.book-detail__back:hover { text-decoration-color: currentColor; }
+	.book-detail__back:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+	.book-detail__heading {
+		padding-block: 1.25rem clamp(1.4rem, 3vw, 2rem);
+		margin-block-end: clamp(1.5rem, 3vw, 2.5rem);
+		border-block-end: 1px solid var(--color-border);
+	}
+
+	.book-detail__heading h1 {
+		max-width: 21ch;
+		margin: 0;
+		font-size: clamp(2.75rem, 6vw, 5.6rem);
+		font-weight: 480;
+		letter-spacing: -0.045em;
+		line-height: 0.96;
+		overflow-wrap: anywhere;
+		text-wrap: balance;
+	}
+
+	.book-detail__heading p {
+		margin: 0.9rem 0 0;
+		color: var(--color-ink-muted);
+		font-size: clamp(0.95rem, 1.7vw, 1.1rem);
+	}
+
+	.book-detail__grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		grid-template-areas: "cover" "order" "description";
+		gap: clamp(1.45rem, 4vw, 2.75rem);
+		align-items: start;
+	}
+
+	.book-detail__cover { grid-area: cover; width: min(100%, 28rem); }
+	.book-detail__order { grid-area: order; }
+	.book-detail__description { grid-area: description; max-width: 64ch; }
+	.book-detail__description h2 {
+		margin: 0;
+		font-size: clamp(2rem, 4vw, 2.65rem);
+		font-weight: 520;
+		letter-spacing: -0.03em;
+		line-height: 1.05;
+	}
+
+	.book-detail__prose, .book-detail__error { color: var(--color-ink-muted); line-height: 1.75; }
+	.book-detail__prose :global(p) { margin-block: 0.85rem 0; }
+	.book-detail__prose :global(ul), .book-detail__prose :global(ol) { padding-inline-start: 1.5rem; }
+	.book-detail__prose :global(ul) { list-style: disc; }
+	.book-detail__prose :global(ol) { list-style: decimal; }
+	.book-detail__prose :global(a) { color: var(--color-brand-primary-dark); text-decoration: underline; }
+
+	.book-detail__facts {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(8rem, 100%), 1fr));
+		gap: 1rem;
+		margin-block: 1.65rem 0;
+		padding-block-start: 1.2rem;
+		border-block-start: 1px solid var(--color-border);
+	}
+
+	.book-detail__facts dt { color: var(--color-ink-muted); font-size: 0.875rem; }
+	.book-detail__facts dd { margin: 0.3rem 0 0; font-weight: 650; overflow-wrap: anywhere; }
+
+	@media (min-width: 52rem) {
+		.book-detail__grid {
+			grid-template-columns: minmax(0, 1.6fr) minmax(16rem, 1fr);
+			grid-template-areas: "cover order" "description order";
+		}
+
+		.book-detail__order { position: sticky; inset-block-start: 7rem; }
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.book-detail__heading { animation: book-heading-enter 280ms var(--ease-nav-settle) both; }
+		@keyframes book-heading-enter {
+			from { opacity: 0; transform: translateY(0.36rem); }
+		}
+	}
+</style>

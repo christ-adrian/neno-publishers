@@ -1,6 +1,6 @@
 # Neno Publishers source content
 
-These are local Sanity documents for the five types registered by [Studio](../apps/web/sanity.config.ts). They were prepared from the public WordPress site. The public Astro pages and the Sanity dataset require a separate import and integration.
+These are local Sanity documents for the five types registered by [Studio](../apps/web/sanity.config.ts). They were prepared from the public WordPress site. The book catalog and detail pages read published documents from the configured Sanity dataset.
 
 | File | Sanity type | Documents |
 | --- | --- | ---: |
@@ -19,7 +19,7 @@ Firecrawl retrieved the [book gallery](https://nenopublishers.co.ke/our-book/) a
 - Summaries are editorial paraphrases of the page or cover. When a listing provides only the title and credit, its summary describes the listing conservatively. Categories map to the existing Studio choices and are editorial assignments where a genre was not published. The homepage portfolio determines which books are featured.
 - Service entries follow the headings on the services page, with digital printing from the homepage. Short descriptions identify the named offerings. The testimonial uses the published client attribution and quote.
 - Publication years and page counts use the detailed catalog where it supplied them. Unverified bibliographic fields and prices are omitted. Author-only mentions without a verified cover are represented by their author profiles. These are *HR Practice: A Rear View with Salome Gitoho*, *Unleashing the Greatness Within*, *Unstoppable Zeal*, *Shadows and the Light*, and *Six Main Keys to Unblock God's Kingdom*.
-- `assets.json` records the 47 JPEG paths, source URLs, dimensions, and SHA-256 digests. The files are the original bytes served by the website. Some catalog covers are full print spreads. The complete *As Life Unfolds* cover came from its portfolio page because the gallery upload could not be fully downloaded. Logos and other layout imagery have no fields in these five schemas.
+- `assets.json` records the 47 JPEG paths, source URLs, dimensions, and SHA-256 digests. The files are the original bytes served by the website. The book documents include front-cover crops for nine print spreads. The checked-in images retain the original spreads. The complete *As Life Unfolds* cover came from its portfolio page because the gallery upload could not be fully downloaded. Logos and other layout imagery have no fields in these five schemas.
 
 ## Prepare the local import file
 

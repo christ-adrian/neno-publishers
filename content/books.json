@@ -241,6 +241,13 @@
       "asset": {
         "_type": "reference",
         "_ref": "image-4425efee81b34cb558afba467015833560304616-2639x1851-jpg"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "left": 0.51,
+        "right": 0.03,
+        "top": 0.043,
+        "bottom": 0.034
       }
     },
     "category": "self-help-parenting",
@@ -289,6 +296,13 @@
       "asset": {
         "_type": "reference",
         "_ref": "image-795233456b766e4079bd9c125b6b11c3c0ec012d-2170x1587-jpg"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "left": 0.5,
+        "right": 0.025,
+        "top": 0.035,
+        "bottom": 0.035
       }
     },
     "category": "poetry-kids",
@@ -333,6 +347,13 @@
       "asset": {
         "_type": "reference",
         "_ref": "image-4b46ef1fe2de520fe22095e3aaf647608cb347e5-2994x2156-jpg"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "left": 0.49,
+        "right": 0.03,
+        "top": 0.035,
+        "bottom": 0.035
       }
     },
     "category": "poetry-kids",
@@ -377,6 +398,13 @@
       "asset": {
         "_type": "reference",
         "_ref": "image-e2ff6bf8236bca12adab98544571c272c3e76648-2570x1851-jpg"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "left": 0.5,
+        "right": 0.032,
+        "top": 0.042,
+        "bottom": 0.036
       }
     },
     "category": "fiction-heritage",
@@ -448,6 +476,13 @@
       "asset": {
         "_type": "reference",
         "_ref": "image-e86b34f9753781601987063559302c14934bc7ae-1040x734-jpg"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "left": 0.52,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
       }
     },
     "category": "poetry-kids",
@@ -593,6 +628,13 @@
       "asset": {
         "_type": "reference",
         "_ref": "image-1b5b6bc6c86dbefacd5d9c47c53c62a16feb2600-1673x1330-jpg"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "left": 0.51,
+        "right": 0.026,
+        "top": 0.04,
+        "bottom": 0.034
       }
     },
     "category": "christian-literature",
@@ -636,6 +678,13 @@
       "asset": {
         "_type": "reference",
         "_ref": "image-a779a1b335e44fa1faa2f0d5d8a14f81158ffa63-1313x913-jpg"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "left": 0.53,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
       }
     },
     "category": "self-help-parenting",
@@ -706,6 +755,13 @@
       "asset": {
         "_type": "reference",
         "_ref": "image-351b71db83b94c3f0509511db417b74f10e1d653-1750x1217-jpg"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "left": 0.51,
+        "right": 0,
+        "top": 0,
+        "bottom": 0
       }
     },
     "category": "self-help-parenting",
@@ -733,6 +789,13 @@
       "asset": {
         "_type": "reference",
         "_ref": "image-b907990727bd5d068fe94666b526bd8ebd720c02-2442x1853-jpg"
+      },
+      "crop": {
+        "_type": "sanity.imageCrop",
+        "left": 0.51,
+        "right": 0.025,
+        "top": 0.038,
+        "bottom": 0.034
       }
     },
     "category": "biography-memoir",

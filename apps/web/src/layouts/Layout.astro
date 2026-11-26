@@ -7,10 +7,13 @@ import Footer from "../components/footer.astro";
 import Header from "../components/header.astro";
 
 interface Props {
+  description?: string;
+  image?: string;
+  skipTo?: string;
   title?: string;
 }
 
-const { title = "neno-publishers" } = Astro.props;
+const { description, image, skipTo, title = "neno-publishers" } = Astro.props;
 
 const diagonal = {
 	old: { name: "diagonal-out", duration: "1.4s", easing: "ease", fillMode: "forwards" },
@@ -30,9 +33,14 @@ const diagonal = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    {description && <meta property="og:title" content={title} />}
+    {description && <meta property="og:description" content={description} />}
+    {image && <meta property="og:image" content={image} />}
     <ClientRouter fallback="animate" />
   </head>
   <body class="flex min-h-screen flex-col font-sans text-ink [&>main]:grow">
+    {skipTo && <a class="sr-only focus:not-sr-only focus:fixed focus:z-50 focus:rounded focus:bg-surface focus:p-3 focus:text-ink" href={`#${skipTo}`}>Skip to content</a>}
     <Header />
     <slot />
     <Footer />

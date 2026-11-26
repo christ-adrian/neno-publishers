@@ -26,7 +26,7 @@ The project was scaffolded with [Better-T-Stack](https://github.com/AmanVarshney
 | `/about-us` | Who We Are, Core Values, Why Choose Us, and Leadership | `/who-we-are-2/`, `/core-values/`, `/why-choose-us/` |
 | `/our-services` | Services hub with Printing, Advisory, and Publishing | `/services-3/` |
 | `/our-services/printing`, `/our-services/advisory`, `/our-services/publishing` | Category service lists with shared navigation | |
-| `/our-books` | Filterable catalog with individual book pages | `/our-book/` |
+| `/our-books` | Book catalog with individual book pages | `/our-book/` |
 | `/our-authors` | Author directory linked to published titles | `/our-authors/` |
 | `/contact-us` | Service-aware inquiry form and Nairobi office contact details | `/contact-us/` |
 | `/publish-with-us` | Manuscript submission information | |
@@ -66,7 +66,7 @@ Open [http://localhost:4321](http://localhost:4321) for the site. Set both Sanit
 
 ## Content Management
 
-Studio registers five document types. [The GROQ queries](apps/web/src/lib/queries.ts) are available for Astro to consume. The public pages still render their content from code.
+Studio registers five document types. The public book catalog at `/our-books` and details at `/our-books/[slug]` use the [published Sanity book queries](apps/web/src/lib/queries.ts). Each book has an order link that opens WhatsApp with the title filled in.
 
 - **Book** — Title, slug, cover, genre or category, synopsis, featured flag, and one or more author references.
 - **Author** — Name, credentials, portrait, and biography. The directory can derive each author's titles from book references.

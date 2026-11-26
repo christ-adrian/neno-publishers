@@ -1,0 +1,90 @@
+---
+import { bookCoverUrl, type BookCover as BookCoverImage } from "../../lib/books";
+
+interface Props {
+	cover: BookCoverImage | null;
+	title: string;
+	altText?: string;
+	presentation?: "catalog" | "detail";
+	sizes?: string;
+	loading?: "eager" | "lazy";
+	fetchPriority?: "high" | "low" | "auto";
+}
+
+const {
+	cover,
+	title,
+	altText = "",
+	presentation = "catalog",
+	sizes = "(min-width: 88rem) 16vw, (min-width: 64rem) 22vw, (min-width: 42rem) 30vw, 45vw",
+	loading = "lazy",
+	fetchPriority,
+} = Astro.props;
+
+const widths = [320, 480, 640, 800, 960, 1200];
+const sources = widths.flatMap((width) => {
+	const url = bookCoverUrl(cover, width);
+	return url ? [{ url, width }] : [];
+});
+const source = sources.find(({ width }) => width === 800) ?? sources[sources.length - 1];
+const srcSet = sources.map(({ url, width }) => `${url} ${width}w`).join(", ");
+---
+
+<figure class:list={["book-cover", `book-cover--${presentation}`]}>
+	{source ? (
+		<img
+			alt={altText}
+			decoding="async"
+			fetchpriority={fetchPriority}
+			height="1067"
+			loading={loading}
+			sizes={sizes}
+			src={source.url}
+			srcset={srcSet}
+			width="800"
+		/>
+	) : (
+		<span aria-label={`Cover unavailable for ${title}`} class="book-cover__paper" role="img"></span>
+	)}
+</figure>
+
+<style>
+	.book-cover {
+		position: relative;
+		aspect-ratio: 3 / 4;
+		padding: clamp(0.45rem, 1.5vw, 0.9rem);
+		margin: 0;
+		overflow: hidden;
+		background: var(--color-surface);
+		border: 1px solid color-mix(in srgb, var(--color-ink) 9%, transparent);
+		box-shadow: 0 0.25rem 0.75rem rgb(15 23 42 / 5%);
+	}
+
+	.book-cover--detail {
+		padding: clamp(0.7rem, 1.8vw, 1.1rem);
+		box-shadow: 0 1rem 2.5rem -1.5rem rgb(15 23 42 / 28%);
+	}
+
+	.book-cover img,
+	.book-cover__paper {
+		display: block;
+		inline-size: 100%;
+		block-size: 100%;
+	}
+
+	.book-cover img {
+		object-fit: contain;
+		object-position: center;
+		transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+	}
+
+	.book-cover__paper {
+		background: var(--color-surface-alt);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.book-cover img {
+			transition: none;
+		}
+	}
+</style>

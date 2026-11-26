@@ -1,9 +1,170 @@
 ---
+import BookCover from "../components/our-books/book-cover.astro";
 import Layout from "../layouts/Layout.astro";
+import { bookCoverUrl, getCatalog } from "../lib/books";
+
+let books: Awaited<ReturnType<typeof getCatalog>> = [];
+let unavailable = false;
+
+try {
+	books = await getCatalog();
+} catch {
+	unavailable = true;
+	Astro.response.status = 503;
+}
 ---
 
-<Layout title="Our Books | Neno Publishers">
-	<main>
-		<h1>Our Books</h1>
+<Layout
+	description="Browse the Neno Publishers book catalog. Select a title for a synopsis, book details, and WhatsApp ordering."
+	image={bookCoverUrl(books[0]?.coverImage ?? null, 800) ?? undefined}
+	skipTo="main-content"
+	title="Our Books | Neno Publishers"
+>
+	<main class="book-catalog" id="main-content">
+		<header class="book-catalog__header" data-enter>
+			<h1>Our books</h1>
+			{books.length > 0 && <p>{books.length} {books.length === 1 ? "title" : "titles"}</p>}
+		</header>
+
+		{unavailable ? (
+			<p class="book-catalog__message">The catalog is temporarily unavailable. Please try again shortly.</p>
+		) : books.length === 0 ? (
+			<p class="book-catalog__message">There are no books in the catalog yet.</p>
+		) : (
+			<ul aria-label="Book catalog" class="book-catalog__grid" role="list">
+				{books.map((book, index) => (
+					<li>
+						<a class="book-card" href={`/our-books/${encodeURIComponent(book.slug)}`}>
+							<BookCover
+								cover={book.coverImage}
+								fetchPriority={index === 0 ? "high" : undefined}
+								loading={index < 4 ? "eager" : "lazy"}
+								sizes="(min-width: 84rem) 276px, (min-width: 65rem) 22vw, (min-width: 48rem) 29vw, (min-width: 24rem) 44vw, 87vw"
+								title={book.title}
+							/>
+							<h2>{book.title}</h2>
+						</a>
+					</li>
+				))}
+			</ul>
+		)}
 	</main>
 </Layout>
+
+<style>
+	.book-catalog {
+		--shelf-gap: clamp(0.9rem, 2vw, 1.65rem);
+		width: min(100% - 2 * var(--spacing-site-gutter), 78rem);
+		margin-inline: auto;
+		padding-block: clamp(3rem, 6vw, 5.5rem) clamp(4rem, 8vw, 7rem);
+	}
+
+	.book-catalog__header {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 0.65rem 1.5rem;
+		padding-block-end: clamp(1rem, 2vw, 1.6rem);
+		margin-block-end: clamp(1.35rem, 3vw, 2.5rem);
+		border-block-end: 1px solid var(--color-border);
+	}
+
+	.book-catalog__header h1 {
+		margin: 0;
+		color: var(--color-ink);
+		font-size: clamp(3.3rem, 7.2vw, 6.75rem);
+		font-weight: 480;
+		font-optical-sizing: auto;
+		letter-spacing: -0.055em;
+		line-height: 0.88;
+	}
+
+	.book-catalog__header p {
+		margin: 0;
+		color: var(--color-ink-muted);
+		font-size: 0.925rem;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.book-catalog__grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: var(--shelf-gap);
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	.book-catalog__message {
+		max-width: 42ch;
+		color: var(--color-ink-muted);
+		line-height: 1.65;
+	}
+
+	.book-card {
+		display: flex;
+		height: 100%;
+		flex-direction: column;
+		gap: 0.95rem;
+		padding: clamp(0.55rem, 1vw, 0.9rem);
+		color: var(--color-ink);
+		text-decoration: none;
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		transition: transform 180ms var(--ease-nav-settle), border-color 180ms ease;
+	}
+
+	.book-card h2 {
+		margin: 0;
+		padding: 0 0.3rem 0.45rem;
+		font-size: clamp(1.125rem, 1.7vw, 1.6rem);
+		font-weight: 570;
+		letter-spacing: -0.02em;
+		line-height: 1.15;
+		overflow-wrap: anywhere;
+		text-wrap: pretty;
+	}
+
+	.book-card:focus-visible {
+		border-color: var(--color-brand-primary-dark);
+		outline: 2px solid var(--color-brand-primary-dark);
+		outline-offset: 3px;
+	}
+
+	@media (min-width: 24rem) {
+		.book-catalog__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	}
+
+	@media (min-width: 48rem) {
+		.book-catalog__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+	}
+
+	@media (min-width: 65rem) {
+		.book-catalog__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.book-card:hover {
+			border-color: var(--color-brand-primary-dark);
+			transform: translateY(-2px);
+		}
+
+		.book-card:hover h2 { color: var(--color-brand-primary-dark); }
+		.book-card:hover :global(.book-cover img) { transform: scale(1.025); }
+	}
+
+	.book-card:active { transform: scale(0.99); }
+
+	@media (prefers-reduced-motion: no-preference) {
+		.book-catalog__header { animation: catalog-enter 280ms var(--ease-nav-settle) both; }
+		@keyframes catalog-enter {
+			from { opacity: 0; transform: translateY(0.36rem); }
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.book-card { transition: border-color 160ms ease; }
+		.book-card:hover, .book-card:active, .book-card:hover :global(.book-cover img) { transform: none; }
+	}
+</style>

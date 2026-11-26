@@ -25,9 +25,12 @@
         "@astrojs/node": "^11.1.12",
         "@fontsource-variable/newsreader": "^5.3.0",
         "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
+        "@portabletext/astro": "^0.2.0",
+        "@portabletext/types": "^4.0.2",
         "@sanity/astro": "^4.1.1",
         "@sanity/client": "^8.17.0",
         "@sanity/icons": "^5.4.0",
+        "@sanity/image-url": "^2.2.0",
         "@varlock/astro-integration": "1.4.6",
         "astro": "^7.4.11",
         "groq": "^6.25.0",
@@ -682,6 +685,8 @@
     "@pnpm/network.ca-file": ["@pnpm/network.ca-file@1.0.2", "", { "dependencies": { "graceful-fs": "4.2.10" } }, "sha512-YcPQ8a0jwYU9bTdJDpXjMi7Brhkr1mXsXrUJvjqM2mQDgkRiz8jFaQGOdaLxgjtUfQgZhKy/O3cG/YwmgKaxLA=="],
 
     "@pnpm/npm-conf": ["@pnpm/npm-conf@3.0.3", "", { "dependencies": { "@pnpm/config.env-replace": "^1.1.0", "@pnpm/network.ca-file": "^1.0.1", "config-chain": "^1.1.11" } }, "sha512-//0sR/cow/s4ICQaYoAobOl4aU8cjU6x/V24V7XkKotb9+O+3zySIYp146vpaobYHnxa4pZX8NkV54Z5AwbDKA=="],
+
+    "@portabletext/astro": ["@portabletext/astro@0.2.0", "", { "dependencies": { "@portabletext/toolkit": "^6.0.0", "@portabletext/types": "^4.0.2" }, "peerDependencies": { "astro": ">=4.6.0" } }, "sha512-USw0iATW3k4HYD5aSCw16VRcXLt6zTxaF5Ah3e1tklbYLO45nkDj2IXV8EbB5Flkxti/f8xXDJpmrn8IXM1UZA=="],
 
     "@portabletext/editor": ["@portabletext/editor@8.2.15", "", { "dependencies": { "@portabletext/html": "^2.0.3", "@portabletext/keyboard-shortcuts": "^3.0.1", "@portabletext/patches": "^3.0.6", "@portabletext/repair": "^1.0.4", "@portabletext/schema": "^3.1.1", "@portabletext/to-html": "^6.0.0", "@sanity/diff-match-patch": "^3.2.1", "@xstate/react": "^6.1.0", "obug": "^3.0.0", "scroll-into-view-if-needed": "^3.1.0", "xstate": "^5.32.5" }, "peerDependencies": { "react": "^19.3.1" } }, "sha512-VerHYc5nA68yjKr8W1jmg0PQ8Dymqj4aF5PYvEzkbZQVakRJmtrX+dUUxN9/NSIwzeCq76cwN9DdsqUINFx94A=="],
 
