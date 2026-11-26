@@ -1,8 +1,8 @@
 # Neno Publishers
 
-This repository hosts the redesign of the Neno Publishers Ltd website (`nenopublishers.co.ke`). The redesign replaces the legacy WordPress site with a static-first Astro frontend and uses Sanity CMS for editorial content.
+This repository hosts the redesign of the Neno Publishers Ltd website (`nenopublishers.co.ke`). The redesign replaces the legacy WordPress site with a static-first Astro frontend. The Astro app embeds Sanity Studio at `/studio`.
 
-The Astro homepage uses the Bookplate hero and shared site header. The app runs in server mode with Astro’s standalone Node adapter. The About Us and Our Services pages use the shared site shell. Sanity integration and WordPress redirects are planned.
+The Astro homepage uses the Bookplate hero and shared site header. The app runs in server mode with Astro’s standalone Node adapter. The About Us and Our Services pages use the shared site shell. WordPress redirects are planned.
 
 The project was scaffolded with [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack) as a Turborepo monorepo managed with Bun.
 
@@ -11,7 +11,7 @@ The project was scaffolded with [Better-T-Stack](https://github.com/AmanVarshney
 | Tool | Role |
 | --- | --- |
 | Astro | Frontend framework for static and server-rendered pages |
-| Sanity CMS | Planned content management backend |
+| Sanity Studio | Content management interface at `/studio` |
 | TypeScript | Type checking |
 | Tailwind CSS | Utility-first styling |
 | Turborepo and Bun | Workspace task orchestration, runtime, and package management |
@@ -37,6 +37,7 @@ The project was scaffolded with [Better-T-Stack](https://github.com/AmanVarshney
 neno-publishers/
 ├── apps/
 │   └── web/              # Astro frontend
+│       ├── sanity.config.ts # Minimal embedded Studio configuration
 │       ├── src/
 │       │   ├── components/
 │       │   ├── layouts/
@@ -52,8 +53,6 @@ neno-publishers/
 └── turbo.json
 ```
 
-The Sanity integration will add the client and GROQ queries under `apps/web/src/lib/`. Sanity Studio can live in an optional `apps/studio/` workspace.
-
 ## Getting Started
 
 Install Bun and run these commands from the repository root.
@@ -63,11 +62,11 @@ bun install
 bun run dev
 ```
 
-Open [http://localhost:4321](http://localhost:4321). The current environment schema supplies the defaults needed for local development.
+Open [http://localhost:4321](http://localhost:4321) for the site. Set both Sanity variables below to mount the Studio, then restart the dev server and open [http://localhost:4321/studio](http://localhost:4321/studio).
 
 ## Content Management
 
-Sanity will let the Neno Publishers team update site content independently of the code. The planned document types are:
+Public site content remains in code. Studio starts with an empty schema. The planned document types are:
 
 - **Book** — Title, slug, cover, genre or category, synopsis, featured flag, and an author reference.
 - **Author** — Name, credentials, portrait, and biography. The directory can derive each author's titles from book references.
@@ -77,7 +76,7 @@ Sanity will let the Neno Publishers team update site content independently of th
 
 ## Environment Configuration
 
-The web app owns its environment schema in [`apps/web/.env.schema`](apps/web/.env.schema). Put local overrides in `apps/web/.env`. The Sanity project ID and dataset will be configured there once the integration adds them to the schema.
+The web app owns its environment schema in [`apps/web/.env.schema`](apps/web/.env.schema). Set `PUBLIC_SANITY_PROJECT_ID` and `PUBLIC_SANITY_DATASET=production` in the ignored `apps/web/.env.local` for the Neno Publishers project. These identifiers are public and must not contain API tokens. In Sanity’s API settings, allow credentials for each origin that serves Studio, including `http://localhost:4321` locally.
 
 Installation generates `apps/web/src/env.ts`. After changing the schema, run `bun run env:generate` from the repository root. Import the generated `ENV` accessor in application code. Commit schema changes and keep secrets in ignored env files or deployment settings.
 
