@@ -1,5 +1,6 @@
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
+import { schemaTypes } from "./schemaTypes";
 import { ENV } from "./src/env";
 
 const projectId = ENV.PUBLIC_SANITY_PROJECT_ID;
@@ -16,6 +17,6 @@ export default defineConfig({
 	name: "neno-publishers",
 	plugins: [structureTool()],
 	projectId,
-	schema: { types: [] },
+	schema: { types: schemaTypes },
 	title: "Neno Publishers",
 });

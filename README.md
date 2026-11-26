@@ -37,7 +37,7 @@ The project was scaffolded with [Better-T-Stack](https://github.com/AmanVarshney
 neno-publishers/
 ├── apps/
 │   └── web/              # Astro frontend
-│       ├── sanity.config.ts # Minimal embedded Studio configuration
+│       ├── sanity.config.ts # Embedded Studio configuration
 │       ├── src/
 │       │   ├── components/
 │       │   ├── layouts/
@@ -66,13 +66,19 @@ Open [http://localhost:4321](http://localhost:4321) for the site. Set both Sanit
 
 ## Content Management
 
-Public site content remains in code. Studio starts with an empty schema. The planned document types are:
+Studio registers five document types. [The GROQ queries](apps/web/src/lib/queries.ts) are available for Astro to consume. The public pages still render their content from code.
 
-- **Book** — Title, slug, cover, genre or category, synopsis, featured flag, and an author reference.
+- **Book** — Title, slug, cover, genre or category, synopsis, featured flag, and one or more author references.
 - **Author** — Name, credentials, portrait, and biography. The directory can derive each author's titles from book references.
 - **Service** — Category (Publishing, Advisory, or Printing), title, description, and deliverables.
 - **Team Member** — Leadership profile.
-- **Testimonial** — Client review.
+- **Testimonial** — Client review with an optional book reference.
+
+Validate the Studio schema from `apps/web` with the local Sanity settings loaded by Varlock.
+
+```bash
+bunx varlock run -- ./node_modules/.bin/sanity schemas validate
+```
 
 ## Environment Configuration
 
