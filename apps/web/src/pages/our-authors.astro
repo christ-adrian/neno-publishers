@@ -1,12 +1,14 @@
 ---
-import BookCover from "../components/our-books/book-cover.astro";
+import PersonCard from "../components/person-card.astro";
 import Layout from "../layouts/Layout.astro";
 import { AUTHORS_QUERY } from "../lib/queries";
-import { getSanityClient, type SanityImage } from "../lib/sanity";
+import {
+	getSanityClient,
+	type SanityImage,
+	sanityImageUrl,
+} from "../lib/sanity";
 
 interface Author {
-	_id: string;
-	books: { _id: string; slug: string; title: string }[];
 	credentials: string | null;
 	name: string;
 	photo: SanityImage | null;
@@ -30,7 +32,7 @@ const emptyMessage = unavailable
 ---
 
 <Layout
-	description="Meet the authors published by Neno Publishers and explore their books."
+	description="Meet the authors published by Neno Publishers."
 	skipTo="main-content"
 	title="Our Authors | Neno Publishers"
 >
@@ -42,7 +44,9 @@ const emptyMessage = unavailable
 
 		{authors.length > 0 ? (
 			<ul aria-label="Author directory" class="author-directory__grid">
-				{authors.map(({ books, credentials, name, photo }, index) => {
+				{authors.map(({ credentials, name, photo }, index) => {
+					const portrait = sanityImageUrl(photo, 400);
+					const largePortrait = sanityImageUrl(photo, 800);
 					const initials = name
 						.trim()
 						.split(wordSeparator)
@@ -50,35 +54,29 @@ const emptyMessage = unavailable
 						.map((part) => Array.from(part)[0])
 						.join("");
 					return (
-						<li class="author-card">
-							<BookCover
-								cover={photo}
-								initials={initials}
-								loading={index < 4 ? "eager" : "lazy"}
-								sizes="(min-width: 84rem) 276px, (min-width: 65rem) 22vw, (min-width: 48rem) 29vw, (min-width: 24rem) 44vw, 87vw"
-								title={name}
-							/>
-							<div class="author-card__content">
-								<h2>{name}</h2>
-								{credentials && (
-									<p class="author-card__credentials">{credentials}</p>
-								)}
-								{books.length > 0 && (
-									<ul
-										aria-label={`Books by ${name}`}
-										class="author-card__books"
-									>
-										{books.map(({ slug, title }) => (
-											<li>
-												<a href={`/our-books/${encodeURIComponent(slug)}`}>
-													{title}
-												</a>
-											</li>
-										))}
-									</ul>
-								)}
-							</div>
-						</li>
+						<PersonCard
+							initials={portrait ? undefined : initials}
+							name={name}
+							subtitle={credentials}
+						>
+							{portrait && (
+								<img
+									alt=""
+									decoding="async"
+									height="364"
+									loading={index < 3 ? "eager" : "lazy"}
+									sizes="(min-width: 82rem) 25.5rem, (min-width: 42rem) 32vw, 100vw"
+									slot="portrait"
+									src={portrait}
+									srcset={
+										largePortrait
+											? `${portrait} 400w, ${largePortrait} 800w`
+											: undefined
+									}
+									width="400"
+								/>
+							)}
+						</PersonCard>
 					);
 				})}
 			</ul>
@@ -126,15 +124,13 @@ const emptyMessage = unavailable
 		color: var(--color-ink-muted);
 	}
 
-	.author-directory__grid,
-	.author-card__books {
+	.author-directory__grid {
 		padding: 0;
 		margin: 0;
 		list-style: disc;
 	}
 
-	.author-directory__grid > li::marker,
-	.author-card__books > li::marker {
+	.author-directory__grid > li::marker {
 		content: "";
 	}
 
@@ -144,86 +140,9 @@ const emptyMessage = unavailable
 		gap: clamp(0.75rem, 2vw, 1.35rem);
 	}
 
-	.author-card {
-		display: flex;
-		flex-direction: column;
-		gap: 0.95rem;
-		min-width: 0;
-		height: 100%;
-		padding: clamp(0.55rem, 1vw, 0.9rem);
-		background: var(--color-surface);
-		border: 1px solid var(--color-border);
-	}
-
-	.author-card__content {
-		padding: 0 0.3rem 0.45rem;
-	}
-
-	.author-card__content h2 {
-		margin: 0;
-		font-family: var(--font-sans);
-		font-size: clamp(1.1rem, 1.8vw, 1.42rem);
-		font-weight: 720;
-		line-height: 1.18;
-		color: var(--color-ink);
-		letter-spacing: -0.045em;
-		overflow-wrap: anywhere;
-	}
-
-	.author-card__credentials {
-		margin: 0.4rem 0 0;
-		font-size: 0.875rem;
-		line-height: 1.55;
-		color: var(--color-ink-muted);
-	}
-
-	.author-card__books {
-		margin-block-start: 0.65rem;
-	}
-
-	.author-card__books a {
-		display: flex;
-		align-items: center;
-		min-block-size: 2.75rem;
-		padding-block: 0.4rem;
-		font-size: 0.875rem;
-		font-weight: 640;
-		line-height: 1.35;
-		color: var(--color-brand-primary-dark);
-		overflow-wrap: anywhere;
-		text-decoration: underline;
-		text-decoration-color: transparent;
-		text-underline-offset: 0.2em;
-		border-block-start: 1px solid var(--color-border);
-		transition: text-decoration-color 160ms ease;
-	}
-
-	.author-card__books a:focus-visible {
-		outline: 2px solid currentColor;
-		outline-offset: 3px;
-	}
-
-	@media (min-width: 24rem) {
-		.author-directory__grid {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-		}
-	}
-
-	@media (min-width: 48rem) {
+	@media (min-width: 42rem) {
 		.author-directory__grid {
 			grid-template-columns: repeat(3, minmax(0, 1fr));
-		}
-	}
-
-	@media (min-width: 65rem) {
-		.author-directory__grid {
-			grid-template-columns: repeat(4, minmax(0, 1fr));
-		}
-	}
-
-	@media (hover: hover) and (pointer: fine) {
-		.author-card__books a:hover {
-			text-decoration-color: currentColor;
 		}
 	}
 
@@ -237,12 +156,6 @@ const emptyMessage = unavailable
 				opacity: 0;
 				transform: translateY(0.35rem);
 			}
-		}
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		.author-card__books a {
-			transition: none;
 		}
 	}
 </style>

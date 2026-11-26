@@ -6,6 +6,7 @@ import sudanCover from "../../../../../content/assets/books/what-matters-most-in
 import maryPortrait from "../../../../../content/assets/people/mary-maganga.jpg";
 import samuelPortrait from "../../../../../content/assets/people/samuel-n-kanja-team.jpg";
 import wilsonPortrait from "../../../../../content/assets/people/wilson-macharia-team.jpg";
+import PersonCard from "../person-card.astro";
 import { intro, reasons, story, team, values } from "./content";
 
 const portraits = new Map([
@@ -95,24 +96,19 @@ const portraits = new Map([
 			{team.map(({ name, role }) => {
 				const portrait = portraits.get(name);
 				return (
-					<li class="about-team-card">
+					<PersonCard heading="h3" name={name} subtitle={role}>
 						{portrait && (
-							<div class="about-team-portrait">
-								<Image
-									alt=""
-									format="webp"
-									loading="lazy"
-									sizes="(min-width: 82rem) 25.5rem, (min-width: 42rem) 32vw, 100vw"
-									src={portrait}
-									widths={[240, 360, 480]}
-								/>
-							</div>
+							<Image
+								alt=""
+								format="webp"
+								loading="lazy"
+								sizes="(min-width: 82rem) 25.5rem, (min-width: 42rem) 32vw, 100vw"
+								slot="portrait"
+								src={portrait}
+								widths={[240, 360, 480]}
+							/>
 						)}
-						<div class="about-team-copy">
-							<h3>{name}</h3>
-							<p>{role}</p>
-						</div>
-					</li>
+					</PersonCard>
 				);
 			})}
 		</ul>
@@ -307,8 +303,7 @@ const portraits = new Map([
 	}
 
 	.about-values-list p,
-	.about-reasons-list p,
-	.about-team-copy p {
+	.about-reasons-list p {
 		margin-block-start: 0.5rem;
 	}
 
@@ -338,32 +333,8 @@ const portraits = new Map([
 		gap: clamp(0.875rem, 1.5vw, 1.25rem);
 	}
 
-	.about-team-card {
-		overflow: hidden;
-		border: 1px solid var(--color-border);
-		border-radius: var(--about-radius);
-	}
-
-	.about-team-portrait {
-		aspect-ratio: 1.1;
-		overflow: hidden;
-		background: var(--color-surface-alt);
-	}
-
-	.about-team-portrait img {
-		display: block;
-		inline-size: 100%;
-		block-size: 100%;
-		object-fit: cover;
-		object-position: center top;
-	}
-
-	.about-team-card:last-child .about-team-portrait img {
-		object-position: center 12%;
-	}
-
-	.about-team-copy {
-		padding: clamp(1rem, 2vw, 1.625rem);
+	.about-team-list > :global(.person-card:last-child) {
+		--portrait-position: center 12%;
 	}
 
 	@media (width >= 64rem) {

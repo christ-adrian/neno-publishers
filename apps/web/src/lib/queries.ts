@@ -50,18 +50,9 @@ export const BOOK_BY_SLUG_QUERY =
 
 export const AUTHORS_QUERY =
 	defineQuery(`*[_type == "author" && defined(name) && name != ""] | order(name asc, _id asc) {
-  _id,
   name,
-  "slug": slug.current,
   credentials,
-  photo,
-  shortBio,
-  "books": *[_type == "book" && defined(title) && defined(slug.current) && ^._id in authors[]._ref] | order(publishedYear desc, title asc, _id asc) {
-    _id,
-    title,
-    "slug": slug.current,
-    coverImage
-  }
+  photo
 }`);
 
 export const AUTHOR_BY_SLUG_QUERY =

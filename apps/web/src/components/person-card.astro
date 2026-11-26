@@ -1,0 +1,80 @@
+---
+interface Props {
+	heading?: "h2" | "h3";
+	initials?: string;
+	name: string;
+	subtitle?: string | null;
+}
+
+const { heading: Heading = "h2", initials, name, subtitle } = Astro.props;
+---
+
+<li class="person-card">
+	{(Astro.slots.has("portrait") || initials) && (
+		<div class="person-card__portrait">
+			{initials ? (
+				<span aria-hidden="true" class="person-card__initials">
+					{initials}
+				</span>
+			) : (
+				<slot name="portrait" />
+			)}
+		</div>
+	)}
+	<div class="person-card__copy">
+		<Heading>{name}</Heading>
+		{subtitle && <p>{subtitle}</p>}
+	</div>
+</li>
+
+<style>
+	.person-card {
+		overflow: hidden;
+		border: 1px solid var(--color-border);
+		border-radius: 0.875rem;
+	}
+
+	.person-card__portrait {
+		aspect-ratio: 1.1;
+		overflow: hidden;
+		background: var(--color-surface-alt);
+	}
+
+	.person-card__portrait :global(img) {
+		display: block;
+		inline-size: 100%;
+		block-size: 100%;
+		object-fit: cover;
+		object-position: var(--portrait-position, center top);
+	}
+
+	.person-card__initials {
+		display: grid;
+		place-items: center;
+		block-size: 100%;
+		font-family: var(--font-serif);
+		font-size: clamp(2rem, 7vw, 4rem);
+		color: var(--color-brand-primary-dark);
+		background: var(--color-brand-primary-soft);
+	}
+
+	.person-card__copy {
+		padding: clamp(1rem, 2vw, 1.625rem);
+	}
+
+	.person-card__copy :is(h2, h3) {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: clamp(1.125rem, 1.65vw, 1.5rem);
+		font-weight: 800;
+		line-height: 1.24;
+		letter-spacing: -0.035em;
+		text-wrap: balance;
+	}
+
+	.person-card__copy p {
+		margin: 0.5rem 0 0;
+		line-height: 1.65;
+		color: var(--color-ink-muted);
+	}
+</style>
