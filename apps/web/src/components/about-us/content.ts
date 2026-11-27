@@ -7,9 +7,18 @@ export const intro: {
 };
 
 export const story: readonly string[] = [
-	"Whether you write fiction or non-fiction, our team supports your work in print and online.",
-	"Build on your strengths with guidance on writing, publishing, and marketing, as we work toward timely solutions.",
-	"We work alongside you throughout publishing, adopt new technologies, and protect authors’ intellectual property while supporting freedom of expression.",
+	"Neno Publishers Ltd is a fast growing and dynamic Kenyan publishing company with a vast range of book titles written by some of the best authors; locally and internationally. We provide quality and affordable publishing services for both print and online publications.",
+	"We aim to unleash the uniqueness and genius in all our authors as well as helping them to leverage on their strengths and identify the key opportunities in writing, publication and marketing. We are driven by the desire to offer better and timely solutions.",
+	"Neno Publishers Ltd is the home to most of the today’s creative, fiction and non- fiction writers. Our mission is to uphold excellence in all our publishing and printing solutions.",
+	"Our dedicated team of publishing professionals is committed to helping authors realize their very best potential and adopting innovative ways of bringing their ideas into the path of successful and fulfilling experiences. By leveraging our global reach, embracing new technologies, and collaborating with authors at every stage of the publishing process, we ensure a strong bond and esteemed relationship with our clients.",
+	"At the same time, we passionately safeguard our authors’ intellectual property as we advocate for freedom of expression, ensuring that their voices are heard within communities and societies around the world using us as one of the platforms.",
+	"We trust in what we do, how we do it and the why we do it.",
+];
+
+export const storyClosing: readonly string[] = [
+	"We value your work.",
+	"We add value to it.",
+	"We deliver the ultimate value.",
 ];
 
 export const values: readonly { title: string; description: string }[] = [

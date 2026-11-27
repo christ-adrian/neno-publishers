@@ -7,7 +7,7 @@ import maryPortrait from "../../../../../content/assets/people/mary-maganga.jpg"
 import samuelPortrait from "../../../../../content/assets/people/samuel-n-kanja-team.jpg";
 import wilsonPortrait from "../../../../../content/assets/people/wilson-macharia-team.jpg";
 import PersonCard from "../person-card.astro";
-import { intro, reasons, story, team, values } from "./content";
+import { intro, reasons, story, storyClosing, team, values } from "./content";
 
 const portraits = new Map([
 	["Mary Maganga", maryPortrait],
@@ -58,6 +58,9 @@ const portraits = new Map([
 		<h2 id="story-title">The story behind every book</h2>
 		<div class="about-story-copy">
 			{story.map((paragraph) => <p>{paragraph}</p>)}
+			<ul class="about-story-closing">
+				{storyClosing.map((statement) => <li>{statement}</li>)}
+			</ul>
 			<a class="about-action" href="/our-services"
 				>Explore our services <span aria-hidden="true">↗</span></a
 			>
@@ -243,6 +246,11 @@ const portraits = new Map([
 		gap: 1rem;
 		max-inline-size: 56ch;
 		font-size: clamp(1rem, 1.4vw, 1.1875rem);
+	}
+
+	.about-story-closing {
+		padding-inline-start: 1.4em;
+		list-style: disc;
 	}
 
 	.about-action {
