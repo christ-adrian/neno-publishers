@@ -1,7 +1,7 @@
 export const navigationLinks = [
 	{ href: "/about-us", label: "About Us" },
 	{ href: "/our-services", label: "Our Services" },
-	{ href: "/our-books", label: "Our Books" },
+	{ href: "/our-books", label: "Published Books" },
 	{ href: "/our-authors", label: "Our Authors" },
 	{ href: "/contact-us", label: "Contact Us" },
 ] as const;

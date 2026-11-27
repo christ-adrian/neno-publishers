@@ -18,10 +18,10 @@ try {
 	description="Browse the Neno Publishers book catalog. Select a title for its synopsis and book details."
 	image={bookCoverUrl(books[0]?.coverImage ?? null, 800) ?? undefined}
 	skipTo="main-content"
-	title="Our Books | Neno Publishers"
+	title="Published Books | Neno Publishers"
 >
 	<main class="book-catalog" id="main-content">
-		<h1 class="sr-only">Our books</h1>
+		<h1 class="sr-only">Published Books</h1>
 
 		{unavailable ? (
 			<p class="book-catalog__message">The catalog is temporarily unavailable. Please try again shortly.</p>

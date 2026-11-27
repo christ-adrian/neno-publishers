@@ -1,0 +1,427 @@
+---
+import { Image } from "astro:assets";
+import drippings from "../../../../../content/assets/books/drippings-of-the-pen.jpg";
+import fashioned from "../../../../../content/assets/books/fashioned-for-life.jpg";
+import advisoryPhoto from "../../assets/home/advisory.webp";
+import evangel from "../../assets/home/evangel.webp";
+import printingPhoto from "../../assets/home/printing.webp";
+import rotary from "../../assets/home/rotary.webp";
+import rusinga from "../../assets/home/rusinga-schools.webp";
+import samuel from "../../assets/home/samuel-n-kanja.webp";
+import siaya from "../../assets/home/siaya-county-government.webp";
+import excellence from "../../assets/home/the-ultimate-excellence.webp";
+import { getCatalog } from "../../lib/books";
+import BookCard from "../our-books/book-card.astro";
+
+const featuredSlugs = [
+	"the-african-roots-on-trial",
+	"telling-god-in-tears",
+	"the-student-propeller",
+	"serving-god-with-joy",
+	"authentic-leadership",
+	"adaptive-leadership",
+	"ole-sankale",
+	"poems-for-kids",
+	"hillrose-poetry-collection",
+	"effective-parenting",
+	"what-matters-most-in-south-sudan",
+];
+
+const catalog = await getCatalog().catch(() => []);
+const booksBySlug = new Map(catalog.map((book) => [book.slug, book]));
+const featuredBooks = featuredSlugs.flatMap((slug) => {
+	const book = booksBySlug.get(slug);
+	return book ? [book] : [];
+});
+
+const testimonial = {
+	name: "Samuel N Kanja",
+	quote:
+		"Neno Publishers will take you as an author to another level. The company has greater experience in manuscript evaluation and development that makes the work of any author unique and make it stand out.",
+};
+
+const testimonials = [testimonial, testimonial, testimonial];
+
+// Original logos from Neno Publishers’ client showcase.
+const clients = [
+	{ name: "Evangel", logo: evangel },
+	{ name: "Siaya County Government", logo: siaya },
+	{ name: "The Ultimate Excellence", logo: excellence },
+	{ name: "Rusinga Schools", logo: rusinga },
+	{ name: "Rotary", logo: rotary },
+];
+---
+
+<section class="home-section" aria-labelledby="home-services-title">
+	<h2 class="section-title" id="home-services-title">What We Offer</h2>
+	<div class="service-mosaic">
+		<article class="service-split service-split--publishing">
+			<div class="service-media service-media--covers">
+				<Image
+					alt="Cover of Fashioned for Life"
+					src={fashioned}
+					format="webp"
+					widths={[180, 300, 420]}
+					sizes="(min-width: 48rem) 18vw, 32vw"
+					loading="lazy"
+				/>
+				<Image
+					alt="Cover of Drippings of the Pen"
+					src={drippings}
+					format="webp"
+					widths={[180, 300, 420]}
+					sizes="(min-width: 48rem) 18vw, 32vw"
+					loading="lazy"
+				/>
+			</div>
+			<div class="service-copy">
+				<h3>Publishing</h3>
+				<p>Prepare your manuscript for readers with editing, proofreading, typesetting and cover design.</p>
+				<a class="service-link" href="/our-services#publishing">Explore publishing <span aria-hidden="true">→</span></a>
+			</div>
+		</article>
+
+		<article class="service-split service-split--printing">
+			<div class="service-media">
+				<!-- Illustrative photograph by Criiv India, Pexels photo 9550363. -->
+				<Image
+					alt=""
+					src={printingPhoto}
+					format="webp"
+					widths={[400, 720, 1080, 1400]}
+					sizes="(min-width: 80rem) 39rem, (min-width: 48rem) 48vw, 94vw"
+					loading="lazy"
+				/>
+			</div>
+			<div class="service-copy">
+				<h3>Printing</h3>
+				<p>Print books, magazines and everyday materials, including calendars, letterheads and flyers.</p>
+				<a class="service-link" href="/our-services#printing">Explore printing <span aria-hidden="true">→</span></a>
+			</div>
+		</article>
+
+		<article class="service-split service-split--advisory">
+			<div class="service-media">
+				<!-- Illustrative photograph from Pexels, photo 8000547. -->
+				<Image
+					alt=""
+					src={advisoryPhoto}
+					format="webp"
+					widths={[400, 720, 1080, 1400]}
+					sizes="(min-width: 80rem) 39rem, (min-width: 48rem) 48vw, 94vw"
+					loading="lazy"
+				/>
+			</div>
+			<div class="service-copy">
+				<h3>Advisory</h3>
+				<p>Get advice on developing your manuscript, choosing a title, pricing your book and reaching readers.</p>
+				<a class="service-link" href="/our-services#advisory">Explore advisory <span aria-hidden="true">→</span></a>
+			</div>
+		</article>
+	</div>
+</section>
+
+<section class="home-section" aria-labelledby="home-books-title">
+	<h2 class="section-title" id="home-books-title">Our Published Books</h2>
+	{featuredBooks.length > 0 && (
+		<ul class="featured-books" role="list">
+			{featuredBooks.map((book) => (
+				<li><BookCard book={book} heading="h3" /></li>
+			))}
+		</ul>
+	)}
+	<a class="catalog-button" href="/our-books">Browse Published Books <span aria-hidden="true">→</span></a>
+</section>
+
+<section class="home-section" aria-labelledby="home-testimonials-title">
+	<div class="testimonial-layout">
+		<h2 class="section-title" id="home-testimonials-title">What Our Clients Say</h2>
+		<div class="testimonial-list">
+			{testimonials.map(({ name, quote }) => (
+				<figure class="testimonial">
+					<Image alt="" src={samuel} width={80} height={80} format="webp" loading="lazy" />
+					<blockquote>{quote}</blockquote>
+					<figcaption>{name}</figcaption>
+				</figure>
+			))}
+		</div>
+	</div>
+</section>
+
+<section class="home-section home-section--clients" aria-labelledby="home-clients-title">
+	<div class="client-layout">
+		<h2 class="section-title" id="home-clients-title">Some of Our Clients</h2>
+		<ul class="client-grid" role="list">
+			{clients.map(({ name, logo }) => (
+				<li>
+					<Image
+						alt={name}
+						src={logo}
+						widths={[256, 512]}
+						sizes="(min-width: 64rem) 170px, (min-width: 40rem) 25vw, 38vw"
+						format="webp"
+						loading="lazy"
+					/>
+				</li>
+			))}
+		</ul>
+	</div>
+</section>
+
+<style>
+	.home-section {
+		width: min(calc(100% - 2 * var(--spacing-site-gutter)), 78rem);
+		margin: clamp(3.6rem, 8vw, 7rem) auto 0;
+	}
+
+	.section-title {
+		margin: 0 0 clamp(1.25rem, 3vw, 2.3rem);
+		font-size: clamp(2.25rem, 4.7vw, 3.75rem);
+		font-weight: 500;
+		line-height: 1;
+		letter-spacing: -0.04em;
+		text-wrap: balance;
+	}
+
+	.service-mosaic {
+		overflow: hidden;
+		border-radius: var(--radius-floating-nav);
+	}
+
+	.service-split {
+		display: grid;
+	}
+
+	.service-media {
+		width: 100%;
+		position: relative;
+		aspect-ratio: 1.55;
+		overflow: hidden;
+		background: var(--color-surface-alt);
+	}
+
+	.service-media > img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.service-media--covers {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: clamp(0.7rem, 2vw, 1.4rem);
+		background: var(--color-brand-primary-soft);
+	}
+
+	.service-media--covers > img {
+		width: 34%;
+		height: 79%;
+		object-fit: contain;
+		filter: drop-shadow(0 0.55rem 0.65rem rgb(15 23 42 / 22%));
+	}
+
+	.service-copy {
+		display: flex;
+		align-items: flex-start;
+		flex-direction: column;
+		justify-content: center;
+		padding: clamp(1.6rem, 5.2vw, 4.65rem);
+	}
+
+	.service-split--publishing .service-copy {
+		color: var(--color-on-image);
+		background: color-mix(in srgb, var(--color-brand-primary-dark) 68%, var(--color-image-scrim));
+	}
+
+	.service-split--printing .service-copy {
+		background: color-mix(in srgb, var(--color-brand-secondary) 15%, var(--color-surface));
+	}
+
+	.service-split--advisory .service-copy {
+		color: var(--color-on-image);
+		background: var(--color-image-scrim);
+	}
+
+	.service-copy h3 {
+		margin: 0;
+		font-size: clamp(2.15rem, 3.9vw, 3.6rem);
+		font-weight: 520;
+		line-height: 1.04;
+		letter-spacing: -0.035em;
+	}
+
+	.service-copy p {
+		max-width: 33ch;
+		margin: 0.85rem 0 0;
+		font-size: clamp(0.98rem, 1.5vw, 1.125rem);
+		line-height: 1.65;
+	}
+
+	.service-link,
+	.catalog-button {
+		display: inline-flex;
+		min-height: 2.75rem;
+		align-items: center;
+		gap: 0.7rem;
+		font-weight: 750;
+	}
+
+	.service-link {
+		margin-top: 0.8rem;
+		text-decoration: underline;
+		text-decoration-color: transparent;
+		text-underline-offset: 0.22em;
+	}
+
+	.service-link:hover {
+		text-decoration-color: currentColor;
+	}
+
+	.service-link:focus-visible,
+	.catalog-button:focus-visible {
+		outline: 2px solid currentColor;
+		outline-offset: 4px;
+	}
+
+	.featured-books {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: clamp(0.85rem, 2vw, 1.65rem);
+	}
+
+	.catalog-button {
+		margin-top: 1.75rem;
+		padding: 0.7rem 1.1rem;
+		border-radius: 0.65rem;
+		background: var(--color-brand-primary-dark);
+		color: var(--color-on-image);
+	}
+
+	.catalog-button:hover {
+		background: var(--color-image-scrim);
+	}
+
+	.catalog-button:focus-visible {
+		outline-color: var(--color-brand-primary-dark);
+	}
+
+	.testimonial-layout,
+	.client-layout {
+		display: grid;
+		align-items: center;
+		gap: clamp(1.25rem, 5vw, 4rem);
+		padding: clamp(1.25rem, 5.5vw, 4.75rem);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-floating-nav);
+		background: var(--color-surface);
+	}
+
+	.testimonial-layout .section-title,
+	.client-layout .section-title {
+		margin: 0;
+	}
+
+	.testimonial-list {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.testimonial {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr);
+		gap: 0.4rem 0.9rem;
+		align-items: start;
+		padding: clamp(0.9rem, 2vw, 1.4rem);
+		border: 1px solid var(--color-border);
+		border-inline-start: 0.24rem solid var(--color-border);
+		border-radius: 0.7rem;
+		background: var(--color-surface);
+	}
+
+	.testimonial:nth-child(2) {
+		border-inline-start-color: var(--color-brand-primary-dark);
+		background: var(--color-brand-primary-soft);
+	}
+
+	.testimonial img {
+		grid-row: 1 / span 2;
+		width: clamp(2.5rem, 5vw, 4rem);
+		height: auto;
+		border-radius: 50%;
+		aspect-ratio: 1;
+		object-fit: cover;
+	}
+
+	.testimonial figcaption {
+		grid-area: 1 / 2;
+		font-weight: 800;
+	}
+
+	.testimonial blockquote {
+		grid-area: 2 / 2;
+		margin: 0;
+		color: var(--color-ink-muted);
+		font-size: 0.94rem;
+		line-height: 1.6;
+	}
+
+	.home-section--clients {
+		margin-bottom: clamp(1.75rem, 3vw, 3.5rem);
+	}
+
+	.client-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1px;
+		background: var(--color-border);
+	}
+
+	.client-grid li {
+		display: grid;
+		min-width: 0;
+		min-height: clamp(5.1rem, 11vw, 8.2rem);
+		place-items: center;
+		padding: 0.65rem;
+		background: var(--color-surface);
+	}
+
+	.client-grid img {
+		display: block;
+		width: min(100%, 11.25rem);
+		height: auto;
+	}
+
+	.client-grid li:last-child {
+		grid-column: 1 / -1;
+	}
+
+	@media (min-width: 24rem) {
+		.featured-books { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	}
+
+	@media (min-width: 48rem) {
+		.featured-books { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+		.service-split { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+		.service-media { aspect-ratio: 1.4; min-height: 100%; }
+		.service-media > img { position: absolute; inset: 0; }
+		.service-media--covers > img { position: static; }
+		.service-split--printing .service-copy { grid-column: 1; grid-row: 1; }
+		.service-split--printing .service-media { grid-column: 2; grid-row: 1; }
+		.testimonial-layout, .client-layout { grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.6fr); }
+		.testimonial-list { padding-inline-start: clamp(0.75rem, 4vw, 3rem); }
+		.testimonial:nth-child(2) { margin-inline: clamp(-3rem, -4vw, -0.75rem) clamp(0.75rem, 4vw, 3rem); }
+		.client-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+		.client-grid li { grid-column: span 2; }
+		.client-grid li:nth-last-child(-n + 2) { grid-column: span 3; }
+	}
+
+	@media (min-width: 65rem) {
+		.featured-books { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.catalog-button { transition: transform 150ms var(--ease-nav-settle); }
+		.catalog-button:active { transform: scale(0.98); }
+	}
+</style>
