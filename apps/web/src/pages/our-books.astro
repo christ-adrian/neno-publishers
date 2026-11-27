@@ -1,7 +1,7 @@
 ---
 import BookCard from "../components/our-books/book-card.astro";
 import Layout from "../layouts/Layout.astro";
-import { bookCoverUrl, getCatalog } from "../lib/books";
+import { getCatalog } from "../lib/books";
 
 let books: Awaited<ReturnType<typeof getCatalog>> = [];
 let unavailable = false;
@@ -15,8 +15,7 @@ try {
 ---
 
 <Layout
-	description="Browse the Neno Publishers book catalog. Select a title for its synopsis and book details."
-	image={bookCoverUrl(books[0]?.coverImage ?? null, 800) ?? undefined}
+	description="Browse fiction, poetry, memoirs and more from Neno Publishers. Explore the catalog for book covers, author names, synopses and publication details."
 	skipTo="main-content"
 	title="Published Books | Neno Publishers"
 >

@@ -34,6 +34,7 @@ const sanityIntegrations =
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://nenopublishers.co.ke",
   image: {
     remotePatterns: [
       {

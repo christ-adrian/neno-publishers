@@ -5,7 +5,7 @@ import BookCover from "../../components/our-books/book-cover.astro";
 import BookDescriptionHeading from "../../components/our-books/book-description-heading.astro";
 import Layout from "../../layouts/Layout.astro";
 import { bookCategories } from "../../lib/book-categories";
-import { bookCoverUrl, getBook } from "../../lib/books";
+import { getBook } from "../../lib/books";
 
 let book: Awaited<ReturnType<typeof getBook>> = null;
 let unavailable = false;
@@ -41,7 +41,7 @@ const facts = book
 		].filter(({ value }) => value !== null && value !== "")
 	: [];
 const cover = book?.coverImage ?? null;
-const previewImage = bookCoverUrl(cover, 1200) ?? undefined;
+const seoDescription = book?.summary?.trim() || (book && `Read about ${title} in the Neno Publishers catalog.`) || undefined;
 const hasDescription = Boolean(book?.description?.length);
 const headingComponents = {
 	block: {
@@ -55,7 +55,7 @@ const headingComponents = {
 };
 ---
 
-<Layout description={book?.summary ?? undefined} image={previewImage} skipTo="main-content" title={`${title} | Neno Publishers`}>
+<Layout description={seoDescription} skipTo="main-content" title={`${title} | Neno Publishers`} type="book">
 	<main class="book-detail" id="main-content">
 		<a class="catalog-link" href="/our-books"><span aria-hidden="true">←</span> All books</a>
 
