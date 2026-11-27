@@ -129,7 +129,7 @@ const clients = [
 	</div>
 </section>
 
-<section class="home-section" aria-labelledby="home-books-title">
+<section class="home-section home-section--books" aria-labelledby="home-books-title">
 	<h2 class="section-title" id="home-books-title">Our Published Books</h2>
 	{featuredBooks.length > 0 && (
 		<ul class="featured-books" role="list">
@@ -301,6 +301,22 @@ const clients = [
 		outline-offset: 4px;
 	}
 
+	.home-section--books {
+		width: 100%;
+		padding-block: clamp(2.5rem, 6vw, 5rem);
+		padding-inline: max(var(--spacing-site-gutter), (100% - 78rem) / 2);
+		background: var(--color-brand-primary-dark);
+		color: var(--color-on-image);
+	}
+
+	.featured-books :global(.book-card) {
+		background: var(--color-surface);
+	}
+
+	.featured-books :global(.book-card:focus-visible) {
+		outline-color: var(--color-on-image);
+	}
+
 	.featured-books {
 		display: grid;
 		grid-template-columns: minmax(0, 1fr);
@@ -311,16 +327,16 @@ const clients = [
 		margin-top: 1.75rem;
 		padding: 0.7rem 1.1rem;
 		border-radius: 0.65rem;
-		background: var(--color-brand-primary-dark);
-		color: var(--color-on-image);
+		background: var(--color-surface);
+		color: var(--color-ink);
 	}
 
 	.catalog-button:hover {
-		background: var(--color-image-scrim);
+		background: var(--color-brand-primary-soft);
 	}
 
 	.catalog-button:focus-visible {
-		outline-color: var(--color-brand-primary-dark);
+		outline-color: var(--color-on-image);
 	}
 
 	.testimonial-layout,
