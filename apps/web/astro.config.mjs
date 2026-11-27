@@ -58,7 +58,7 @@ export default defineConfig({
     ],
   },
   integrations: [
-    varlockAstroIntegration({ ssrInjectMode: "auto-load" }),
+    varlockAstroIntegration(),
     ...sanityIntegrations,
   ],
   output: "server",
