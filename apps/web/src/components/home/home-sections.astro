@@ -4,7 +4,8 @@ import drippings from "../../../../../content/assets/books/drippings-of-the-pen.
 import fashioned from "../../../../../content/assets/books/fashioned-for-life.jpg";
 import advisoryPhoto from "../../assets/home/advisory.webp";
 import evangel from "../../assets/home/evangel.webp";
-import printingPhoto from "../../assets/home/printing.webp";
+import timeManagement from "../../assets/home/printing-time-management.webp";
+import womanCover from "../../assets/home/printing-woman.webp";
 import rotary from "../../assets/home/rotary.webp";
 import rusinga from "../../assets/home/rusinga-schools.webp";
 import samuel from "../../assets/home/samuel-n-kanja.webp";
@@ -82,14 +83,21 @@ const clients = [
 		</article>
 
 		<article class="service-split service-split--printing">
-			<div class="service-media">
-				<!-- Illustrative photograph by Criiv India, Pexels photo 9550363. -->
+			<div class="service-media service-media--covers">
 				<Image
-					alt=""
-					src={printingPhoto}
+					alt="Cover of Woman: A Vessel of Honour"
+					src={womanCover}
 					format="webp"
-					widths={[400, 720, 1080, 1400]}
-					sizes="(min-width: 80rem) 39rem, (min-width: 48rem) 48vw, 94vw"
+					widths={[240, 400, 572]}
+					sizes="(min-width: 80rem) 265px, (min-width: 48rem) 21vw, 40vw"
+					loading="lazy"
+				/>
+				<Image
+					alt="Cover of Time Management for Winning Grades"
+					src={timeManagement}
+					format="webp"
+					widths={[240, 400, 572]}
+					sizes="(min-width: 80rem) 265px, (min-width: 48rem) 21vw, 40vw"
 					loading="lazy"
 				/>
 			</div>
@@ -232,6 +240,15 @@ const clients = [
 	.service-split--publishing .service-copy {
 		color: var(--color-on-image);
 		background: color-mix(in srgb, var(--color-brand-primary-dark) 68%, var(--color-image-scrim));
+	}
+
+	.service-split--printing .service-media {
+		background: var(--color-surface-alt);
+	}
+
+	.service-split--printing .service-media > img {
+		width: 43%;
+		height: 85%;
 	}
 
 	.service-split--printing .service-copy {
