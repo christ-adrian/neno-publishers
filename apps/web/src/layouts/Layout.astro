@@ -1,5 +1,4 @@
 ---
-import { ClientRouter } from "astro:transitions";
 import "@fontsource-variable/newsreader";
 import "@fontsource-variable/plus-jakarta-sans";
 import "../styles/global.css";
@@ -21,18 +20,10 @@ const socialImage = new URL(`${import.meta.env.BASE_URL}images/neno-social.jpg`,
 const status = Astro.response.status ?? 200;
 const isError = status >= 400;
 
-const diagonal = {
-	old: { name: "diagonal-out", duration: "1.4s", easing: "ease", fillMode: "forwards" },
-	new: { name: "diagonal-in", duration: "1.4s", easing: "ease", fillMode: "forwards" },
-};
 ---
 
 <!doctype html>
-<html
-  lang="en"
-  transition:name="root"
-  transition:animate={{ forwards: diagonal, backwards: diagonal }}
->
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -59,7 +50,6 @@ const diagonal = {
         <meta name="twitter:card" content="summary_large_image" />
       </>
     )}
-    <ClientRouter fallback="animate" />
   </head>
   <body class="flex min-h-screen flex-col font-sans text-ink [&>main]:grow">
     {skipTo && <a class="sr-only focus:not-sr-only focus:fixed focus:z-50 focus:rounded focus:bg-surface focus:p-3 focus:text-ink" href={`#${skipTo}`}>Skip to content</a>}

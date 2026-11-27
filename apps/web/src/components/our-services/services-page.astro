@@ -3,7 +3,6 @@ import { Image } from "astro:assets";
 import shelves from "../../assets/hero-background.jpg";
 import { type Service, services } from "./content";
 import ServiceDetails from "./service-details.astro";
-import ServiceTransitions from "./service-transitions.astro";
 import "./services-hero.css";
 
 interface Props {
@@ -14,7 +13,6 @@ const { service } = Astro.props;
 const isHub = Astro.url.pathname.replace(/\/$/, "") === "/our-services";
 ---
 
-<ServiceTransitions />
 <main class="services-page">
 	<div class="service-frame" data-service={service.slug}>
 		<nav aria-label="Breadcrumb" class="service-breadcrumb">

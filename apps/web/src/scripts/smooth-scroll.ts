@@ -17,15 +17,10 @@ function syncLenis() {
 	}
 }
 
-document.addEventListener("astro:before-swap", () => {
-	motion.removeEventListener("change", syncLenis);
-	destroyLenis();
-});
-
-document.addEventListener("astro:page-load", () => {
-	syncLenis();
-	motion.addEventListener("change", syncLenis);
-});
+syncLenis();
+motion.addEventListener("change", syncLenis);
+window.addEventListener("pagehide", destroyLenis);
+window.addEventListener("pageshow", syncLenis);
 
 function cancelWheelInertia() {
 	if (lenis?.isScrolling === "smooth") {
@@ -34,7 +29,7 @@ function cancelWheelInertia() {
 	}
 }
 
-// Fragment navigation can bypass Astro's page swap.
+// Let native fragment navigation take over from an in-progress scroll.
 document.addEventListener(
 	"click",
 	(event) => {
