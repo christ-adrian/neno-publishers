@@ -205,20 +205,20 @@ const guidelines = [
 
 <style>
 	.publish-page {
-		width: min(78rem, calc(100% - 2 * var(--spacing-site-gutter)));
-		padding-block: clamp(1rem, 3vw, 2.75rem) clamp(4rem, 8vw, 7rem);
-		margin-inline: auto;
+		--publish-gutter: max(var(--spacing-site-gutter), (100% - 78rem) / 2);
+		padding-block-end: clamp(4rem, 8vw, 7rem);
 	}
 
 	.publish-hero {
 		display: grid;
 		gap: 2.75rem;
 		align-items: center;
-		padding: clamp(1.5rem, 5.3vw, 4.75rem);
+		--publish-hero-padding: clamp(1.5rem, 5.3vw, 4.75rem);
+		padding-block: var(--publish-hero-padding);
+		padding-inline: calc(var(--publish-gutter) + var(--publish-hero-padding));
 		overflow: hidden;
 		color: white;
 		background: var(--color-brand-primary-dark);
-		border-radius: var(--radius-hero);
 	}
 
 	h1,
@@ -320,6 +320,7 @@ const guidelines = [
 
 	.publish-section {
 		margin-block-start: clamp(3.5rem, 8vw, 7rem);
+		margin-inline: var(--publish-gutter);
 	}
 
 	.journey-list {
