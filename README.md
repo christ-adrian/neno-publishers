@@ -28,7 +28,7 @@ The project was scaffolded with [Better-T-Stack](https://github.com/AmanVarshney
 | `/our-services/printing`, `/our-services/advisory`, `/our-services/publishing` | Permanent redirects to the matching directory sections | |
 | `/our-books` | Book catalog with individual book pages | `/our-book/` |
 | `/our-authors` | Author directory with portraits and credentials | `/our-authors/` |
-| `/contact-us` | Service-aware inquiry form and Nairobi office contact details | `/contact-us/` |
+| `/contact-us` | Service enquiry form with preview-only console logging, and Nairobi office contact details | `/contact-us/` |
 | `/publish-with-us` | Manuscript submission information | |
 
 ## Project Structure
