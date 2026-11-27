@@ -142,18 +142,35 @@ const clients = [
 </section>
 
 <section class="home-section" aria-labelledby="home-testimonials-title">
-	<div class="testimonial-layout">
-		<h2 class="section-title" id="home-testimonials-title">What Our Clients Say</h2>
-		<div class="testimonial-list">
-			{testimonials.map(({ name, quote }) => (
-				<figure class="testimonial">
-					<Image alt="" src={samuel} width={80} height={80} format="webp" loading="lazy" />
+	<home-testimonials class="testimonial-layout">
+		<div>
+			<h2 class="section-title" id="home-testimonials-title">What Our Clients Say</h2>
+			<div class="testimonial-controls" data-testimonial-controls hidden>
+				<button aria-label="Previous testimonial" aria-controls="home-testimonial-quotes" data-testimonial-step="-1" type="button">
+					<span aria-hidden="true">←</span>
+				</button>
+				<button aria-label="Next testimonial" aria-controls="home-testimonial-quotes" data-testimonial-step="1" type="button">
+					<span aria-hidden="true">→</span>
+				</button>
+				<p class="sr-only" data-testimonial-position role="status">
+					Testimonial 1 of {testimonials.length}
+				</p>
+			</div>
+		</div>
+
+		<div id="home-testimonial-quotes">
+			{testimonials.map(({ name, quote }, index) => (
+				<figure class="testimonial-quote" hidden={index !== 0}>
+					<span class="testimonial-quote__mark" aria-hidden="true">“</span>
 					<blockquote>{quote}</blockquote>
-					<figcaption>{name}</figcaption>
+					<figcaption>
+						<Image alt="" src={samuel} width={80} height={80} format="webp" loading="lazy" />
+						<span>{name}</span>
+					</figcaption>
 				</figure>
 			))}
 		</div>
-	</div>
+	</home-testimonials>
 </section>
 
 <section class="home-section home-section--clients" aria-labelledby="home-clients-title">
@@ -175,6 +192,48 @@ const clients = [
 		</ul>
 	</div>
 </section>
+
+<script>
+	class HomeTestimonials extends HTMLElement {
+		private active = 0;
+		private slides: HTMLElement[] = [];
+		private position: HTMLElement | null = null;
+
+		connectedCallback() {
+			this.slides = Array.from(this.querySelectorAll<HTMLElement>(".testimonial-quote"));
+			this.position = this.querySelector("[data-testimonial-position]");
+			const controls = this.querySelector<HTMLElement>("[data-testimonial-controls]");
+
+			if (controls && this.slides.length > 1) {
+				controls.hidden = false;
+				this.addEventListener("click", this.changeSlide);
+			}
+		}
+
+		disconnectedCallback() {
+			this.removeEventListener("click", this.changeSlide);
+		}
+
+		private readonly changeSlide = (event: MouseEvent) => {
+			const button = event.target instanceof Element
+				? event.target.closest<HTMLButtonElement>("button[data-testimonial-step]")
+				: null;
+			if (!button) {
+				return;
+			}
+
+			this.slides[this.active].hidden = true;
+			const step = Number(button.dataset.testimonialStep);
+			this.active = (this.active + step + this.slides.length) % this.slides.length;
+			this.slides[this.active].hidden = false;
+			if (this.position) {
+				this.position.textContent = `Testimonial ${this.active + 1} of ${this.slides.length}`;
+			}
+		};
+	}
+
+	customElements.define("home-testimonials", HomeTestimonials);
+</script>
 
 <style>
 	.home-section {
@@ -355,48 +414,79 @@ const clients = [
 		margin: 0;
 	}
 
-	.testimonial-list {
-		display: grid;
-		gap: 0.75rem;
+	.testimonial-controls:not([hidden]) {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.6rem;
+		margin-block-start: 1.65rem;
 	}
 
-	.testimonial {
+	.testimonial-controls button {
 		display: grid;
-		grid-template-columns: auto minmax(0, 1fr);
-		gap: 0.4rem 0.9rem;
-		align-items: start;
-		padding: clamp(0.9rem, 2vw, 1.4rem);
+		width: 2.9rem;
+		height: 2.9rem;
+		place-items: center;
 		border: 1px solid var(--color-border);
-		border-inline-start: 0.24rem solid var(--color-border);
-		border-radius: 0.7rem;
-		background: var(--color-surface);
+		border-radius: 50%;
+		color: var(--color-ink);
+		font-size: 1.3rem;
+		line-height: 1;
+		cursor: pointer;
 	}
 
-	.testimonial:nth-child(2) {
-		border-inline-start-color: var(--color-brand-primary-dark);
+	.testimonial-controls button:focus-visible {
+		outline: 2px solid var(--color-brand-primary-dark);
+		outline-offset: 3px;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.testimonial-controls button:hover {
+			border-color: var(--color-brand-primary-dark);
+			background: var(--color-brand-primary-soft);
+		}
+	}
+
+	.testimonial-controls button:active {
 		background: var(--color-brand-primary-soft);
 	}
 
-	.testimonial img {
-		grid-row: 1 / span 2;
-		width: clamp(2.5rem, 5vw, 4rem);
+	.testimonial-quote {
+		min-width: 0;
+		margin: 0;
+	}
+
+	.testimonial-quote__mark {
+		display: block;
+		color: var(--color-brand-primary-dark);
+		font-family: var(--font-serif);
+		font-size: clamp(3.35rem, 5.5vw, 5rem);
+		line-height: 0.72;
+	}
+
+	.testimonial-quote blockquote {
+		margin: 0;
+		color: var(--color-ink);
+		font-size: clamp(1.24rem, 2.6vw, 2.15rem);
+		font-weight: 550;
+		letter-spacing: -0.025em;
+		line-height: 1.32;
+	}
+
+	.testimonial-quote figcaption {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-block-start: 1.35rem;
+		font-weight: 750;
+	}
+
+	.testimonial-quote img {
+		width: clamp(2.75rem, 5.25vw, 3.75rem);
 		height: auto;
 		border-radius: 50%;
 		aspect-ratio: 1;
 		object-fit: cover;
-	}
-
-	.testimonial figcaption {
-		grid-area: 1 / 2;
-		font-weight: 800;
-	}
-
-	.testimonial blockquote {
-		grid-area: 2 / 2;
-		margin: 0;
-		color: var(--color-ink-muted);
-		font-size: 0.94rem;
-		line-height: 1.6;
 	}
 
 	.home-section--clients {
@@ -442,8 +532,6 @@ const clients = [
 		.service-split--printing .service-copy { grid-column: 1; grid-row: 1; }
 		.service-split--printing .service-media { grid-column: 2; grid-row: 1; }
 		.testimonial-layout, .client-layout { grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.6fr); }
-		.testimonial-list { padding-inline-start: clamp(0.75rem, 4vw, 3rem); }
-		.testimonial:nth-child(2) { margin-inline: clamp(-3rem, -4vw, -0.75rem) clamp(0.75rem, 4vw, 3rem); }
 		.client-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
 		.client-grid li { grid-column: span 2; }
 		.client-grid li:nth-last-child(-n + 2) { grid-column: span 3; }
