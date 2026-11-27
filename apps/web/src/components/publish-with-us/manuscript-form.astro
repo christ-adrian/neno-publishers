@@ -1,0 +1,383 @@
+---
+import { genres, services, stages } from "./options";
+---
+
+<div class="manuscript-panel">
+	<h2 id="submit-manuscript" tabindex="-1">Submit your manuscript</h2>
+	<manuscript-enquiry>
+		<form method="post">
+			<fieldset>
+				<legend>Author details</legend>
+				<div class="form-grid">
+					<label>
+						Full name
+						<input
+							autocomplete="name"
+							maxlength="150"
+							name="fullName"
+							required
+							type="text"
+						>
+					</label>
+					<label>
+						Email address
+						<input
+							autocomplete="email"
+							maxlength="254"
+							name="email"
+							required
+							type="email"
+						>
+					</label>
+					<label class="full-field">
+						Phone or WhatsApp number <span>(optional)</span>
+						<input autocomplete="tel" maxlength="40" name="phone" type="tel">
+					</label>
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<legend>Book details</legend>
+				<div class="form-grid">
+					<label class="full-field">
+						Working title
+						<input maxlength="200" name="title" required type="text">
+					</label>
+					<label>
+						Genre
+						<select name="genre" required>
+							<option disabled selected value="">Choose a genre</option>
+							{genres.map((genre) => <option value={genre}>{genre}</option>)}
+						</select>
+					</label>
+					<label>
+						Approximate word count <span>(optional)</span>
+						<input min="1" name="wordCount" step="1" type="number">
+					</label>
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<legend>Current stage</legend>
+				<div class="form-choices">
+					{stages.map((stage) => (
+						<label>
+							<input name="stage" required type="radio" value={stage} />
+							{stage}
+						</label>
+					))}
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<legend>Services needed <span>(optional)</span></legend>
+				<div class="form-choices">
+					{services.map((service) => (
+						<label>
+							<input name="services" type="checkbox" value={service} />
+							{service}
+						</label>
+					))}
+				</div>
+			</fieldset>
+
+			<fieldset>
+				<legend>Manuscript <span>(optional)</span></legend>
+				<div class="form-grid">
+					<label class="full-field">
+						Manuscript file
+						<input
+							accept=".doc,.docx,.pdf"
+							aria-describedby="manuscript-file-hint"
+							name="manuscriptFile"
+							type="file"
+						>
+						<span class="field-hint" id="manuscript-file-hint"
+							>Word or PDF, up to 15 MB.</span
+						>
+					</label>
+					<label class="full-field">
+						Or paste a sharing link
+						<input
+							inputmode="url"
+							maxlength="2048"
+							name="manuscriptLink"
+							pattern="https://.+"
+							type="url"
+						>
+						<span class="field-hint"
+							>Use an HTTPS sharing link from Google Docs, Drive or
+							Dropbox.</span
+						>
+					</label>
+				</div>
+			</fieldset>
+
+			<label>
+				Brief synopsis
+				<textarea maxlength="2000" name="synopsis" required rows="4"></textarea>
+			</label>
+
+			<div class="form-actions">
+				<p>
+					Preview only. Your details and file information stay in your browser.
+				</p>
+				<button disabled type="submit">Submit Your Manuscript</button>
+			</div>
+			<p class="form-status" role="status"></p>
+		</form>
+	</manuscript-enquiry>
+</div>
+
+<script>
+	import { getManuscriptFileError } from "./manuscript-file";
+
+	class ManuscriptEnquiry extends HTMLElement {
+		connectedCallback() {
+			this.addEventListener("change", this.validateAttachment);
+			this.addEventListener("submit", this.logSubmission);
+			const submit = this.querySelector<HTMLButtonElement>(
+				'button[type="submit"]'
+			);
+			if (submit) {
+				submit.disabled = false;
+			}
+		}
+
+		disconnectedCallback() {
+			this.removeEventListener("change", this.validateAttachment);
+			this.removeEventListener("submit", this.logSubmission);
+		}
+
+		private readonly validateAttachment = (event: Event) => {
+			const input = event.target;
+			if (!(input instanceof HTMLInputElement) || input.type !== "file") {
+				return;
+			}
+
+			const file = input.files?.[0];
+			input.setCustomValidity(file ? getManuscriptFileError(file) : "");
+			input.reportValidity();
+		};
+
+		private readonly logSubmission = (event: Event) => {
+			const form = event.target;
+			if (!(form instanceof HTMLFormElement)) {
+				return;
+			}
+			event.preventDefault();
+
+			const data = new FormData(form);
+			const file = data.get("manuscriptFile");
+			const attachment =
+				file instanceof File && file.name
+					? { name: file.name, size: file.size, type: file.type }
+					: null;
+
+			// This preview intentionally logs locally until there is a submission endpoint.
+			console.log("Manuscript submission", {
+				...Object.fromEntries(data),
+				manuscriptFile: attachment,
+				services: data.getAll("services"),
+			});
+
+			const status = form.querySelector('[role="status"]');
+			if (status) {
+				status.textContent = "Submission logged in your browser console.";
+			}
+		};
+	}
+
+	customElements.define("manuscript-enquiry", ManuscriptEnquiry);
+</script>
+
+<style>
+	.manuscript-panel {
+		min-inline-size: 0;
+		padding: clamp(1.25rem, 4vw, 3rem);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: 1.15rem;
+	}
+
+	h2 {
+		margin-block-end: 1.75rem;
+		font-family: var(--font-serif);
+		font-size: clamp(2.2rem, 4vw, 3.55rem);
+		font-weight: 500;
+		line-height: 1.02;
+		letter-spacing: -0.035em;
+		text-wrap: balance;
+	}
+
+	form {
+		display: grid;
+		gap: 1.45rem;
+	}
+
+	fieldset {
+		min-inline-size: 0;
+	}
+
+	legend {
+		margin-block-end: 0.65rem;
+		font-size: 1.02rem;
+		font-weight: 750;
+	}
+
+	.form-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.85rem;
+	}
+
+	.full-field {
+		grid-column: 1 / -1;
+	}
+
+	label {
+		display: block;
+		min-inline-size: 0;
+		font-size: 0.875rem;
+		font-weight: 650;
+	}
+
+	label > span,
+	legend > span {
+		font-size: 0.82rem;
+		font-weight: 500;
+		color: var(--color-ink-muted);
+	}
+
+	input:not([type="radio"], [type="checkbox"]),
+	select,
+	textarea {
+		display: block;
+		width: 100%;
+		min-height: 2.85rem;
+		padding: 0.55rem 0.7rem;
+		margin-block-start: 0.35rem;
+		font-size: 1rem;
+		font-weight: 500;
+		color: var(--color-ink);
+		background: var(--color-surface-alt);
+		border: 1px solid #aab8c6;
+		border-radius: 0.5rem;
+	}
+
+	input[type="file"]::file-selector-button {
+		padding: 0.3rem 0.55rem;
+		margin-inline-end: 0.65rem;
+		font: inherit;
+		font-size: 0.875rem;
+		font-weight: 700;
+		color: var(--color-ink);
+		cursor: pointer;
+		background: var(--color-brand-primary-soft);
+		border-radius: 0.3rem;
+	}
+
+	.field-hint {
+		display: block;
+		margin-block-start: 0.32rem;
+	}
+
+	.form-choices {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.48rem;
+	}
+
+	.form-choices label {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+		min-height: 2.75rem;
+		padding: 0.5rem 0.72rem;
+		cursor: pointer;
+		border: 1px solid #aab8c6;
+		border-radius: 0.55rem;
+	}
+
+	.form-choices label:has(:checked) {
+		background: var(--color-brand-primary-soft);
+		border-color: var(--color-brand-primary-dark);
+	}
+
+	.form-choices input {
+		flex: none;
+		accent-color: var(--color-brand-primary-dark);
+	}
+
+	textarea {
+		resize: vertical;
+	}
+
+	.form-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.form-actions p,
+	.form-status {
+		max-inline-size: 31ch;
+		font-size: 0.8125rem;
+		color: var(--color-ink-muted);
+	}
+
+	.form-status {
+		max-inline-size: none;
+		color: var(--color-brand-primary-dark);
+	}
+
+	.form-status:empty {
+		margin-block-start: -1.45rem;
+	}
+
+	button {
+		min-height: 3rem;
+		padding: 0.65rem 1rem;
+		font-size: 0.875rem;
+		font-weight: 750;
+		color: white;
+		cursor: pointer;
+		background: var(--color-brand-primary-dark);
+		border-radius: 0.625rem;
+	}
+
+	button:disabled {
+		cursor: not-allowed;
+		opacity: 0.7;
+	}
+
+	@media (hover: hover) {
+		button:not(:disabled):hover {
+			background: var(--color-image-scrim);
+		}
+
+		.form-choices label:hover {
+			border-color: var(--color-brand-primary-dark);
+		}
+	}
+
+	@media (max-width: 38rem) {
+		.form-grid {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		button {
+			transition:
+				background-color 160ms ease,
+				transform 160ms var(--ease-nav-settle);
+		}
+
+		button:not(:disabled):active {
+			transform: scale(0.98);
+		}
+	}
+</style>
