@@ -78,8 +78,10 @@ const srcSet = sources.map(({ url, width }) => `${url} ${width}w`).join(", ");
 	}
 
 	.book-cover--detail {
-		padding: clamp(0.7rem, 1.8vw, 1.1rem);
-		box-shadow: 0 1rem 2.5rem -1.5rem rgb(15 23 42 / 28%);
+		padding: 0;
+		background: transparent;
+		border: 0;
+		box-shadow: none;
 	}
 
 	.book-cover img,

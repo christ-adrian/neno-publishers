@@ -1,0 +1,73 @@
+---
+import type { BookListItem } from "../../lib/books";
+import BookCover from "./book-cover.astro";
+
+interface Props {
+	book: BookListItem;
+	heading?: "h2" | "h3";
+	priority?: "high" | "auto";
+	loading?: "eager" | "lazy";
+}
+
+const { book, heading: Heading = "h2", priority, loading } = Astro.props;
+---
+
+<a class="book-card" href={`/our-books/${encodeURIComponent(book.slug)}`}>
+	<BookCover
+		cover={book.coverImage}
+		fetchPriority={priority}
+		loading={loading}
+		sizes="(min-width: 84rem) 300px, (min-width: 65rem) 24vw, (min-width: 48rem) 32vw, (min-width: 24rem) 48vw, 92vw"
+		title={book.title}
+	/>
+	<Heading>{book.title}</Heading>
+</a>
+
+<style>
+	.book-card {
+		display: flex;
+		height: 100%;
+		flex-direction: column;
+		overflow: hidden;
+		color: var(--color-ink);
+		text-decoration: none;
+		border: 1px solid var(--color-border);
+		border-radius: 0.875rem;
+		transition: transform 180ms var(--ease-nav-settle), border-color 180ms ease;
+	}
+
+	.book-card :is(h2, h3) {
+		margin: 0;
+		padding: clamp(1rem, 2vw, 1.625rem);
+		font-family: var(--font-sans);
+		font-size: clamp(1.125rem, 1.65vw, 1.5rem);
+		font-weight: 800;
+		line-height: 1.24;
+		letter-spacing: -0.035em;
+		overflow-wrap: anywhere;
+		text-wrap: balance;
+	}
+
+	.book-card:focus-visible {
+		border-color: var(--color-brand-primary-dark);
+		outline: 2px solid var(--color-brand-primary-dark);
+		outline-offset: 3px;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.book-card:hover {
+			border-color: var(--color-brand-primary-dark);
+			transform: translateY(-2px);
+		}
+
+		.book-card:hover :is(h2, h3) { color: var(--color-brand-primary-dark); }
+		.book-card:hover :global(.book-cover img) { transform: scale(1.025); }
+	}
+
+	.book-card:active { transform: scale(0.99); }
+
+	@media (prefers-reduced-motion: reduce) {
+		.book-card { transition: border-color 160ms ease; }
+		.book-card:hover, .book-card:active, .book-card:hover :global(.book-cover img) { transform: none; }
+	}
+</style>

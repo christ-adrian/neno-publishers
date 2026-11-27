@@ -1,5 +1,6 @@
 import { BookIcon } from "@sanity/icons/Book";
 import { defineArrayMember, defineField, defineType } from "sanity";
+import { bookCategories } from "../src/lib/book-categories";
 
 export const bookType = defineType({
 	fields: [
@@ -36,15 +37,7 @@ export const bookType = defineType({
 			name: "category",
 			options: {
 				layout: "dropdown",
-				list: [
-					{ title: "Leadership & Management", value: "leadership" },
-					{ title: "Christian Literature", value: "christian-literature" },
-					{ title: "Self-Help & Parenting", value: "self-help-parenting" },
-					{ title: "Poetry & Kids", value: "poetry-kids" },
-					{ title: "Fiction & African Heritage", value: "fiction-heritage" },
-					{ title: "Academic & Textbooks", value: "academic-textbooks" },
-					{ title: "Biography & Memoir", value: "biography-memoir" },
-				],
+				list: bookCategories,
 			},
 			title: "Category / Genre",
 			type: "string",

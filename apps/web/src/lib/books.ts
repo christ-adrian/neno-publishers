@@ -4,6 +4,8 @@ import { getSanityClient, type SanityImage, sanityImageUrl } from "./sanity";
 
 export type BookCover = SanityImage;
 
+export type BookListItem = Pick<BookSummary, "coverImage" | "slug" | "title">;
+
 interface BookSummary {
 	authors: { name: string }[];
 	category: string | null;
@@ -18,6 +20,7 @@ interface BookSummary {
 interface BookDetails extends BookSummary {
 	description: PortableTextBlock[] | null;
 	isbn: string | null;
+	otherBooks: BookListItem[];
 	pages: number | null;
 }
 

@@ -39,6 +39,13 @@ export const BOOK_BY_SLUG_QUERY =
     photo,
     shortBio
   }, []),
+  "otherBooks": *[
+    _type == "book" && defined(slug.current) && defined(title) && slug.current != $slug
+  ] | order(select(defined(^.category) && category == ^.category => 1, 0) desc, featured desc, publishedYear desc, title asc, _id asc)[0...4] {
+    title,
+    "slug": slug.current,
+    coverImage
+  },
   "testimonials": *[_type == "testimonial" && relatedBook._ref == ^._id] | order(displayOrder asc) {
     _id,
     quote,

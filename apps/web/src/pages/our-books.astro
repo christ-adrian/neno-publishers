@@ -1,5 +1,5 @@
 ---
-import BookCover from "../components/our-books/book-cover.astro";
+import BookCard from "../components/our-books/book-card.astro";
 import Layout from "../layouts/Layout.astro";
 import { bookCoverUrl, getCatalog } from "../lib/books";
 
@@ -15,7 +15,7 @@ try {
 ---
 
 <Layout
-	description="Browse the Neno Publishers book catalog. Select a title for a synopsis, book details, and WhatsApp ordering."
+	description="Browse the Neno Publishers book catalog. Select a title for its synopsis and book details."
 	image={bookCoverUrl(books[0]?.coverImage ?? null, 800) ?? undefined}
 	skipTo="main-content"
 	title="Our Books | Neno Publishers"
@@ -31,16 +31,11 @@ try {
 			<ul aria-label="Book catalog" class="book-catalog__grid" role="list">
 				{books.map((book, index) => (
 					<li>
-						<a class="book-card" href={`/our-books/${encodeURIComponent(book.slug)}`}>
-							<BookCover
-								cover={book.coverImage}
-								fetchPriority={index === 0 ? "high" : undefined}
-								loading={index < 4 ? "eager" : "lazy"}
-								sizes="(min-width: 84rem) 276px, (min-width: 65rem) 22vw, (min-width: 48rem) 29vw, (min-width: 24rem) 44vw, 87vw"
-								title={book.title}
-							/>
-							<h2>{book.title}</h2>
-						</a>
+						<BookCard
+							book={book}
+							loading={index < 4 ? "eager" : "lazy"}
+							priority={index === 0 ? "high" : undefined}
+						/>
 					</li>
 				))}
 			</ul>
@@ -71,35 +66,6 @@ try {
 		line-height: 1.65;
 	}
 
-	.book-card {
-		display: flex;
-		height: 100%;
-		flex-direction: column;
-		overflow: hidden;
-		color: var(--color-ink);
-		text-decoration: none;
-		border: 1px solid var(--color-border);
-		border-radius: 0.875rem;
-		transition: transform 180ms var(--ease-nav-settle), border-color 180ms ease;
-	}
-
-	.book-card h2 {
-		margin: 0;
-		padding: clamp(1rem, 2vw, 1.625rem);
-		font-family: var(--font-sans);
-		font-size: clamp(1.125rem, 1.65vw, 1.5rem);
-		font-weight: 800;
-		line-height: 1.24;
-		letter-spacing: -0.035em;
-		overflow-wrap: anywhere;
-		text-wrap: balance;
-	}
-
-	.book-card:focus-visible {
-		border-color: var(--color-brand-primary-dark);
-		outline: 2px solid var(--color-brand-primary-dark);
-		outline-offset: 3px;
-	}
 
 	@media (min-width: 24rem) {
 		.book-catalog__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -113,20 +79,4 @@ try {
 		.book-catalog__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 	}
 
-	@media (hover: hover) and (pointer: fine) {
-		.book-card:hover {
-			border-color: var(--color-brand-primary-dark);
-			transform: translateY(-2px);
-		}
-
-		.book-card:hover h2 { color: var(--color-brand-primary-dark); }
-		.book-card:hover :global(.book-cover img) { transform: scale(1.025); }
-	}
-
-	.book-card:active { transform: scale(0.99); }
-
-	@media (prefers-reduced-motion: reduce) {
-		.book-card { transition: border-color 160ms ease; }
-		.book-card:hover, .book-card:active, .book-card:hover :global(.book-cover img) { transform: none; }
-	}
 </style>
