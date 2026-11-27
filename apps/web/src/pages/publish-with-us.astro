@@ -1,9 +1,395 @@
 ---
+import { Image } from "astro:assets";
+import leadership from "../../../../content/assets/books/adaptive-leadership.jpg";
+import memoir from "../../../../content/assets/books/as-life-unfolds.jpg";
+import ManuscriptForm from "../components/publish-with-us/manuscript-form.astro";
 import Layout from "../layouts/Layout.astro";
+
+const guidelines = [
+	{
+		description:
+			"Upload a Word document (.docx or .doc) or a PDF up to 15 MB. Avoid locked PDFs so editors can leave comments and mark up the text.",
+		title: "Accepted formats",
+	},
+	{
+		description:
+			"Use A4 pages, a readable 12-point font and clear chapter breaks.",
+		title: "Basic formatting",
+	},
+	{
+		description:
+			"Share your working title, a one-paragraph overview, and either the full manuscript or your first three sample chapters.",
+		title: "What to include",
+	},
+	{
+		description:
+			"We keep your manuscript confidential. You retain full ownership of your intellectual property.",
+		title: "Confidentiality",
+	},
+];
 ---
 
-<Layout title="Publish With Us | Neno Publishers">
-	<main>
-		<h1>Publish With Us</h1>
+<Layout
+	description="Publish your book with Neno Publishers in Nairobi. Explore our publishing process, manuscript guidelines and author FAQs."
+	skipTo="main-content"
+	title="Publish With Us | Neno Publishers"
+>
+	<main class="publish-page" id="main-content">
+		<header class="publish-hero" data-enter>
+			<div class="publish-hero-copy">
+				<h1>Publish your book with Neno</h1>
+				<p>
+					We’ll guide you from manuscript to finished book. You keep full
+					ownership of your work.
+				</p>
+				<div class="publish-actions">
+					<a class="publish-action primary-action" href="#submit-manuscript"
+						>Submit Your Manuscript</a
+					>
+					<a
+						class="publish-action secondary-action"
+						href="/contact?service=advisory"
+						>Need help? Talk to Us.</a
+					>
+				</div>
+			</div>
+			<div aria-hidden="true" class="publish-covers">
+				<Image
+					alt=""
+					class="publish-cover publish-cover--back"
+					format="webp"
+					sizes="(min-width: 54rem) 12rem, 27vw"
+					src={leadership}
+					widths={[240, 400, 520]}
+				/>
+				<Image
+					alt=""
+					class="publish-cover publish-cover--front"
+					format="webp"
+					sizes="(min-width: 54rem) 15rem, 33vw"
+					src={memoir}
+					widths={[240, 400, 520]}
+				/>
+			</div>
+		</header>
+
+		<section
+			aria-labelledby="submit-manuscript"
+			class="publish-section manuscript-section"
+		>
+			<aside aria-labelledby="guidelines-heading" class="manuscript-guidelines">
+				<h2 id="guidelines-heading">Manuscript submission guidelines</h2>
+				<ul class="guidelines-list">
+					{guidelines.map(({ title, description }) => (
+						<li>
+							<h3>{title}</h3>
+							<p>{description}</p>
+						</li>
+					))}
+				</ul>
+			</aside>
+			<ManuscriptForm />
+		</section>
+
+		<section aria-labelledby="faq-heading" class="publish-section author-faqs">
+			<h2 id="faq-heading">Author FAQs</h2>
+			<div class="faq-list">
+				<details name="author-faq">
+					<summary>Do I keep the copyright to my book?</summary>
+					<p>
+						Yes. You retain the copyright to your work, and we keep your
+						manuscript confidential during review and production.
+					</p>
+				</details>
+				<details name="author-faq">
+					<summary>How long does the publishing process take?</summary>
+					<p>
+						Allow roughly 4–12 weeks as a planning estimate. The schedule
+						depends on how much editing the manuscript needs, how quickly you
+						approve proofs, and the printing requirements.
+					</p>
+				</details>
+				<details name="author-faq">
+					<summary>Do you help with ISBNs and KNLS registration?</summary>
+					<p>
+						Yes. We help you apply for an
+						<a href="https://www.knls.ac.ke/isbn/"
+							>ISBN through the Kenya National Library Service</a
+						>. We also guide you through
+						<a href="https://www.knls.ac.ke/legal-deposit/"
+							>KNLS legal deposit</a
+						>. Under the Books and Newspapers Act (Cap. 111), publishers submit
+						two copies of each newly published title to KNLS.
+					</p>
+				</details>
+				<details name="author-faq">
+					<summary>What is the minimum number of copies I can print?</summary>
+					<p>
+						The minimum depends on your book’s format and binding. Digital
+						printing keeps short runs affordable, while offset printing suits
+						larger orders. Tell us how many copies you need and we’ll recommend
+						an option.
+					</p>
+				</details>
+				<details name="author-faq">
+					<summary>
+						My manuscript isn’t finished yet. Can I still reach out?
+					</summary>
+					<p>
+						Yes. Our manuscript development and advisory services can help you
+						shape an idea or move a draft forward.
+						<a href="/contact?service=advisory">Talk to an editor</a>
+						about where to start.
+					</p>
+				</details>
+			</div>
+		</section>
 	</main>
 </Layout>
+
+<style>
+	.publish-page {
+		--publish-gutter: max(var(--spacing-site-gutter), (100% - 78rem) / 2);
+		padding-block-end: clamp(4rem, 8vw, 7rem);
+	}
+
+	.publish-hero {
+		display: grid;
+		gap: 2.75rem;
+		align-items: center;
+		--publish-hero-padding: clamp(1.5rem, 5.3vw, 4.75rem);
+		padding-block: var(--publish-hero-padding);
+		padding-inline: calc(var(--publish-gutter) + var(--publish-hero-padding));
+		overflow: hidden;
+		color: white;
+		background: var(--color-brand-primary-dark);
+	}
+
+	h1,
+	h2 {
+		font-family: var(--font-serif);
+		font-weight: 500;
+		line-height: 1.02;
+		letter-spacing: -0.035em;
+		text-wrap: balance;
+	}
+
+	h1 {
+		max-inline-size: 15ch;
+		font-size: clamp(3rem, 6vw, 6rem);
+	}
+
+	h2 {
+		font-size: clamp(2.3rem, 4.8vw, 4.15rem);
+	}
+
+	.publish-hero-copy p {
+		max-inline-size: 49ch;
+		margin-block-start: 1.2rem;
+		font-size: clamp(0.975rem, 1.3vw, 1.1rem);
+		line-height: 1.65;
+		color: #f3faff;
+	}
+
+	.publish-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem;
+		margin-block-start: 1.75rem;
+	}
+
+	.publish-action {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-block-size: 3rem;
+		padding: 0.65rem 1rem;
+		font-size: 0.875rem;
+		font-weight: 700;
+		text-align: center;
+		border: 1px solid white;
+		border-radius: 0.625rem;
+	}
+
+	.primary-action {
+		color: var(--color-image-scrim);
+		background: white;
+	}
+
+	.secondary-action {
+		color: white;
+		border-color: rgb(255 255 255 / 65%);
+	}
+
+	.publish-action:focus-visible {
+		outline-color: white;
+	}
+
+	@media (hover: hover) {
+		.primary-action:hover {
+			background: var(--color-brand-primary-soft);
+		}
+
+		.secondary-action:hover {
+			background: rgb(255 255 255 / 12%);
+		}
+	}
+
+	.publish-covers {
+		display: grid;
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+		align-items: center;
+		width: min(100%, 26rem);
+		margin-inline: auto;
+		isolation: isolate;
+	}
+
+	.publish-cover {
+		grid-row: 1;
+		width: 100%;
+		height: auto;
+		border-radius: 0.2rem;
+		box-shadow: 0 1.2rem 2rem -0.7rem rgb(6 27 48 / 64%);
+	}
+
+	.publish-cover--back {
+		grid-column: 1 / 7;
+		transform: rotate(-8deg) translateY(3%);
+	}
+
+	.publish-cover--front {
+		grid-column: 6 / 13;
+		transform: rotate(6deg);
+	}
+
+	.publish-section {
+		margin-block-start: clamp(3.5rem, 8vw, 7rem);
+		margin-inline: var(--publish-gutter);
+	}
+
+	.manuscript-guidelines {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: 0.875rem;
+	}
+
+	.guidelines-list h3 {
+		margin-block-end: 0.45rem;
+		font-weight: 750;
+		line-height: 1.35;
+	}
+
+	.guidelines-list p,
+	.faq-list p {
+		font-size: 0.9375rem;
+		line-height: 1.65;
+		color: var(--color-ink-muted);
+	}
+
+	.manuscript-section,
+	.author-faqs {
+		display: grid;
+		gap: clamp(1.25rem, 3.5vw, 3rem);
+		align-items: start;
+	}
+
+	.manuscript-guidelines {
+		padding: clamp(1.25rem, 3vw, 2.3rem);
+	}
+
+	.manuscript-guidelines h2 {
+		font-size: clamp(2rem, 3.6vw, 3rem);
+	}
+
+	.guidelines-list {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
+		gap: 1.15rem;
+		margin-block-start: 1.45rem;
+	}
+
+	.guidelines-list li {
+		padding-block-start: 0.75rem;
+		border-block-start: 1px solid var(--color-border);
+	}
+
+	.faq-list {
+		border-block-start: 1px solid var(--color-border);
+	}
+
+	.faq-list details {
+		border-block-end: 1px solid var(--color-border);
+	}
+
+	.faq-list summary {
+		display: flex;
+		gap: 1rem;
+		align-items: center;
+		justify-content: space-between;
+		min-block-size: 3.6rem;
+		padding: 0.85rem 0.3rem;
+		font-weight: 750;
+		cursor: pointer;
+		list-style: none;
+	}
+
+	.faq-list summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.faq-list summary::after {
+		flex: none;
+		width: 0.55rem;
+		height: 0.55rem;
+		margin-inline-end: 0.4rem;
+		content: "";
+		border: solid var(--color-brand-primary-dark);
+		border-width: 0 2px 2px 0;
+		transform: rotate(45deg);
+	}
+
+	.faq-list details[open] summary::after {
+		transform: rotate(225deg);
+	}
+
+	.faq-list p {
+		max-inline-size: 70ch;
+		padding: 0 0.3rem 1.1rem;
+	}
+
+	.faq-list a {
+		color: var(--color-brand-primary-dark);
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+
+	@media (min-width: 54rem) {
+		.publish-hero {
+			grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+		}
+
+		.author-faqs {
+			grid-template-columns: minmax(0, 1fr) minmax(0, 1.65fr);
+		}
+
+		.manuscript-section {
+			grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.45fr);
+		}
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		:global(html:has(.publish-page)) {
+			scroll-behavior: smooth;
+		}
+
+		.publish-action {
+			transition:
+				background-color 160ms ease,
+				transform 160ms var(--ease-nav-settle);
+		}
+
+		.publish-action:active {
+			transform: scale(0.98);
+		}
+	}
+</style>

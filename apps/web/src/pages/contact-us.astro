@@ -2,6 +2,7 @@
 import serviceRecords from "../../../../content/services.json";
 import Layout from "../layouts/Layout.astro";
 
+const requestedSubject = Astro.url.searchParams.get("service");
 const serviceGroups = [
 	{ label: "Publishing", value: "publishing" },
 	{ label: "Printing", value: "printing" },
@@ -11,7 +12,14 @@ const serviceGroups = [
 	services: serviceRecords
 		.filter(({ category }) => category === value)
 		.sort((left, right) => left.displayOrder - right.displayOrder),
+	value,
 }));
+
+const selectedSubject =
+	requestedSubject === "advisory" ||
+	serviceRecords.some(({ slug }) => slug.current === requestedSubject)
+		? requestedSubject
+		: null;
 
 const email = "info@nenopublishers.co.ke";
 const mapSource =
@@ -87,11 +95,26 @@ const directions =
 						<div class="contact-field">
 							<label for="contact-subject">Subject</label>
 							<select id="contact-subject" name="subject" required>
-								<option disabled selected value="">Choose a service</option>
-								{serviceGroups.map(({ label, services }) => (
+								<option disabled selected={!selectedSubject} value="">
+									Choose a service
+								</option>
+								{serviceGroups.map(({ label, services, value }) => (
 									<optgroup label={label}>
+										{value === "advisory" && (
+											<option
+												selected={selectedSubject === "advisory"}
+												value="advisory"
+											>
+												General advisory enquiry
+											</option>
+										)}
 										{services.map(({ slug, title }) => (
-											<option value={slug.current}>{title}</option>
+											<option
+												selected={slug.current === selectedSubject}
+												value={slug.current}
+											>
+												{title}
+											</option>
 										))}
 									</optgroup>
 								))}
