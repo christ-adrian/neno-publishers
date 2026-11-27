@@ -70,10 +70,10 @@ import { genres, services } from "./options";
 			</fieldset>
 
 			<fieldset>
-				<legend>Manuscript <span>(optional)</span></legend>
+				<legend>Manuscript</legend>
 				<div class="form-grid">
 					<label class="full-field">
-						Manuscript file
+						<span class="sr-only">Manuscript file</span>
 						<input
 							accept=".doc,.docx,.pdf"
 							aria-describedby="manuscript-file-hint"
@@ -93,9 +93,6 @@ import { genres, services } from "./options";
 			</label>
 
 			<div class="form-actions">
-				<p>
-					Preview only. Your details and file information stay in your browser.
-				</p>
 				<button disabled type="submit">Submit Your Manuscript</button>
 			</div>
 			<p class="form-status" role="status"></p>
@@ -289,21 +286,10 @@ import { genres, services } from "./options";
 
 	.form-actions {
 		display: flex;
-		flex-wrap: wrap;
-		gap: 0.75rem;
-		align-items: center;
-		justify-content: space-between;
 	}
 
-	.form-actions p,
 	.form-status {
-		max-inline-size: 31ch;
 		font-size: 0.8125rem;
-		color: var(--color-ink-muted);
-	}
-
-	.form-status {
-		max-inline-size: none;
 		color: var(--color-brand-primary-dark);
 	}
 
