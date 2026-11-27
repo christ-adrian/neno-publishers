@@ -22,6 +22,27 @@
       "skillPath": "skills/astro/SKILL.md",
       "computedHash": "125dee2aaf517f986de72356842011af0b1641a13bf8c71f226dee2e41c38fe6"
     },
+    "content-experimentation-best-practices": {
+      "source": "sanity-io/agent-toolkit",
+      "commit": "627296c38d9bd80b23343f93666e5bcb3c9ccc86",
+      "sourceType": "github",
+      "skillPath": "skills/content-experimentation-best-practices/SKILL.md",
+      "computedHash": "7bdce53eb54950f5403c00931167c7fa0b33f0b4bd0eefc207d1043a36df626c"
+    },
+    "content-modeling-best-practices": {
+      "source": "sanity-io/agent-toolkit",
+      "commit": "627296c38d9bd80b23343f93666e5bcb3c9ccc86",
+      "sourceType": "github",
+      "skillPath": "skills/content-modeling-best-practices/SKILL.md",
+      "computedHash": "327f5f5e44e831a74b9541ed2dccb4df3d687f54c99de752c74e5cee9c406e7b"
+    },
+    "design-taste-frontend": {
+      "source": "leonxlnx/taste-skill",
+      "commit": "d1a2bb41d927083ac7118f60cfc9cdf711810ea0",
+      "sourceType": "github",
+      "skillPath": "skills/taste-skill/SKILL.md",
+      "computedHash": "b10eab0a9684cd09cf34c31ef04a3bf530a5f4404422f9c520d42372d670c7fc"
+    },
     "emil-design-eng": {
       "source": "emilkowalski/skills",
       "commit": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
@@ -85,6 +106,20 @@
       "skillPath": "skills/gsap-utils/SKILL.md",
       "computedHash": "d05b56284eea0118d481b8c673aff27cae66199282995bfe78315785f561002d"
     },
+    "portable-text-conversion": {
+      "source": "sanity-io/agent-toolkit",
+      "commit": "627296c38d9bd80b23343f93666e5bcb3c9ccc86",
+      "sourceType": "github",
+      "skillPath": "skills/portable-text-conversion/SKILL.md",
+      "computedHash": "b9af301219af0a93707340e6120b2984037f32a512742cbf0a500a8031de75e3"
+    },
+    "portable-text-serialization": {
+      "source": "sanity-io/agent-toolkit",
+      "commit": "627296c38d9bd80b23343f93666e5bcb3c9ccc86",
+      "sourceType": "github",
+      "skillPath": "skills/portable-text-serialization/SKILL.md",
+      "computedHash": "53d298581e63c4cf36ef7ac3b51e15fdaa065b17ea38ed5f65147fba24b85bde"
+    },
     "prototype": {
       "source": "emilkowalski/skills",
       "commit": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
@@ -98,6 +133,55 @@
       "sourceType": "github",
       "skillPath": "skills/review-animations/SKILL.md",
       "computedHash": "50f1de2394b88bb3433eca1e30da6866a4e310963d872a66af20ca77fd77f07d"
+    },
+    "sanity-best-practices": {
+      "source": "sanity-io/agent-toolkit",
+      "commit": "627296c38d9bd80b23343f93666e5bcb3c9ccc86",
+      "sourceType": "github",
+      "skillPath": "skills/sanity-best-practices/SKILL.md",
+      "computedHash": "87f90e741e47e84de5001853314acf156fda2471cad4956f4730ea37240e591c"
+    },
+    "sanity-form-component-suspense": {
+      "source": "sanity-io/agent-toolkit",
+      "commit": "627296c38d9bd80b23343f93666e5bcb3c9ccc86",
+      "sourceType": "github",
+      "skillPath": "skills/sanity-form-component-suspense/SKILL.md",
+      "computedHash": "81e08a49deffdc6e2dc27ad4c5c5b829b8856d87cea10a0b9aa0c1947a72ad0b"
+    },
+    "sanity-migration": {
+      "source": "sanity-io/agent-toolkit",
+      "commit": "627296c38d9bd80b23343f93666e5bcb3c9ccc86",
+      "sourceType": "github",
+      "skillPath": "skills/sanity-migration/SKILL.md",
+      "computedHash": "51bd118081b8d9f34100d9064d00049caee9d74fc21226a647a2ce1f534d3fc5"
+    },
+    "sanity-singletons": {
+      "source": "sanity-io/agent-toolkit",
+      "commit": "627296c38d9bd80b23343f93666e5bcb3c9ccc86",
+      "sourceType": "github",
+      "skillPath": "skills/sanity-singletons/SKILL.md",
+      "computedHash": "6eb4e2f1fd1851232df1e7da38563bbaf07707e0674eac5de0de23e199f11710"
+    },
+    "sanity-studio-listeners": {
+      "source": "sanity-io/agent-toolkit",
+      "commit": "627296c38d9bd80b23343f93666e5bcb3c9ccc86",
+      "sourceType": "github",
+      "skillPath": "skills/sanity-studio-listeners/SKILL.md",
+      "computedHash": "188e95ae261ae303cb2cb45c8d22ef7cf3d73df66f1680270f44fe6a954a46e5"
+    },
+    "sanity-studio-upgrade": {
+      "source": "sanity-io/agent-toolkit",
+      "commit": "627296c38d9bd80b23343f93666e5bcb3c9ccc86",
+      "sourceType": "github",
+      "skillPath": "skills/sanity-studio-upgrade/SKILL.md",
+      "computedHash": "4bfe887545477b332679a11f3d6251e7bdffa409730f76ab80adae202630e98d"
+    },
+    "seo-aeo-best-practices": {
+      "source": "sanity-io/agent-toolkit",
+      "commit": "627296c38d9bd80b23343f93666e5bcb3c9ccc86",
+      "sourceType": "github",
+      "skillPath": "skills/seo-aeo-best-practices/SKILL.md",
+      "computedHash": "3dd0a23b819eb148b81ebc609dfe0827491018591afc0c35dc0401013300b5a1"
     },
     "tailwindcss": {
       "source": "hairyf/skills",
