@@ -1,6 +1,6 @@
-import node from "@astrojs/node";
 // @ts-check
 import react from "@astrojs/react";
+import vercel from "@astrojs/vercel";
 import sanity from "@sanity/astro";
 import tailwindcss from "@tailwindcss/vite";
 import varlockAstroIntegration from "@varlock/astro-integration";
@@ -62,7 +62,7 @@ export default defineConfig({
     ...sanityIntegrations,
   ],
   output: "server",
-  adapter: node({ mode: "standalone" }),
+  adapter: vercel(),
   vite: {
     plugins: [tailwindcss()],
   },
