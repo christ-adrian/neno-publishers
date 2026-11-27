@@ -9,7 +9,7 @@ export function getManuscriptFileError(file: File): string {
 		return "This file is empty. Choose a file with content.";
 	}
 	if (file.size > maxManuscriptBytes) {
-		return "Choose a file of 15 MB or less, or paste a sharing link.";
+		return "Choose a file of 15 MB or less.";
 	}
 	return "";
 }

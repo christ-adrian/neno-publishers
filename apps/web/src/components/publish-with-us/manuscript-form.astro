@@ -1,5 +1,5 @@
 ---
-import { genres, services, stages } from "./options";
+import { genres, services } from "./options";
 ---
 
 <div class="manuscript-panel">
@@ -58,18 +58,6 @@ import { genres, services, stages } from "./options";
 			</fieldset>
 
 			<fieldset>
-				<legend>Current stage</legend>
-				<div class="form-choices">
-					{stages.map((stage) => (
-						<label>
-							<input name="stage" required type="radio" value={stage} />
-							{stage}
-						</label>
-					))}
-				</div>
-			</fieldset>
-
-			<fieldset>
 				<legend>Services needed <span>(optional)</span></legend>
 				<div class="form-choices">
 					{services.map((service) => (
@@ -94,20 +82,6 @@ import { genres, services, stages } from "./options";
 						>
 						<span class="field-hint" id="manuscript-file-hint"
 							>Word or PDF, up to 15 MB.</span
-						>
-					</label>
-					<label class="full-field">
-						Or paste a sharing link
-						<input
-							inputmode="url"
-							maxlength="2048"
-							name="manuscriptLink"
-							pattern="https://.+"
-							type="url"
-						>
-						<span class="field-hint"
-							>Use an HTTPS sharing link from Google Docs, Drive or
-							Dropbox.</span
 						>
 					</label>
 				</div>
@@ -249,7 +223,7 @@ import { genres, services, stages } from "./options";
 		color: var(--color-ink-muted);
 	}
 
-	input:not([type="radio"], [type="checkbox"]),
+	input:not([type="checkbox"]),
 	select,
 	textarea {
 		display: block;

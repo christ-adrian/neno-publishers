@@ -25,7 +25,7 @@ describe("manuscript attachment", () => {
 		assert.equal(getManuscriptFileError(new File([limit], "sample.pdf")), "");
 		assert.equal(
 			getManuscriptFileError(new File([limit, "x"], "sample.pdf")),
-			"Choose a file of 15 MB or less, or paste a sharing link."
+			"Choose a file of 15 MB or less."
 		);
 	});
 });

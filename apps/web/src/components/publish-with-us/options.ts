@@ -8,12 +8,6 @@ export const genres = [
 	"Poetry & Children’s Books",
 ] as const;
 
-export const stages = [
-	"Just an Idea",
-	"Draft in Progress",
-	"Completed Manuscript",
-] as const;
-
 export const services = [
 	"Full Publishing",
 	"Editing & Proofreading",
