@@ -269,6 +269,8 @@
 	inline-size: 100%;
 	block-size: 100%;
 	object-fit: cover;
+	filter: blur(5px);
+	transform: scale(1.06);
 }
 
 .hero-copy {
