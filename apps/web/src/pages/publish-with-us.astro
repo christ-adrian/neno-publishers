@@ -3,36 +3,7 @@ import { Image } from "astro:assets";
 import leadership from "../../../../content/assets/books/adaptive-leadership.jpg";
 import memoir from "../../../../content/assets/books/as-life-unfolds.jpg";
 import ManuscriptForm from "../components/publish-with-us/manuscript-form.astro";
-import { genres } from "../components/publish-with-us/options";
 import Layout from "../layouts/Layout.astro";
-
-const journey = [
-	{
-		description:
-			"Send us your draft or concept. We review its structure, clarity and audience fit, then put together a publishing plan for your book.",
-		title: "Manuscript submission & evaluation",
-	},
-	{
-		description:
-			"We develop and proofread the text, lay out the interior and design a cover suited to your book and its readers.",
-		title: "Editing, typesetting & cover design",
-	},
-	{
-		description:
-			"You review and approve the final proof. We help with the ISBN application and Kenya National Library Service legal deposit.",
-		title: "Proofing & ISBN registration",
-	},
-	{
-		description:
-			"We print and bind your book, choosing digital or offset printing and a paper stock that suits the format and print run.",
-		title: "Quality printing & binding",
-	},
-	{
-		description:
-			"We advise on retail pricing, positioning and promotion so you can plan how to reach your readers.",
-		title: "Launch, pricing & marketing advisory",
-	},
-];
 
 const guidelines = [
 	{
@@ -102,32 +73,6 @@ const guidelines = [
 				/>
 			</div>
 		</header>
-
-		<section
-			aria-labelledby="journey-heading"
-			class="publish-section publish-journey"
-		>
-			<h2 id="journey-heading">The publishing journey</h2>
-			<ol class="journey-list">
-				{journey.map(({ title, description }, index) => (
-					<li>
-						<span class="journey-number">0{index + 1}</span>
-						<h3>{title}</h3>
-						<p>{description}</p>
-					</li>
-				))}
-			</ol>
-		</section>
-
-		<section
-			aria-labelledby="genres-heading"
-			class="publish-section publish-genres"
-		>
-			<h2 id="genres-heading">Genres we publish</h2>
-			<ul>
-				{genres.map((genre) => <li>{genre}</li>)}
-			</ul>
-		</section>
 
 		<section
 			aria-labelledby="submit-manuscript"
@@ -323,72 +268,23 @@ const guidelines = [
 		margin-inline: var(--publish-gutter);
 	}
 
-	.journey-list {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
-		gap: 0.75rem;
-		margin-block-start: 1.65rem;
-	}
-
-	.journey-list li,
 	.manuscript-guidelines {
 		background: var(--color-surface);
 		border: 1px solid var(--color-border);
 		border-radius: 0.875rem;
 	}
 
-	.journey-list li {
-		padding: clamp(1rem, 1.55vw, 1.4rem);
-	}
-
-	.journey-number {
-		display: inline-block;
-		margin-block-end: 1.1rem;
-		font-family: var(--font-serif);
-		font-size: 2.1rem;
-		font-variant-numeric: tabular-nums;
-		line-height: 1;
-		color: var(--color-brand-primary-dark);
-	}
-
-	.journey-list h3,
 	.guidelines-list h3 {
 		margin-block-end: 0.45rem;
 		font-weight: 750;
 		line-height: 1.35;
 	}
 
-	.journey-list p,
 	.guidelines-list p,
 	.faq-list p {
 		font-size: 0.9375rem;
 		line-height: 1.65;
 		color: var(--color-ink-muted);
-	}
-
-	.publish-genres {
-		display: grid;
-		gap: 1.3rem 2rem;
-		align-items: center;
-		padding: clamp(1.4rem, 4.3vw, 3rem);
-		background: var(--color-brand-primary-soft);
-		border: 1px solid #cde3ee;
-		border-radius: 1.15rem;
-	}
-
-	.publish-genres ul {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.55rem;
-	}
-
-	.publish-genres li {
-		padding: 0.5rem 0.9rem;
-		font-size: 0.875rem;
-		font-weight: 650;
-		background: white;
-		border: 1px solid #cde3ee;
-		border-radius: 99rem;
 	}
 
 	.manuscript-section,
@@ -473,7 +369,6 @@ const guidelines = [
 			grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
 		}
 
-		.publish-genres,
 		.author-faqs {
 			grid-template-columns: minmax(0, 1fr) minmax(0, 1.65fr);
 		}
