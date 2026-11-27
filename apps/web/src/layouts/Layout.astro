@@ -23,7 +23,15 @@ const {
   type = "website",
 } = Astro.props;
 const site = Astro.site ?? Astro.url;
-const origin = Astro.url.origin;
+const productionHost = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+const isDeploymentPreviewHost =
+  Astro.url.hostname.endsWith(".vercel.app") &&
+  Astro.url.hostname !== "neno-publishers.vercel.app";
+const origin = productionHost
+  ? `https://${productionHost}`
+  : isDeploymentPreviewHost
+    ? "https://neno-publishers.vercel.app"
+    : Astro.url.origin;
 const pathname = Astro.url.pathname.replace(/\/+$/, "") || "/";
 const canonical = new URL(pathname, site);
 const ogUrl = new URL(pathname, origin);
