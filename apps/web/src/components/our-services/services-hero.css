@@ -1,7 +1,12 @@
 .services-page {
-	inline-size: min(78rem, calc(100% - 2 * var(--spacing-site-gutter)));
+	inline-size: calc(100% - 2 * var(--spacing-site-gutter));
 	margin-inline: auto;
-	padding-block: clamp(1rem, 3vw, 2.5rem) 4rem;
+	padding-block-end: 4rem;
+}
+
+.services-page > .service-details {
+	max-inline-size: 78rem;
+	margin-inline: auto;
 }
 
 .service-frame {
@@ -9,15 +14,9 @@
 	--service-ink: var(--color-on-image);
 	--service-accent: var(--color-brand-primary-soft);
 	--service-radius: clamp(1.15rem, 3vw, 2rem);
-	--service-step: clamp(2.75rem, 4vw, 4rem);
-	position: relative;
-	isolation: isolate;
-	background: var(--color-surface);
-	border: 1px solid var(--color-border);
-	border-radius: calc(var(--service-radius) + 0.75rem);
-	padding: clamp(0.5rem, 1vw, 0.85rem);
-	box-shadow: 0 2rem 5rem -3.5rem rgb(15 23 42 / 36%);
-	overflow: hidden;
+	display: grid;
+	grid-template-rows: 1fr auto;
+	min-block-size: calc(100dvh - var(--site-header-min-height));
 }
 
 .service-frame[data-service="advisory"] {
@@ -30,56 +29,23 @@
 	--service-accent: #d8f5e3;
 }
 
-.service-breadcrumb {
-	position: relative;
-	z-index: 1;
-	display: flex;
-	align-items: center;
-	gap: 0.65rem;
-	min-block-size: var(--service-step);
-	padding-inline: clamp(1rem, 4vw, 3.5rem);
-	color: var(--color-ink-muted);
-	font-size: 0.875rem;
-}
-
-.service-breadcrumb a {
-	padding-block: 0.75rem;
-}
-
-.service-breadcrumb a:hover {
-	color: var(--color-brand-primary-dark);
-	text-decoration: underline;
-}
-
 .service-hero {
 	position: relative;
 	display: grid;
 	grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
 	align-items: center;
 	gap: clamp(1.5rem, 5vw, 5rem);
-	min-block-size: clamp(28rem, 48vw, 37rem);
 	padding: clamp(2.25rem, 6vw, 5.5rem) clamp(1.35rem, 5vw, 5.5rem);
 	color: var(--service-ink);
 	background-color: var(--service-bg);
-	background-image: radial-gradient(
-		ellipse at 85% 90%,
-		color-mix(in srgb, var(--service-accent) 13%, transparent),
-		transparent 60%
-	);
+	background-image:
+		linear-gradient(to bottom, transparent 55%, var(--service-bg) 95%),
+		radial-gradient(
+			ellipse at 85% 90%,
+			color-mix(in srgb, var(--service-accent) 13%, transparent),
+			transparent 60%
+		);
 	border-radius: var(--service-radius);
-}
-
-.service-hero::before {
-	position: absolute;
-	inset-block-end: calc(100% - var(--service-radius));
-	inset-inline-end: 0;
-	inline-size: 31%;
-	block-size: calc(var(--service-step) + var(--service-radius));
-	content: "";
-	background: var(--service-bg);
-	border-start-start-radius: var(--service-radius);
-	border-start-end-radius: var(--service-radius);
-	pointer-events: none;
 }
 
 .service-copy,
@@ -185,7 +151,6 @@
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	align-items: stretch;
-	background: var(--color-surface);
 }
 
 .service-nav > a {
@@ -298,11 +263,6 @@
 @media (width < 48rem) {
 	.service-hero {
 		grid-template-columns: minmax(0, 1fr);
-		min-block-size: 0;
-	}
-
-	.service-hero::before {
-		inline-size: 25%;
 	}
 
 	.service-art-image {

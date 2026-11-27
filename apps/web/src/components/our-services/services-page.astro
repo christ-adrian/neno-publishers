@@ -10,16 +10,10 @@ interface Props {
 }
 
 const { service } = Astro.props;
-const isHub = Astro.url.pathname.replace(/\/$/, "") === "/our-services";
 ---
 
 <main class="services-page">
 	<div class="service-frame" data-service={service.slug}>
-		<nav aria-label="Breadcrumb" class="service-breadcrumb">
-			<a href="/">Home</a>
-			<span aria-hidden="true">/</span>
-			<a aria-current={isHub ? "page" : undefined} href="/our-services">Our Services</a>
-		</nav>
 		<section aria-labelledby="service-title" class="service-hero">
 			<div class="service-copy">
 				<h1 id="service-title">{service.title}</h1>
