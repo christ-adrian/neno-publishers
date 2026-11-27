@@ -43,16 +43,12 @@ import { genres, services } from "./options";
 						Working title
 						<input maxlength="200" name="title" required type="text">
 					</label>
-					<label>
+					<label class="full-field">
 						Genre
 						<select name="genre" required>
 							<option disabled selected value="">Choose a genre</option>
 							{genres.map((genre) => <option value={genre}>{genre}</option>)}
 						</select>
-					</label>
-					<label>
-						Approximate word count <span>(optional)</span>
-						<input min="1" name="wordCount" step="1" type="number">
 					</label>
 				</div>
 			</fieldset>
@@ -88,7 +84,7 @@ import { genres, services } from "./options";
 			</fieldset>
 
 			<label>
-				Brief synopsis
+				Brief Overview
 				<textarea maxlength="2000" name="synopsis" required rows="4"></textarea>
 			</label>
 
